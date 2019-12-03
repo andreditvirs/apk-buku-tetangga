@@ -7,4 +7,5 @@
     <string name="nav_home">Home</string>
     <string name="nav_notif">Notification</string>
     <string name="nav_account">Account</string>
+    <string name="aturan_register">Dengan ini Anda menyetujui peraturan pada Kebijakan dan Privasi</string>
 </resources>
