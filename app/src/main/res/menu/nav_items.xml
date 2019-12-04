@@ -3,15 +3,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/nav_beranda"
         android:icon="@drawable/ic_home_black_44dp"
-        android:title="@string/nav_beranda"/>
+        android:title="@string/nav_beranda" />
     <item
+        android:id="@+id/nav_sewa"
         android:icon="@drawable/ic_shopping_cart_black_44dp"
-        android:title="@string/nav_sewa"/>
+        android:title="@string/nav_sewa" />
     <item
+        android:id="@+id/nav_riwayat"
         android:icon="@drawable/ic_event_note_black_44dp"
-        android:title="@string/nav_riwayat"/>
+        android:title="@string/nav_riwayat" />
     <item
+        android:id="@+id/nav_akun"
         android:icon="@drawable/ic_person_black_44dp"
-        android:title="@string/nav_account"/>
+        android:title="@string/nav_account" />
 </menu>

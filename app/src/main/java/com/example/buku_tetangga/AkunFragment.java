@@ -13,10 +13,10 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ProfilFragment extends Fragment {
+public class AkunFragment extends Fragment {
 
 
-    public ProfilFragment() {
+    public AkunFragment() {
         // Required empty public constructor
     }
 
@@ -25,7 +25,7 @@ public class ProfilFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profil, container, false);
+        return inflater.inflate(R.layout.fragment_akun, container, false);
     }
 
 }
