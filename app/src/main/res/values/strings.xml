@@ -8,4 +8,7 @@
     <string name="nav_notif">Notification</string>
     <string name="nav_account">Account</string>
     <string name="aturan_register">Dengan ini Anda menyetujui peraturan pada Kebijakan dan Privasi</string>
+    <string name="nav_riwayat">Riwayat</string>
+    <string name="nav_sewa">Sewa</string>
+    <string name="nav_beranda">Beranda</string>
 </resources>
