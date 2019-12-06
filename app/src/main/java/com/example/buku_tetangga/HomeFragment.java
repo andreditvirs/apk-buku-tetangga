@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.transition.Slide;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,9 +31,11 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         //Set Slider
-        SliderView sliderView = findViewById(R.id.imageSlider);
+        View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
-        SliderAdapterExample adapter = new SliderAdapterExample(this);
+        SliderView sliderView = (SliderView) rootView.findViewById(R.id.imageSlider);
+
+        SliderAdapterExample adapter = new SliderAdapterExample(this.getActivity().getApplicationContext());
 
         sliderView.setSliderAdapter(adapter);
 
@@ -45,7 +48,7 @@ public class HomeFragment extends Fragment {
         sliderView.startAutoCycle();
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        return rootView;
     }
 
 }
