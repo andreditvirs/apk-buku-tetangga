@@ -6,4 +6,9 @@
     <color name="colorActiveDark">#161515</color>
     <color name="colorUnactiveDark">#B3A5AA</color>
     <color name="colorLight">#FFFFFF</color>
+    
+    <color name="color1">#424549</color>
+    <color name="color2">#7e455e</color>
+    <color name="color3">#796e25</color>
+    <color name="color4">#59717c</color>
 </resources>
