@@ -51,12 +51,10 @@ public class VerifyActivity extends AppCompatActivity implements Login.OnFragmen
     public void onFragmentInteraction(Uri uri) {
 
     }
-    //set animation_from_login_to_home
+
+    //set transition_from_login_to_navbar
     public void mainBtn(View view) {
-        if(view == findViewById(R.id.button_masuk_of_login)) {
             startActivity(new Intent(this, Navbar.class));
             Animatoo.animateFade(this);
-            }
-        }
-
     }
+}

@@ -9,21 +9,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="20dp"
-        android:layout_margin="8dp">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="300dp">
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="300dp"
+            android:orientation="vertical"
+            android:background="@color/colorLight">
+
             <ImageView
                 android:id="@+id/image_of_card_home"
                 android:src="@drawable/brochure"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:scaleType="centerCrop"/>
+                android:layout_height="150dp"
+                android:background="@color/colorLight"
+                />
+
             <TextView
                 android:id="@+id/title_of_card_home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/image_of_card_home"
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="16dp"
                 android:text="Brochure"
@@ -33,15 +38,15 @@
                 android:id="@+id/desc_of_card_home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/title_of_card_home"
                 android:layout_marginTop="3dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:maxLines="3"
+                android:textColor="#262626"
                 android:text="Description"
                 android:drawablePadding="10dp"
                 android:ellipsize="end" />
-        </RelativeLayout>
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
 </LinearLayout>

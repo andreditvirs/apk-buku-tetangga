@@ -46,7 +46,7 @@ public class HomeFragment extends Fragment {
 
         SliderView sliderView = (SliderView) rootView.findViewById(R.id.imageSlider);
 
-        SliderAdapterExample adapter = new SliderAdapterExample(this.getActivity().getApplicationContext());
+        SliderAdapterExample adapter = new SliderAdapterExample(this.getActivity());
 
         sliderView.setSliderAdapter(adapter);
 
@@ -60,7 +60,7 @@ public class HomeFragment extends Fragment {
 
         // set card_of_home
         models = new ArrayList<>();
-        models.add(new Model(R.drawable.brochure, "Brochure", "Ini adalah brosur"));
+        models.add(new Model(R.drawable.brochure, "Brochure", "Ini adalah brosur, Ini adalah brosur, ini sungguh sebuah brosur anda tidak percaya? coba click saja ini"));
         models.add(new Model(R.drawable.sticker, "Stiker", "Ini adalah stiker"));
         models.add(new Model(R.drawable.poster, "Poster", "Ini adalah poster"));
         models.add(new Model(R.drawable.namecard, "Namecard", "Ini adalah kartu nama"));
@@ -71,38 +71,38 @@ public class HomeFragment extends Fragment {
         viewPager.setAdapter(adapter2);
         viewPager.setPadding(130, 0, 130, 0);
 
-        Integer[] colors_temp = {
-                getResources().getColor(R.color.color1),
-                getResources().getColor(R.color.color2),
-                getResources().getColor(R.color.color3),
-                getResources().getColor(R.color.color4)
-        };
-
-        colors = colors_temp;
-
-        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                if(position < (adapter2.getCount()-1) && position < (colors.length - 1)) {
-                    viewPager.setBackgroundColor(
-                            (Integer) argbEvaluator.evaluate(
-                                    positionOffset, colors[position], colors[position + 1])
-                    );
-                }else{
-                    viewPager.setBackgroundColor(colors[colors.length - 1]);
-                }
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
+//        Integer[] colors_temp = {
+//                getResources().getColor(R.color.color1),
+//                getResources().getColor(R.color.color2),
+//                getResources().getColor(R.color.color3),
+//                getResources().getColor(R.color.color4)
+//        };
+//
+//        colors = colors_temp;
+//
+//        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+//            @Override
+//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+//                if(position < (adapter2.getCount()-1) && position < (colors.length - 1)) {
+//                    viewPager.setBackgroundColor(
+//                            (Integer) argbEvaluator.evaluate(
+//                                    positionOffset, colors[position], colors[position + 1])
+//                    );
+//                }else{
+//                    viewPager.setBackgroundColor(colors[colors.length - 1]);
+//                }
+//            }
+//
+//            @Override
+//            public void onPageSelected(int position) {
+//
+//            }
+//
+//            @Override
+//            public void onPageScrollStateChanged(int state) {
+//
+//            }
+//        });
 
         return rootView;
     }

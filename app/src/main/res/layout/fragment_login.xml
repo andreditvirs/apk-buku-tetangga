@@ -86,7 +86,8 @@
         android:text="Masuk"
         android:textAllCaps="false"
         android:textColor="@color/colorLight"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        tools:ignore="OnClick" />
 
     <TextView
         android:layout_width="match_parent"
