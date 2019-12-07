@@ -3,9 +3,12 @@ package com.example.buku_tetangga;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.google.android.material.tabs.TabLayout;
 
 public class VerifyActivity extends AppCompatActivity implements Login.OnFragmentInteractionListener,Register.OnFragmentInteractionListener{
@@ -48,4 +51,12 @@ public class VerifyActivity extends AppCompatActivity implements Login.OnFragmen
     public void onFragmentInteraction(Uri uri) {
 
     }
-}
+    //set animation_from_login_to_home
+    public void mainBtn(View view) {
+        if(view == findViewById(R.id.button_masuk_of_login)) {
+            startActivity(new Intent(this, Navbar.class));
+            Animatoo.animateFade(this);
+            }
+        }
+
+    }

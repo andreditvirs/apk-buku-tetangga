@@ -13,9 +13,9 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="wrap_content"
         android:layout_height="100dp"
-        android:src="@drawable/ic_logobutangAja"
+        android:src="@drawable/ic_logobutangaja"
         android:layout_gravity="center"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="30dp"
         />
 
     <TextView
@@ -75,6 +75,8 @@
         android:textColor="@color/colorSecondary"
         />
     <Button
+        android:id="@+id/button_masuk_of_login"
+        android:onClick="mainBtn"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -94,19 +96,19 @@
         android:text="atau"
         />
 
-    <Button
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/btn_rounded_white"
-        android:drawableLeft="@drawable/ic_google_icon"
-        android:elevation="10dp"
-        android:layout_gravity="center"
-        android:text="Masuk"
-        android:padding="16dp"
-        android:textAllCaps="false"
-        android:textColor="@color/colorActiveDark"
-        android:textSize="15sp"
-        />
+<!--    <Button-->
+<!--        android:layout_width="100dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:background="@drawable/btn_rounded_white"-->
+<!--        android:drawableLeft="@drawable/ic_google_icon"-->
+<!--        android:elevation="10dp"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:text="Masuk"-->
+<!--        android:padding="16dp"-->
+<!--        android:textAllCaps="false"-->
+<!--        android:textColor="@color/colorActiveDark"-->
+<!--        android:textSize="15sp"-->
+<!--        />-->
 
 </LinearLayout>

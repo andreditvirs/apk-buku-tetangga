@@ -1,6 +1,8 @@
 package com.example.buku_tetangga;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -9,6 +11,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 
 
 /**
@@ -30,6 +35,9 @@ public class Login extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    ListView listView;
+    private Activity activity;
 
     public Login() {
         // Required empty public constructor
@@ -107,4 +115,5 @@ public class Login extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
 }
