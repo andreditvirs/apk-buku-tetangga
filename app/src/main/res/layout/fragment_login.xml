@@ -23,6 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
+        android:fontFamily="@font/poppins_regular"
         android:text="Silahkan login dengan mengisikan"
         android:textColor="@color/colorSecondary"
         android:textSize="14sp"
@@ -40,16 +41,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email"
+            android:fontFamily="@font/poppins_regular"
             android:ems="10"
             android:inputType="text"
             android:textSize="20sp"
-
             />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:layout_marginTop="5dp"
@@ -70,6 +72,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:fontFamily="@font/poppins_light"
         android:text="Lupa Pasword"
         android:textSize="14sp"
         android:textColor="@color/colorSecondary"
@@ -80,6 +83,7 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:fontFamily="@font/poppins_medium"
         android:background="@drawable/btn_rounded"
         android:elevation="10dp"
         android:layout_gravity="center"
@@ -93,6 +97,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
+        android:fontFamily="@font/poppins_light"
         android:layout_marginTop="10dp"
         android:text="atau"
         />

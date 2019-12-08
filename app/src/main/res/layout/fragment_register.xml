@@ -21,6 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Selamat Datang"
+        android:fontFamily="@font/poppins_medium"
         android:textColor="@color/colorPrimary"
         android:textSize="28sp"
         />
@@ -29,6 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:fontFamily="@font/poppins_regular"
         android:text="Silahkan mengisi form berikut"
         android:textColor="@color/colorSecondary"
         android:textSize="14sp"
@@ -37,6 +39,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
         android:focusable="true"
         android:layout_marginTop="30dp"
         android:focusableInTouchMode="true"
@@ -45,6 +48,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_light"
             android:hint="Nama"
             android:ems="10"
             android:inputType="text"
@@ -56,6 +60,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:layout_marginTop="14dp"
@@ -64,6 +69,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_light"
             android:hint="Username"
             android:ems="10"
             android:inputType="text"
@@ -75,6 +81,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:layout_marginTop="14dp"
@@ -83,6 +90,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_light"
             android:hint="Email"
             android:ems="10"
             android:inputType="text"
@@ -94,6 +102,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:layout_marginTop="14dp"
@@ -102,6 +111,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_light"
             android:hint="Password"
             android:ems="10"
             android:inputType="text"
@@ -113,6 +123,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:layout_marginTop="14dp"
@@ -121,6 +132,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_light"
             android:hint="Ulang Password"
             android:ems="10"
             android:inputType="text"
@@ -132,6 +144,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:layout_marginTop="14dp"
@@ -140,6 +153,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_light"
             android:hint="Nomor Telepon/HP"
             android:ems="10"
             android:inputType="text"
@@ -152,6 +166,7 @@
         android:id="@+id/checkbox_register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_light"
         android:text="@string/aturan_register"
         android:textColor="@color/colorSecondary"
         android:layout_marginTop="20dp"
@@ -164,10 +179,10 @@
         android:background="@drawable/btn_rounded"
         android:elevation="10dp"
         android:layout_gravity="center"
+        android:fontFamily="@font/poppins_medium"
         android:text="Daftar"
         android:textAllCaps="false"
         android:textColor="@color/colorLight"
         android:textSize="15sp" />
-
     </LinearLayout>
 </ScrollView>

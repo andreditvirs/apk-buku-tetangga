@@ -11,20 +11,12 @@
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:id="@+id/toolbar"
         android:background="@color/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ActvityLoginRegister"
-            android:textSize="20dp"
-            android:textColor="#ffffff"
-            />
     </androidx.appcompat.widget.Toolbar>
 
     <com.google.android.material.tabs.TabLayout

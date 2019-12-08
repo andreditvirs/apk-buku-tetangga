@@ -4,15 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.smarteist.autoimageslider.IndicatorAnimations;
-import com.smarteist.autoimageslider.SliderAnimations;
-import com.smarteist.autoimageslider.SliderView;
 
 public class Navbar extends AppCompatActivity {
 
@@ -20,7 +16,7 @@ public class Navbar extends AppCompatActivity {
     private FrameLayout mMainFrame;
 
     private HomeFragment homeFragment;
-    private SewaFragment sewaFragment;
+    private KeranjangFragment keranjangFragment;
     private RiwayatFragment riwayatFragment;
     private AkunFragment akunFragment;
 
@@ -36,7 +32,7 @@ public class Navbar extends AppCompatActivity {
         mMainNav = (BottomNavigationView) findViewById(R.id.main_nav);
 
         homeFragment = new HomeFragment();
-        sewaFragment = new SewaFragment();
+        keranjangFragment = new KeranjangFragment();
         riwayatFragment = new RiwayatFragment();
         akunFragment = new AkunFragment();
 
@@ -50,7 +46,7 @@ public class Navbar extends AppCompatActivity {
                         setFragment(homeFragment);
                         return true;
                     case R.id.nav_sewa:
-                        setFragment(sewaFragment);
+                        setFragment(keranjangFragment);
                         return true;
                     case R.id.nav_riwayat:
                         setFragment(riwayatFragment);
