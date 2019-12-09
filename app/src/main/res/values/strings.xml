@@ -11,4 +11,6 @@
     <string name="nav_riwayat">Riwayat</string>
     <string name="nav_keranjang">Keranjang</string>
     <string name="nav_beranda">Beranda</string>
+    <string name="lupa_passsword">Lupa Passsword</string>
+    <string name="input_email">Email</string>
 </resources>
