@@ -13,4 +13,5 @@
     <string name="nav_beranda">Beranda</string>
     <string name="lupa_passsword">Lupa Passsword</string>
     <string name="input_email">Email</string>
+    <string name="lupa_password">Lupa Password</string>
 </resources>

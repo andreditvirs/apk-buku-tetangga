@@ -69,14 +69,17 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
+        android:id="@+id/lupa_password"
+        android:onClick="toLupaPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/poppins_light"
-        android:text="Lupa Pasword"
+        android:text="@string/lupa_password"
         android:textSize="14sp"
         android:textColor="@color/colorSecondary"
         />
+
     <Button
         android:id="@+id/button_masuk_of_login"
         android:onClick="mainBtn"

@@ -54,7 +54,13 @@ public class VerifyActivity extends AppCompatActivity implements Login.OnFragmen
 
     //set transition_from_login_to_navbar
     public void mainBtn(View view) {
-            startActivity(new Intent(this, Navbar.class));
-            Animatoo.animateSlideUp(this);
+        startActivity(new Intent(this, Navbar.class));
+        Animatoo.animateSlideUp(this);
+    }
+
+
+    public void toLupaPassword(View view) {
+        startActivity(new Intent(this, ForgetPasswordActivity.class));
+        Animatoo.animateSlideRight(this);
     }
 }
