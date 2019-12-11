@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AddBookActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_of_add_book"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark" />
+
+    <LinearLayout
+        android:id="@+id/sec_toolbar_of_add_book"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/toolbar_of_add_book"
+        android:background="@color/colorPrimary">
+
+        <ImageButton
+            android:id="@+id/back_from_lupa_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="toAkun"
+            android:layout_margin="8dp"
+            android:layout_gravity="center"
+            android:background="@drawable/ic_arrow_back_black_24dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tambah_buku"
+            android:padding="8dp"
+            android:textSize="24sp"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/colorLight"
+            android:textAlignment="textStart"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/ket_add_book"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sec_toolbar_of_add_book"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        android:layout_centerHorizontal="true">
+
+        <ImageView
+            android:id="@+id/ic_scan_qr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/ic_scan_qr"/>
+
+        <TextView
+            android:id="@+id/txtV_masukkan_judul"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Masukkan judul"
+            android:layout_marginTop="32dp"
+            android:layout_toEndOf="@id/ic_scan_qr"
+            />
+
+        <TextView
+            android:id="@+id/txtV_penulis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nama Penulis"
+            android:layout_below="@id/txtV_masukkan_judul"
+            android:layout_toEndOf="@id/ic_scan_qr"
+            />
+
+        <Button
+            android:id="@+id/btn_scan_qr"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/btn_rounded"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:text="Scan Via Barcode"
+            android:textSize="8sp"
+            android:textColor="@color/colorLight"
+            android:layout_below="@id/txtV_penulis"
+            android:layout_toEndOf="@id/ic_scan_qr"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ket_add_book"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        android:layout_centerHorizontal="true">
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:textColorHint="@color/colorUnactiveDark"
+            app:hintEnabled="false"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_light"
+                android:hint="@string/input_email"
+                android:ems="10"
+                android:inputType="text"
+                android:textSize="20sp"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+    </RelativeLayout>
+
+
+</RelativeLayout>
