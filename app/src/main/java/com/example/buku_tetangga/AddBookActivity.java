@@ -20,4 +20,9 @@ public class AddBookActivity extends AppCompatActivity {
         startActivity(new Intent(this, AkunFragment.class));
         Animatoo.animateSlideLeft(this);
     }
+
+    public void mainBtn(View view) {
+        startActivity(new Intent(this, AkunFragment.class));
+        Animatoo.animateSlideLeft(this);
+    }
 }
