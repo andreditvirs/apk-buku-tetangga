@@ -11,6 +11,8 @@ import android.view.View;
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.google.android.material.tabs.TabLayout;
 
+import com.example.buku_tetangga.activities.SearchAddBookActivity;
+
 public class VerifyActivity extends AppCompatActivity implements Login.OnFragmentInteractionListener,Register.OnFragmentInteractionListener{
 
     @Override
@@ -54,13 +56,14 @@ public class VerifyActivity extends AppCompatActivity implements Login.OnFragmen
 
     //set transition_from_login_to_navbar
     public void mainBtn(View view) {
-        startActivity(new Intent(this, Navbar.class));
+        startActivity(new Intent(this, SearchAddBookActivity
+                .class));
         Animatoo.animateSlideUp(this);
     }
 
 
     public void toLupaPassword(View view) {
         startActivity(new Intent(this, ForgetPasswordActivity.class));
-        Animatoo.animateSlideRight(this);
+        Animatoo.animateSlideLeft(this);
     }
 }

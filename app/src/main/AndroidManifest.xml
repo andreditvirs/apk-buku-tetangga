@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.buku_tetangga">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_logobutangajaicon"
@@ -10,11 +13,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity android:name=".AddBookActivity"></activity>
+        <activity android:name=".activities.BookActivity"/>
+        <activity android:name=".activities.SearchAddBookActivity"/>
         <activity android:name=".AddDescBookActivity" />
         <activity android:name=".ForgetPasswordActivity" />
         <activity android:name=".Navbar" />
         <activity android:name=".VerifyActivity" />
         <activity android:name=".SplashActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

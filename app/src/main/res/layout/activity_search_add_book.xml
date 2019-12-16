@@ -1,0 +1,108 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.SearchAddBookActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_of_forget_password"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/colorPrimary">
+
+        <ImageButton
+            android:id="@+id/back_from_lupa_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="toAddBook"
+            android:layout_margin="8dp"
+            android:layout_gravity="center"
+            android:background="@drawable/ic_arrow_back_black_24dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cari_buku"
+            android:padding="8dp"
+            android:textSize="24sp"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/colorLight"
+            android:textAlignment="textStart"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:maxLines="2"
+        android:textColor="@color/colorSecondary"
+        android:fontFamily="@font/poppins_light"
+        android:text="Cari, pilih dan tambahka keterangan buku yang Anda maksud dengan menggunakan Judul Buku tersebut"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp">
+
+        <EditText
+            android:id="@+id/search_box"
+            android:hint="@string/hint"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"/>
+        <Button
+            android:id="@+id/search_buttton"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_marginStart="16dp"
+            android:text="@string/search"
+            android:textColor="@color/colorLight"
+            android:background="@drawable/btn_rounded"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp">
+
+        <TextView
+            android:id="@+id/message_display"
+            android:visibility="invisible"
+            android:layout_centerHorizontal="true"
+            tools:text="Failed to get Data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            tools:listitem="@layout/book_raw_item" />
+
+        <ProgressBar
+            android:id="@+id/loading_indicator"
+            android:visibility="invisible"
+            android:layout_width="50dp"
+            android:layout_centerInParent="true"
+            android:layout_height="50dp" />
+    </RelativeLayout>
+
+
+</LinearLayout>

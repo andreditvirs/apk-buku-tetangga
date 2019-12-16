@@ -20,6 +20,6 @@ public class ForgetPasswordActivity extends AppCompatActivity {
 
     public void toVerify(View view) {
         startActivity(new Intent(this, VerifyActivity.class));
-        Animatoo.animateSlideLeft(this);
+        Animatoo.animateSlideRight(this);
     }
 }
