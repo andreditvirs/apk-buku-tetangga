@@ -32,5 +32,8 @@
     <string name="description_divider">Divider</string>
     <string name="Failed_to_Load_data">Please check your Internet Connection</string>
     <string name="NO_RESULT">No matching results</string>
+    <string name="tambah_deskripsi">Tambah Deskripsi</string>
+    <string name="halaman">Halaman</string>
+    <string name="penerbit">Penerbit</string>
 
 </resources>
