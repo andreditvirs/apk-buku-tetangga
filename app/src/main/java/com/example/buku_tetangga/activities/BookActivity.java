@@ -22,9 +22,6 @@ public class BookActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book);
 
-        //hide the default actionBar
-        getSupportActionBar().hide();
-
         //Receive
         Bundle extras = getIntent().getExtras();
         String title =""

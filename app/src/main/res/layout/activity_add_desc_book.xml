@@ -10,7 +10,7 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_of_ad_desc_book"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="30dp"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         app:theme="@style/ThemeOverlay.AppCompat.Dark" />
@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:text="@string/tambah_deskripsi"
             android:padding="8dp"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:fontFamily="@font/poppins_medium"
             android:textColor="@color/colorLight"
             android:textAlignment="textStart"/>
@@ -52,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/halaman"
-            android:textSize="24sp"
+            android:textSize="18sp"
             android:fontFamily="@font/poppins_medium"/>
 
         <EditText
@@ -60,13 +60,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Masukkan jumlah halaman buku"
+            android:textSize="14sp"
             android:fontFamily="@font/poppins_regular"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/penerbit"
-            android:textSize="24sp"
+            android:textSize="18sp"
             android:fontFamily="@font/poppins_medium"/>
 
         <EditText
@@ -74,19 +75,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Masukkan nama penerbit"
+            android:textSize="14sp"
             android:fontFamily="@font/poppins_regular"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Nomor ISBN"
-            android:textSize="24sp"
+            android:textSize="18sp"
             android:fontFamily="@font/poppins_medium"/>
 
         <EditText
             android:id="@+id/editT_isbn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="14sp"
             android:hint="Masukkan nomor ISBN (tanpa -)"
             android:fontFamily="@font/poppins_regular"/>
 

@@ -10,7 +10,7 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_of_forget_password"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="30dp"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         app:theme="@style/ThemeOverlay.AppCompat.Dark" />
@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:text="@string/cari_buku"
             android:padding="8dp"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:fontFamily="@font/poppins_medium"
             android:textColor="@color/colorLight"
             android:textAlignment="textStart"/>

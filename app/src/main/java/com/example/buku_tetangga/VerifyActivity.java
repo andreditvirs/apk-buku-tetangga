@@ -56,8 +56,7 @@ public class VerifyActivity extends AppCompatActivity implements Login.OnFragmen
 
     //set transition_from_login_to_navbar
     public void mainBtn(View view) {
-        startActivity(new Intent(this, SearchAddBookActivity
-                .class));
+        startActivity(new Intent(this, Navbar.class));
         Animatoo.animateSlideUp(this);
     }
 

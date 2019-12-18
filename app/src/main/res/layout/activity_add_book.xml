@@ -10,7 +10,7 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_of_add_book"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="30dp"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         app:theme="@style/ThemeOverlay.AppCompat.Dark" />
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:text="@string/tambah_buku"
             android:padding="8dp"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:fontFamily="@font/poppins_medium"
             android:textColor="@color/colorLight"
             android:textAlignment="textStart"/>
@@ -84,6 +84,7 @@
             android:layout_height="20dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/btn_rounded"
+            android:onClick="toSearchAddDescBook"
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
             android:text="Scan Via Barcode"
@@ -107,8 +108,6 @@
             android:id="@+id/txtV_kategori"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
             android:layout_marginBottom="2dp"
             android:textSize="16sp"
             android:text="Kategori" />
@@ -120,9 +119,7 @@
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:textColorHint="@color/colorUnactiveDark"
-            app:hintEnabled="false"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp">
+            app:hintEnabled="false">
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -157,8 +154,6 @@
             android:id="@+id/txtV_harga"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
             android:layout_marginBottom="2dp"
             android:textSize="16sp"
             android:text="Harga" />
@@ -168,8 +163,6 @@
             android:layout_height="wrap_content"
             android:padding="8dp"
             android:layout_below="@id/txtV_harga"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
             android:layout_marginBottom="2dp"
             android:textSize="24sp"
             android:text="Rp." />
@@ -210,8 +203,6 @@
             android:id="@+id/txtV_deskripsi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
             android:layout_marginBottom="2dp"
             android:textSize="16sp"
             android:text="Deskripsi" />
@@ -223,9 +214,7 @@
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:textColorHint="@color/colorUnactiveDark"
-            app:hintEnabled="false"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp">
+            app:hintEnabled="false">
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -260,33 +249,42 @@
             android:id="@+id/txtV_stok"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="2dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="6dp"
             android:textSize="16sp"
             android:text="Jumlah" />
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
+
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/txtV_stok"
-            android:fontFamily="@font/poppins_regular"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:textColorHint="@color/colorUnactiveDark"
-            app:hintEnabled="false"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textI_stok"
-                android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp">
+            <Button
+                android:id="@+id/minusBtn"
+                android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_light"
-                android:text="Masukkan jumlah stok buku"
-                android:hint=" "
-                android:ems="10"
-                android:inputType="text"
-                android:textSize="16sp"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                android:text="-"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/counterTxt_jumlah"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:text="25"/>
+
+            <Button
+                android:id="@+id/plusBtn"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:text="+"
+                android:textSize="20sp"/>
+
+        </LinearLayout>
     </RelativeLayout>
 
     <Button

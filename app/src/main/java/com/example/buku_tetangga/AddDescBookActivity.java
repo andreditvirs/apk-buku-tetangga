@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
+import com.example.buku_tetangga.activities.SearchAddBookActivity;
 
 public class AddDescBookActivity extends AppCompatActivity {
 
@@ -18,6 +19,11 @@ public class AddDescBookActivity extends AppCompatActivity {
 
     public void toAddBook(View view) {
         startActivity(new Intent(this, AddBookActivity.class));
+        Animatoo.animateSlideLeft(this);
+    }
+
+    public void mainBtn(View view) {
+        startActivity(new Intent(this, VerifyActivity.class));
         Animatoo.animateSlideLeft(this);
     }
 }
