@@ -15,24 +15,25 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_logo_butang_putih"
         android:layout_centerVertical="true"
-        />
+        android:contentDescription="Logo Splash Screen"
+        tools:ignore="HardcodedText" />
 
     <ProgressBar
-        android:id="@+id/progress_bar"
+        android:id="@+id/proBar"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/logo_of_splash_activity"
         android:layout_marginTop="20dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginEnd="60dp"/>
+        android:layout_marginStart="68dp"
+        android:layout_marginEnd="68dp"/>
     
     <TextView
-        android:id="@+id/text_view"
+        android:id="@+id/txtV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="25sp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/progress_bar"/>
+        android:layout_below="@id/proBar"/>
 
 </RelativeLayout>

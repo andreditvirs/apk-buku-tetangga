@@ -73,8 +73,9 @@ public class AddBookActivity extends AppCompatActivity {
     }
 
     public void toAkun(View view) {
+        finish();
         onBackPressed();
-        Animatoo.animateSlideLeft(this);
+        Animatoo.animateSlideDown(this);
     }
 
     public void mainBtn(View view) {
@@ -85,5 +86,15 @@ public class AddBookActivity extends AppCompatActivity {
     public void toSearchAddDescBook(View view) {
         startActivity(new Intent(this, SearchAddBookActivity.class));
         Animatoo.animateSlideUp(this);
+    }
+
+    public void toAddDescBook(View view) {
+        startActivity(new Intent(this, AddDescBookActivity.class));
+        Animatoo.animateSlideLeft(this);
+    }
+
+    public void toAddCategory(View view) {
+        startActivity(new Intent(this, AddCategoryActivity.class));
+        Animatoo.animateSlideLeft(this);
     }
 }

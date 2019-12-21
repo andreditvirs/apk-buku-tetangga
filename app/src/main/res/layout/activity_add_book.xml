@@ -1,183 +1,196 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".AddBookActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".AddBookActivity">
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_of_add_book"
+    android:orientation="vertical">
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        app:theme="@style/ThemeOverlay.AppCompat.Dark" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
 
-    <LinearLayout
-        android:id="@+id/sec_toolbar_of_add_book"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_below="@+id/toolbar_of_add_book"
-        android:background="@color/colorPrimary">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_of_add_book"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark" />
 
-        <ImageButton
-            android:id="@+id/back_from_lupa_password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="toAkun"
-            android:layout_margin="8dp"
-            android:layout_gravity="center"
-            android:background="@drawable/ic_arrow_back_black_24dp"/>
-
-        <TextView
+        <LinearLayout
+            android:id="@+id/sec_toolbar_of_add_book"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/tambah_buku"
-            android:padding="8dp"
-            android:textSize="20sp"
-            android:fontFamily="@font/poppins_medium"
-            android:textColor="@color/colorLight"
-            android:textAlignment="textStart"/>
-    </LinearLayout>
+            android:orientation="horizontal"
+            android:layout_below="@+id/toolbar_of_add_book"
+            android:background="@color/colorPrimary">
 
-    <RelativeLayout
-        android:id="@+id/ket_add_book"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/sec_toolbar_of_add_book"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginEnd="48dp"
-        android:layout_centerHorizontal="true">
+            <ImageButton
+                android:id="@+id/back_from_lupa_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="toAkun"
+                android:layout_margin="8dp"
+                android:layout_gravity="center"
+                android:background="@drawable/ic_arrow_back_black_24dp"/>
 
-        <ImageView
-            android:id="@+id/ic_scan_qr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:src="@drawable/ic_scan_qr"/>
-
-        <TextView
-            android:id="@+id/txtV_masukkan_judul"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Masukkan judul"
-            android:layout_marginTop="32dp"
-            android:layout_toEndOf="@id/ic_scan_qr"
-            />
-
-        <TextView
-            android:id="@+id/txtV_penulis"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nama Penulis"
-            android:layout_below="@id/txtV_masukkan_judul"
-            android:layout_toEndOf="@id/ic_scan_qr"
-            />
-
-        <Button
-            android:id="@+id/btn_scan_qr"
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/btn_rounded"
-            android:onClick="toSearchAddDescBook"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
-            android:text="Scan Via Barcode"
-            android:textSize="8sp"
-            android:textColor="@color/colorLight"
-            android:layout_below="@id/txtV_penulis"
-            android:layout_toEndOf="@id/ic_scan_qr"
-            />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/kategori"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/ket_add_book"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginEnd="48dp"
-        android:layout_centerHorizontal="true">
-        <TextView
-            android:id="@+id/txtV_kategori"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
-            android:textSize="16sp"
-            android:text="Kategori" />
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/txtV_kategori"
-            android:fontFamily="@font/poppins_regular"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:textColorHint="@color/colorUnactiveDark"
-            app:hintEnabled="false">
-            <RelativeLayout
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textI_kategori"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_light"
-                    android:ems="10"
-                    android:inputType="text"
-                    android:textSize="20sp"/>
-                <ImageView
+                android:layout_height="wrap_content"
+                android:text="@string/tambah_buku"
+                android:padding="8dp"
+                android:textSize="20sp"
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="@color/colorLight"
+                android:textAlignment="textStart"/>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/ket_add_book"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/sec_toolbar_of_add_book"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginEnd="48dp"
+            android:layout_centerHorizontal="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+
+                <ImageButton
+                    android:id="@+id/ic_scan_qr"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignRight="@id/textI_kategori"
-                    android:src="@drawable/ic_plus"
-                    android:layout_margin="16dp"/>
-            </RelativeLayout>
-        </com.google.android.material.textfield.TextInputLayout>
-    </RelativeLayout>
+                    android:background="@drawable/ic_scan_qr"
+                    android:padding="8dp"/>
 
-    <RelativeLayout
-        android:id="@+id/harga"
-        android:layout_below="@id/kategori"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginEnd="48dp"
-        android:layout_centerHorizontal="true">
-        <TextView
-            android:id="@+id/txtV_harga"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
-            android:textSize="16sp"
-            android:text="Harga" />
-        <TextView
-            android:id="@+id/txtV_harga_rp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:layout_below="@id/txtV_harga"
-            android:layout_marginBottom="2dp"
-            android:textSize="24sp"
-            android:text="Rp." />
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textIL_harga"
+                <TextView
+                    android:id="@+id/txtV_unggah_foto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Unggah Foto Buku"
+                    android:textSize="14sp"
+                    android:layout_marginTop="8dp"
+                    />
+
+                <TextView
+                    android:id="@+id/txtV_atau"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_light"
+                    android:textSize="10sp"
+                    android:text="atau"
+                    />
+
+                <Button
+                    android:id="@+id/btn_scan_qr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="22dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/btn_rounded"
+                    android:onClick="toSearchAddDescBook"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:text="Lengkapi Via Judul"
+                    android:textSize="10sp"
+                    android:textColor="@color/colorLight"
+                    />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/kategori"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/txtV_harga"
-            android:layout_toEndOf="@id/txtV_harga_rp"
-            android:fontFamily="@font/poppins_regular"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:textColorHint="@color/colorUnactiveDark"
-            app:hintEnabled="false"
-            android:layout_marginEnd="16dp">
+            android:layout_below="@id/ket_add_book"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginEnd="48dp"
+            android:layout_centerHorizontal="true">
+            <TextView
+                android:id="@+id/txtV_kategori"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:textSize="16sp"
+                android:text="@string/kategori" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtV_kategori"
+                android:fontFamily="@font/poppins_regular"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:textColorHint="@color/colorUnactiveDark"
+                app:hintEnabled="false">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/textI_kategori"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_light"
+                        android:ems="10"
+                        android:inputType="text"
+                        android:textSize="20sp"/>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignRight="@id/textI_kategori"
+                        android:onClick="toAddCategory"
+                        android:src="@drawable/ic_plus"
+                        android:layout_margin="16dp"/>
+                </RelativeLayout>
+            </com.google.android.material.textfield.TextInputLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/harga"
+            android:layout_below="@id/kategori"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginEnd="48dp"
+            android:layout_centerHorizontal="true">
+            <TextView
+                android:id="@+id/txtV_harga"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:textSize="16sp"
+                android:text="Harga" />
+            <TextView
+                android:id="@+id/txtV_harga_rp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:layout_below="@id/txtV_harga"
+                android:layout_marginBottom="2dp"
+                android:textSize="24sp"
+                android:text="Rp." />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textIL_harga"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtV_harga"
+                android:layout_toEndOf="@id/txtV_harga_rp"
+                android:fontFamily="@font/poppins_regular"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:textColorHint="@color/colorUnactiveDark"
+                app:hintEnabled="false"
+                android:layout_marginEnd="16dp">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/textI_harga"
                     android:layout_width="match_parent"
@@ -187,123 +200,126 @@
                     android:ems="10"
                     android:inputType="text"
                     android:textSize="16sp"/>
-        </com.google.android.material.textfield.TextInputLayout>
-    </RelativeLayout>
+            </com.google.android.material.textfield.TextInputLayout>
+        </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/deskripsi"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/harga"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginEnd="48dp"
-        android:layout_centerHorizontal="true">
-        <TextView
-            android:id="@+id/txtV_deskripsi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
-            android:textSize="16sp"
-            android:text="Deskripsi" />
-        <com.google.android.material.textfield.TextInputLayout
+        <RelativeLayout
+            android:id="@+id/deskripsi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/txtV_deskripsi"
-            android:fontFamily="@font/poppins_regular"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:textColorHint="@color/colorUnactiveDark"
-            app:hintEnabled="false">
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textI_deskripsi"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_light"
-                    android:ems="10"
-                    android:inputType="text"
-                    android:textSize="20sp"/>
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignRight="@id/textI_deskripsi"
-                    android:src="@drawable/ic_plus"
-                    android:layout_margin="16dp"/>
-            </RelativeLayout>
-        </com.google.android.material.textfield.TextInputLayout>
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/stok"
-        android:layout_below="@id/deskripsi"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginEnd="48dp"
-        android:layout_centerHorizontal="true">
-        <TextView
-            android:id="@+id/txtV_stok"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="6dp"
-            android:textSize="16sp"
-            android:text="Jumlah" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp">
-            <Button
-                android:id="@+id/minusBtn"
-                android:layout_width="40dp"
-                android:layout_height="wrap_content"
-                android:text="-"
-                android:textSize="20sp"/>
-
+            android:layout_below="@id/harga"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginEnd="48dp"
+            android:layout_centerHorizontal="true">
             <TextView
-                android:id="@+id/counterTxt_jumlah"
+                android:id="@+id/txtV_deskripsi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textSize="18sp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:text="25"/>
-
-            <Button
-                android:id="@+id/plusBtn"
-                android:layout_width="40dp"
+                android:layout_marginBottom="2dp"
+                android:textSize="16sp"
+                android:text="Deskripsi" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="+"
-                android:textSize="20sp"/>
+                android:layout_below="@id/txtV_deskripsi"
+                android:fontFamily="@font/poppins_regular"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:textColorHint="@color/colorUnactiveDark"
+                app:hintEnabled="false">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/textI_deskripsi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_light"
+                        android:ems="10"
+                        android:inputType="text"
+                        android:textSize="20sp"/>
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="toAddDescBook"
+                        android:layout_alignEnd="@id/textI_deskripsi"
+                        android:background="@drawable/ic_plus"
+                        android:layout_margin="16dp"
+                        android:padding="8dp"/>
+                </RelativeLayout>
+            </com.google.android.material.textfield.TextInputLayout>
+        </RelativeLayout>
 
-        </LinearLayout>
+        <RelativeLayout
+            android:id="@+id/stok"
+            android:layout_below="@id/deskripsi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginEnd="48dp"
+            android:layout_centerHorizontal="true">
+            <TextView
+                android:id="@+id/txtV_stok"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="6dp"
+                android:textSize="16sp"
+                android:text="Jumlah" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp">
+                <Button
+                    android:id="@+id/minusBtn"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:text="-"
+                    android:textSize="20sp"/>
+
+                <TextView
+                    android:id="@+id/counterTxt_jumlah"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="18sp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:text="25"/>
+
+                <Button
+                    android:id="@+id/plusBtn"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:text="+"
+                    android:textSize="20sp"/>
+
+            </LinearLayout>
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/button_tambah_buku_of_add_book"
+            android:onClick="mainBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:layout_below="@id/stok"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/poppins_medium"
+            android:background="@drawable/btn_rounded"
+            android:elevation="10dp"
+            android:layout_centerHorizontal="true"
+            android:text="Tambah Buku"
+            android:textAllCaps="false"
+            android:textColor="@color/colorLight"
+            android:textSize="15sp"
+            tools:ignore="OnClick" />
+
     </RelativeLayout>
-
-    <Button
-        android:id="@+id/button_tambah_buku_of_add_book"
-        android:onClick="mainBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
-        android:layout_below="@id/stok"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/poppins_medium"
-        android:background="@drawable/btn_rounded"
-        android:elevation="10dp"
-        android:layout_centerHorizontal="true"
-        android:text="Tambah Buku"
-        android:textAllCaps="false"
-        android:textColor="@color/colorLight"
-        android:textSize="15sp"
-        tools:ignore="OnClick" />
-
-</RelativeLayout>
+</ScrollView>

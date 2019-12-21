@@ -2,11 +2,7 @@ package com.example.buku_tetangga;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -39,8 +35,8 @@ public class SplashActivity extends AppCompatActivity {
 //
 //        }, SPLASH_TIME_OUT);
 
-        progressBar = findViewById(R.id.progress_bar);
-        textView = findViewById(R.id.text_view);
+        progressBar = findViewById(R.id.proBar);
+        textView = findViewById(R.id.txtV);
 
         progressBar.setMax(100);
         progressBar.setScaleY(3f);

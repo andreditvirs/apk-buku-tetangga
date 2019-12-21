@@ -18,12 +18,13 @@ public class AddDescBookActivity extends AppCompatActivity {
     }
 
     public void toAddBook(View view) {
-        startActivity(new Intent(this, AddBookActivity.class));
-        Animatoo.animateSlideLeft(this);
+        finish();
+        onBackPressed();
+        Animatoo.animateSlideRight(this);
     }
 
     public void mainBtn(View view) {
         startActivity(new Intent(this, VerifyActivity.class));
-        Animatoo.animateSlideLeft(this);
+        Animatoo.animateSlideUp(this);
     }
 }

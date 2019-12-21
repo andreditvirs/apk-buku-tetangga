@@ -5,7 +5,7 @@
     <solid android:color="@color/colorLight"/> <!-- this one is ths color of the Rounded Button -->
     <corners
         android:bottomRightRadius="0dp"
-        android:bottomLeftRadius="30dp"
-        android:topLeftRadius="30dp"
+        android:bottomLeftRadius="28dp"
+        android:topLeftRadius="28dp"
         android:topRightRadius="0dp"/>
 </shape>

@@ -60,16 +60,27 @@ public class HomeFragment extends Fragment {
 
         // set card_of_home
         models = new ArrayList<>();
-        models.add(new Model(R.drawable.brochure, "Brochure", "Ini adalah brosur, Ini adalah brosur, ini sungguh sebuah brosur anda tidak percaya? coba click saja ini"));
-        models.add(new Model(R.drawable.sticker, "Stiker", "Ini adalah stiker"));
-        models.add(new Model(R.drawable.poster, "Poster", "Ini adalah poster"));
-        models.add(new Model(R.drawable.namecard, "Namecard", "Ini adalah kartu nama"));
+        models.add(new Model(R.drawable.cover_buku_1, "Brochure", "Ini adalah brosur"));
+        models.add(new Model(R.drawable.cover_buku_1, "Stiker", "Ini adalah stiker"));
+        models.add(new Model(R.drawable.cover_buku_1, "Poster", "Ini adalah poster"));
+        models.add(new Model(R.drawable.cover_buku_1, "Namecard", "Ini adalah kartu nama"));
+        models.add(new Model(R.drawable.cover_buku_1, "Namecard", "Ini adalah kartu nama"));
+        models.add(new Model(R.drawable.cover_buku_1, "Namecard", "Ini adalah kartu nama"));
+        models.add(new Model(R.drawable.cover_buku_1, "Namecard", "Ini adalah kartu nama"));
+        models.add(new Model(R.drawable.cover_buku_1, "Namecard", "Ini adalah kartu nama"));
+        models.add(new Model(R.drawable.cover_buku_1, "Namecard", "Ini adalah kartu nama"));
+        models.add(new Model(R.drawable.cover_buku_1, "Namecard", "Ini adalah kartu nama"));
+        models.add(new Model(R.drawable.cover_buku_1, "Namecard", "Ini adalah kartu nama"));
+        models.add(new Model(R.drawable.cover_buku_1, "Namecard", "Ini adalah kartu nama"));
+        models.add(new Model(R.drawable.cover_buku_1, "Namecard", "Ini adalah kartu nama"));
+        models.add(new Model(R.drawable.cover_buku_1, "Namecard", "Ini adalah kartu nama"));
+        models.add(new Model(R.drawable.cover_buku_1, "Namecard", "Ini adalah kartu nama"));
 
-        adapter2 = new Adapter(models, this.getActivity().getApplicationContext());
+        adapter2 = new Adapter(models, this.getActivity());
 
         viewPager = (ViewPager) rootView.findViewById(R.id.viewPager);
         viewPager.setAdapter(adapter2);
-        viewPager.setPadding(130, 0, 130, 0);
+        viewPager.setPadding(110, 0, 110, 0);
 
 //        Integer[] colors_temp = {
 //                getResources().getColor(R.color.color1),

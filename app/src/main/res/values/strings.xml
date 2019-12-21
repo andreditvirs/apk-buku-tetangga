@@ -17,7 +17,7 @@
     <string name="tambah_buku">Tambah Buku</string>
     <string name="cari_buku">Cari Buku</string>
 
-<!--    search bar-->
+    <!--    search bar-->
 
     <string name="thumbnail">thumbnail</string>
     <string name="title">Beginning Android 2</string>
@@ -35,5 +35,8 @@
     <string name="tambah_deskripsi">Tambah Deskripsi</string>
     <string name="halaman">Halaman</string>
     <string name="penerbit">Penerbit</string>
+    <string name="rekomendasi">Rekomendasi</string>
+    <string name="terpopuler">Terpopuler</string>
+    <string name="kategori">Kategori</string>
 
 </resources>

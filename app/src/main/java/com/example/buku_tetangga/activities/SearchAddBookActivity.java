@@ -200,7 +200,8 @@ public class SearchAddBookActivity extends AppCompatActivity {
 
 
     public void toAddBook(View view) {
-        startActivity(new Intent(this, AddBookActivity.class));
+        finish();
+        onBackPressed();
         Animatoo.animateSlideRight(this);
     }
 }

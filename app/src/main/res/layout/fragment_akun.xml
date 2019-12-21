@@ -45,25 +45,23 @@
                 tools:visibility="visible" />
 
 
-            <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="107dp"
-                android:layout_height="111dp"
-                android:contentDescription="desc"
-                android:src="@drawable/ic_foto_profil"
-                android:layout_gravity="center"
-                android:layout_marginBottom="20dp"
-
-                />
+<!--            <ImageView-->
+<!--                android:id="@+id/imageView4"-->
+<!--                android:layout_width="107dp"-->
+<!--                android:layout_height="111dp"-->
+<!--                android:contentDescription="desc"-->
+<!--                android:src="@drawable/ic_foto_profil"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:layout_marginBottom="20dp"/>-->
         </androidx.cardview.widget.CardView>
 
 
-        <ImageView
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            android:src="@drawable/ic_home"
-            android:layout_marginTop="50dp"
-            android:layout_marginLeft="19dp"/>
+<!--        <ImageView-->
+<!--            android:layout_width="18dp"-->
+<!--            android:layout_height="18dp"-->
+<!--            android:src="@drawable/ic_home"-->
+<!--            android:layout_marginTop="50dp"-->
+<!--            android:layout_marginLeft="19dp"/>-->
 
         <TextView
             android:layout_marginTop="-20dp"
@@ -73,12 +71,12 @@
             android:text="Alamat"
             />
 
-        <ImageView
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="19dp"
-            android:src="@drawable/ic_telepon"/>
+<!--        <ImageView-->
+<!--            android:layout_width="18dp"-->
+<!--            android:layout_height="18dp"-->
+<!--            android:layout_marginTop="15dp"-->
+<!--            android:layout_marginLeft="19dp"-->
+<!--            android:src="@drawable/ic_telepon"/>-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -87,13 +85,13 @@
             android:layout_marginLeft="60dp"
             />
 
-        <ImageView
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            android:src="@drawable/ic_email"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="19dp"
-            />
+<!--        <ImageView-->
+<!--            android:layout_width="18dp"-->
+<!--            android:layout_height="18dp"-->
+<!--            android:src="@drawable/ic_email"-->
+<!--            android:layout_marginTop="15dp"-->
+<!--            android:layout_marginLeft="19dp"-->
+<!--            />-->
 
         <TextView
             android:layout_width="wrap_content"
@@ -120,11 +118,21 @@
                 android:textSize="18sp"/>
         </LinearLayout>
 
-    <ImageButton
-        android:id="@+id/btn_addBook"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/btn_rounded"/>
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="32dp">
+            <ImageButton
+                android:id="@+id/btn_addBook"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="toAddBook"
+                android:layout_gravity="center"
+                android:background="@drawable/ic_add_book_akun"/>
+        </LinearLayout>
     </LinearLayout>
+
+
+
 </ScrollView>
