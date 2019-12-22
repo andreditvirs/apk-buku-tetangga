@@ -5,12 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Navbar extends AppCompatActivity {
@@ -61,7 +64,7 @@ public class Navbar extends AppCompatActivity {
                 }
             }
         });
-    }
+            }
 
     private void setFragment(androidx.fragment.app.Fragment fragment) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();

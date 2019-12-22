@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,13 @@ import android.widget.ListView;
 
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.Task;
 
 
 /**
@@ -34,6 +42,10 @@ public class Login extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    SignInButton signin;
+    GoogleSignInClient mGoogleSignInClient;
+    int RC_SIGN_IN = 0;
 
     private OnFragmentInteractionListener mListener;
 
@@ -75,7 +87,26 @@ public class Login extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_login, container, false);
+        //set google sign
+        signin = (SignInButton) rootView.findViewById(R.id.sign_in_button);
+        signin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (view.getId()) {
+                    case R.id.sign_in_button:
+                        signIn();
+                        break;
+                }
+            }
+        });
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+
+        mGoogleSignInClient = GoogleSignIn.getClient(this.getActivity(), gso);
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -100,6 +131,38 @@ public class Login extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+
+    private void signIn() {
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            // The Task returned from this call is always completed, no need to attach
+            // a listener.
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            handleSignInResult(task);
+        }
+    }
+
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        try {
+            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+
+            // Signed in successfully, show authenticated UI.
+            startActivity(new Intent(getActivity(), Navbar.class));
+        } catch (ApiException e) {
+            // The ApiException status code indicates the detailed failure reason.
+            // Please refer to the GoogleSignInStatusCodes class reference for more information.
+            Log.w("Error", "signInResult:failed code=" + e.getStatusCode());
+        }
     }
 
     /**
