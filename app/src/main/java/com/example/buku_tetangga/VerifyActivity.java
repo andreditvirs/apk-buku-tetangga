@@ -55,6 +55,8 @@ public class VerifyActivity extends AppCompatActivity implements Login.OnFragmen
 
             }
         });
+
+
     }
 
     @Override

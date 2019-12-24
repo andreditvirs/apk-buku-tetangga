@@ -25,6 +25,10 @@
     <string name="price">120 EG</string>
     <string name="author">Mark Murphy</string>
 
+    <!-- API Log dan Reg   -->
+    <string name="pref_file">com.example.preference_file</string>
+    <string name="pref_login_status">com.example.preference_login_status</string>
+    <string name="pref_user_name">com.example.preference_user_name</string>
 
     <string name="search">Cari</string>
     <string name="hint">"Masukkan judul buku"</string>
@@ -38,5 +42,6 @@
     <string name="rekomendasi">Rekomendasi</string>
     <string name="terpopuler">Terpopuler</string>
     <string name="kategori">Kategori</string>
+    <string name="obrolan">Obrolan</string>
 
 </resources>

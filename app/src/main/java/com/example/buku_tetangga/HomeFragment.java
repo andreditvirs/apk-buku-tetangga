@@ -8,7 +8,6 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
-import android.transition.Slide;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,20 +66,12 @@ public class HomeFragment extends Fragment {
         models.add(new Model(R.drawable.cover_buku_1, "Namecard", "Ini adalah kartu nama"));
         models.add(new Model(R.drawable.cover_buku_1, "Namecard", "Ini adalah kartu nama"));
         models.add(new Model(R.drawable.cover_buku_1, "Namecard", "Ini adalah kartu nama"));
-        models.add(new Model(R.drawable.cover_buku_1, "Namecard", "Ini adalah kartu nama"));
-        models.add(new Model(R.drawable.cover_buku_1, "Namecard", "Ini adalah kartu nama"));
-        models.add(new Model(R.drawable.cover_buku_1, "Namecard", "Ini adalah kartu nama"));
-        models.add(new Model(R.drawable.cover_buku_1, "Namecard", "Ini adalah kartu nama"));
-        models.add(new Model(R.drawable.cover_buku_1, "Namecard", "Ini adalah kartu nama"));
-        models.add(new Model(R.drawable.cover_buku_1, "Namecard", "Ini adalah kartu nama"));
-        models.add(new Model(R.drawable.cover_buku_1, "Namecard", "Ini adalah kartu nama"));
-        models.add(new Model(R.drawable.cover_buku_1, "Namecard", "Ini adalah kartu nama"));
 
         adapter2 = new Adapter(models, this.getActivity());
 
-        viewPager = (ViewPager) rootView.findViewById(R.id.viewPager);
+        viewPager = (ViewPager) rootView.findViewById(R.id.viewPager_rekomendasi);
         viewPager.setAdapter(adapter2);
-        viewPager.setPadding(110, 0, 110, 0);
+        viewPager.setPadding(130, 0, 130, 0);
 
 //        Integer[] colors_temp = {
 //                getResources().getColor(R.color.color1),

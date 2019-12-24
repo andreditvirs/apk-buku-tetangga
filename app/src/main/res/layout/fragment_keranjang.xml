@@ -1,22 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".KeranjangFragment">
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
+        android:layout_height="@dimen/default_toolbar"
+        android:background="@color/colorPrimary" />
+
+    <LinearLayout
+        android:id="@+id/sec_toolbar_of_add_book"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorLight"
-        android:text="@string/nav_keranjang"
-        android:textColor="@color/colorPrimary"/>
+        android:orientation="horizontal"
+        android:background="@color/colorPrimary">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/nav_keranjang"
+            android:textColor="@color/colorLight"
+            android:padding="8dp"
+            android:textSize="20sp"
+            android:fontFamily="@font/poppins_medium"
+            android:textAlignment="center"/>
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/logo_of_keranjang_fragment"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="66dp"
@@ -30,15 +50,24 @@
         android:text="Keranjang Masih Kosong"
         android:fontFamily="@font/poppins_medium"
         android:textAlignment="center"
-        android:textSize="18sp"/>
+        android:textSize="16sp"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Tambahkan buku di keranjang sekarang"
-        android:fontFamily="@font/poppins_medium"
+        android:fontFamily="@font/poppins_light"
         android:textAlignment="center"
         android:textSize="12sp"/>
+
+    <ImageButton
+        android:id="@+id/btn_obrolan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/btn_circle_white"
+        android:src="@drawable/ic_chat_bubble_outline_black_24dp"
+        android:padding="16dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -52,39 +81,64 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="22dp">
+            android:background="@drawable/round_of_card_home"
+            android:layout_marginStart="14dp"
+            android:paddingStart="20dp"
+            android:paddingTop="22dp"
+            android:elevation="8dp"
+            android:clipToPadding="false"
+            android:dividerPadding="8dp">
 
-            <TextView
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Rekomendasi"
-                android:fontFamily="@font/poppins_medium"
-                android:textSize="24sp"
-                android:textColor="@color/colorSecondary"
-                />
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/txtV_rekomendasi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rekomendasi"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorSecondary"
+                    />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="LIHAT SEMUA"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorUnactiveDark"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/btn_outlined"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:paddingStart="6dp"
+                    android:paddingEnd="6dp"
+                    android:layout_marginEnd="24dp"
+                    />
+            </RelativeLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Buku yang cocok untuk Anda baca"
-                android:fontFamily="@font/poppins_regular"
+                android:text="Buku yang cocok untuk Anda sewa"
+                android:fontFamily="@font/poppins_light"
                 android:textColor="@color/colorUnactiveDark"
                 android:textSize="12sp"
                 />
 
             <androidx.viewpager.widget.ViewPager
-                android:id="@+id/viewPager"
+                android:id="@+id/viewPager_rekomendasi"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:layout_marginStart="10dp"
+                android:clipToPadding="false"
                 android:foregroundGravity="center"
-                android:overScrollMode="never"
-                android:clipToPadding="false">
-            </androidx.viewpager.widget.ViewPager>
+                android:overScrollMode="never"/>
         </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>
+
+</ScrollView>

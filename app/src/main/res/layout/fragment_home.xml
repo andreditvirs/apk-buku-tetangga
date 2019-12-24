@@ -93,17 +93,15 @@
             android:textSize="12sp"
             />
 
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/viewPager"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_marginBottom="8dp"
-            android:foregroundGravity="center"
-            android:overScrollMode="never"
-            android:clipToPadding="false">
-        </androidx.viewpager.widget.ViewPager>
-
-    </LinearLayout>
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewPager_rekomendasi"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginBottom="8dp"
+                android:clipToPadding="false"
+                android:foregroundGravity="center"
+                android:overScrollMode="never"/>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -152,7 +150,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Buku yang sedang populer untuk Anda"
+                android:text="Buku yang populer saat ini"
                 android:fontFamily="@font/poppins_light"
                 android:textColor="@color/colorUnactiveDark"
                 android:textSize="12sp"

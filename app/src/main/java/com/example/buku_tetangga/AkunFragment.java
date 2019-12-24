@@ -91,7 +91,7 @@ public class AkunFragment extends Fragment {
 
     private void signOut() {
         mGoogleSignInClient.signOut();
-        Toast.makeText(getActivity(), "Anda telah log out", Toast.LENGTH_SHORT).show();
+        tampilDialog();
         getActivity().finish();
         startActivity(new Intent(getActivity(), VerifyActivity.class));
     }
@@ -102,15 +102,8 @@ public class AkunFragment extends Fragment {
 
         builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
-        builder.setTitle("Selamat !!!");
-        builder.setMessage("Jawaban anda benar : Naruto");
-        builder.setPositiveButton("OKE", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(getActivity(), "Selamat", Toast.LENGTH_SHORT).show();
-            }
-        });
-
+        builder.setTitle("Konfirmasi");
+        builder.setMessage("Apakah Anda Telah Log Out!");
         builder.create().show();
 
     }
