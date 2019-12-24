@@ -20,6 +20,7 @@ import android.widget.Toast;
  */
 public class KeranjangFragment extends Fragment {
 
+    String number = "+62 82331744423";
     ImageButton btn_obrolan;
 
     public KeranjangFragment() {
@@ -36,20 +37,23 @@ public class KeranjangFragment extends Fragment {
         btn_obrolan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String number = "+62 82331744423";
                 try {
-                    String url = "https://api.whatsapp.com/send?phone=" + number;
-                    Intent i = new Intent(Intent.ACTION_VIEW);
-                    i.setPackage("com.whatsapp");
-                    i.setData(Uri.parse(url));
-                    startActivity(i);
+                    setWhatsApp(number);
                 }catch (Exception e){
-                    Toast.makeText(getActivity(), "Whatsapp app belum terinstal", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Aplikasi Whatsapp belum terinstal", Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
             }
         });
         return rootView;
+    }
+
+    public void setWhatsApp(String number){
+        String url = "https://api.whatsapp.com/send?phone=" + number;
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setPackage("com.whatsapp");
+        i.setData(Uri.parse(url));
+        startActivity(i);
     }
 
 }

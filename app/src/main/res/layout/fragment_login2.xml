@@ -17,13 +17,20 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="68dp"
-        android:id="@+id/user_name"/>
+        android:layout_margin="32dp"
+        android:id="@+id/user_name_login"/>
 
     <EditText
-        android:layout_margin="68dp"
+        android:layout_margin="32dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/user_pass"/>
+        android:id="@+id/user_pass_login"/>
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login"/>
 
 </LinearLayout>
