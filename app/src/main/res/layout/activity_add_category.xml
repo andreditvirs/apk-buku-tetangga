@@ -44,33 +44,136 @@
     </LinearLayout>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Select Gender : " />
+        android:textAlignment="center"
+        android:fontFamily="@font/poppins_medium"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="18dp"
+        android:textSize="18sp"
+        android:textColor="@color/colorPrimary"
+        android:text="Pilih Kategori" />
 
     <RadioGroup
-        android:id="@+id/rg_gender"
+        android:id="@+id/rg_kategori"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <RadioButton
-            android:id="@+id/rb_male"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center">
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="Male" />
-
-        <RadioButton
-            android:id="@+id/rb_female"
+            android:orientation="horizontal"
+            android:layout_margin="8dp">
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Female" />
+            android:orientation="vertical"
+            android:layout_margin="8dp">
+            <RadioButton
+                android:id="@+id/rb_novel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Novel" />
+
+            <RadioButton
+                android:id="@+id/rb_komik"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Komik" />
+
+            <RadioButton
+                android:id="@+id/rb_biografi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Biografi"
+                android:fontFamily="@font/poppins_regular" />
+
+            <RadioButton
+                android:id="@+id/rb_penelitian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Penelitian/Jurnalistik"
+                android:fontFamily="@font/poppins_regular" />
+
+            <RadioButton
+                android:id="@+id/rb_ilmu_sains"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ilmu Sains"
+                android:fontFamily="@font/poppins_regular" />
+
+            <RadioButton
+                android:id="@+id/rb_ilmu_agama"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ilmu Agama"
+                android:fontFamily="@font/poppins_regular" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="8dp">
+            <RadioButton
+                android:id="@+id/rb_ilmu_sastra"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ilmu Sastra"
+                android:fontFamily="@font/poppins_regular"/>
+
+            <RadioButton
+                android:id="@+id/rb_teknologi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Teknologi"
+                android:fontFamily="@font/poppins_regular" />
+
+            <RadioButton
+                android:id="@+id/rb_hukum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hukum/Sosial" />
+
+            <RadioButton
+                android:id="@+id/rb_ekonomi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Eknonomi"
+                android:fontFamily="@font/poppins_regular" />
+
+            <RadioButton
+                android:id="@+id/rb_psikologi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Psikologi"
+                android:fontFamily="@font/poppins_regular" />
+
+            <RadioButton
+                android:id="@+id/rb_seni"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Seni/Budaya"
+                android:fontFamily="@font/poppins_regular" />
+        </LinearLayout>
+    </LinearLayout>
     </RadioGroup>
 
     <Button
         android:id="@+id/bt_submit"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:text="Submit" />
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:textSize="14sp"
+        android:fontFamily="@font/poppins_regular"
+        android:textColor="@color/colorLight"
+        android:textAllCaps="false"
+        android:background="@drawable/btn_rounded"
+        android:text="Pilih" />
 
 </LinearLayout>

@@ -17,7 +17,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    compileOptions{
+    compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
@@ -50,6 +50,7 @@ dependencies {
     //rest api
     implementation 'com.squareup.retrofit2:retrofit:2.7.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.7.0'
+    implementation 'de.hdodenhof:circleimageview:3.0.0'
 
     //google map
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
@@ -57,6 +58,4 @@ dependencies {
     implementation 'com.google.android.gms:play-services-places:17.0.0'
     implementation 'com.google.android.libraries.places:places-compat:2.1.0'
     implementation 'com.google.maps.android:android-maps-utils:0.5'
-
-
 }

@@ -33,7 +33,8 @@ public class ProgressBarAnimation extends Animation {
 //        textView.setText((int) value+" %");
 
         if(value == to){
-            context.startActivity(new Intent(context, MainActivity2.class));
+            context.startActivity(new Intent(context, VerifyActivity.class));
+            ((SplashActivity) context).finish();
             Animatoo.animateSlideUp(context);
         }
     }

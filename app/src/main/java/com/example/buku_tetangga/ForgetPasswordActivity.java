@@ -19,7 +19,13 @@ public class ForgetPasswordActivity extends AppCompatActivity {
     }
 
     public void toVerify(View view) {
-        startActivity(new Intent(this, VerifyActivity.class));
+        onBackPressed();
         Animatoo.animateSlideRight(this);
+    }
+
+    public void toUnverifyForgetPassword(View view) {
+        finish();
+        startActivity(new Intent(ForgetPasswordActivity.this, UnverifyForgetPasswordActivity.class));
+        Animatoo.animateSlideUp(this);
     }
 }

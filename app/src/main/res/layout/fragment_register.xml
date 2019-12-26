@@ -5,6 +5,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
+    android:background="@color/colorLight"
     tools:context=".Register">
 
     <!-- TODO: Update blank fragment layout -->
@@ -12,9 +13,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="30dp"
-    android:layout_marginTop="30dp"
-    >
+    android:background="@color/colorLight"
+    android:padding="32dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/border_solid_area"
+        android:padding="16dp">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_logobutangaja"
+        android:layout_gravity="center"
+        android:layout_marginTop="18dp"
+        android:layout_marginBottom="8dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -23,14 +38,13 @@
         android:text="Selamat Datang"
         android:fontFamily="@font/poppins_medium"
         android:textColor="@color/colorPrimary"
-        android:textSize="28sp"
-        />
+        android:textSize="18sp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:fontFamily="@font/poppins_regular"
+        android:fontFamily="@font/poppins_light"
         android:text="Silahkan mengisi form berikut"
         android:textColor="@color/colorSecondary"
         android:textSize="14sp"
@@ -41,20 +55,35 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_regular"
         android:focusable="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="28dp"
         android:focusableInTouchMode="true"
         android:textColorHint="@color/colorUnactiveDark">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            android:background="@drawable/ic_border_color_primary_24dp" />
+
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtIET_name_reg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_light"
-            android:hint="Nama"
+            android:hint="Nama Lengkap"
             android:ems="10"
+            android:text=""
             android:inputType="text"
-            android:textSize="20sp"
+            android:textSize="14sp"
+            android:layout_marginBottom="6dp"/>
 
-            />
+        </LinearLayout>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -63,29 +92,20 @@
         android:fontFamily="@font/poppins_regular"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="8dp"
         android:textColorHint="@color/colorUnactiveDark">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_light"
-            android:hint="Username"
-            android:ems="10"
-            android:inputType="text"
-            android:textSize="20sp"
+            android:orientation="horizontal">
 
-            />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_regular"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:layout_marginTop="14dp"
-        android:textColorHint="@color/colorUnactiveDark">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            android:background="@drawable/ic_email_primary_24dp" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -94,9 +114,8 @@
             android:hint="Email"
             android:ems="10"
             android:inputType="text"
-            android:textSize="20sp"
-
-            />
+            android:textSize="14sp"/>
+        </LinearLayout>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -108,16 +127,29 @@
         android:layout_marginTop="14dp"
         android:textColorHint="@color/colorUnactiveDark">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            android:background="@drawable/ic_person_primary_24dp" />
+
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtIET_user_name_reg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_light"
-            android:hint="Password"
+            android:hint="Username"
             android:ems="10"
+            android:text=""
             android:inputType="text"
-            android:textSize="20sp"
-
-            />
+            android:textSize="14sp" />
+        </LinearLayout>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -128,6 +160,52 @@
         android:focusableInTouchMode="true"
         android:layout_marginTop="14dp"
         android:textColorHint="@color/colorUnactiveDark">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            android:background="@drawable/ic_vpn_key_primary_24dp" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtIET_user_pass_reg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_light"
+            android:text=""
+            android:hint="Password"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:textSize="14sp" />
+        </LinearLayout>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_marginTop="14dp"
+        android:textColorHint="@color/colorUnactiveDark">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            android:background="@drawable/ic_vpn_key_primary_24dp" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -135,10 +213,19 @@
             android:fontFamily="@font/poppins_light"
             android:hint="Ulang Password"
             android:ems="10"
-            android:inputType="text"
-            android:textSize="20sp"
+            android:inputType="textPassword"
+            android:textSize="14sp" />
+        </LinearLayout>
 
-            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:fontFamily="@font/poppins_light"
+            android:textSize="8sp"
+            android:textColor="@color/colorSecondary"
+            android:text="*) Ulangi password Anda untuk verfikasi"/>
+
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -149,6 +236,18 @@
         android:focusableInTouchMode="true"
         android:layout_marginTop="14dp"
         android:textColorHint="@color/colorUnactiveDark">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            android:background="@drawable/ic_call_primary_24dp" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -157,9 +256,18 @@
             android:hint="Nomor Telepon/HP"
             android:ems="10"
             android:inputType="text"
-            android:textSize="20sp"
+            android:textSize="14sp" />
+        </LinearLayout>
 
-            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:fontFamily="@font/poppins_light"
+            android:textSize="8sp"
+            android:textColor="@color/colorSecondary"
+            android:text="*) Direkomendasikan telah terhubung dengan WhatsApp"/>
+
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatCheckBox
@@ -169,10 +277,13 @@
         android:fontFamily="@font/poppins_light"
         android:text="@string/aturan_register"
         android:textColor="@color/colorSecondary"
-        android:layout_marginTop="20dp"
-    />
+        android:layout_marginTop="18dp"
+        android:layout_marginLeft="2dp"
+        android:textAlignment="viewStart"
+        android:textSize="12sp"/>
 
     <Button
+        android:id="@+id/btn_register_main"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -184,5 +295,6 @@
         android:textAllCaps="false"
         android:textColor="@color/colorLight"
         android:textSize="15sp" />
+    </LinearLayout>
     </LinearLayout>
 </ScrollView>

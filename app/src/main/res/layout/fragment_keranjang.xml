@@ -11,28 +11,25 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/default_toolbar"
-        android:background="@color/colorPrimary" />
-
-    <LinearLayout
-        android:id="@+id/sec_toolbar_of_add_book"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@color/colorPrimary">
-
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/nav_keranjang"
-            android:textColor="@color/colorLight"
-            android:padding="8dp"
-            android:textSize="20sp"
-            android:fontFamily="@font/poppins_medium"
-            android:textAlignment="center"/>
-    </LinearLayout>
+            android:paddingTop="30dp"
+            android:paddingBottom="8dp"
+            android:orientation="vertical"
+            android:background="@drawable/rounded_bottom"
+            android:elevation="8dp"
+            android:clipToPadding="false"
+            android:dividerPadding="8dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="28dp"
+                android:text="@string/nav_keranjang"
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18dp"
+                android:gravity="center"/>
+        </LinearLayout>
 
     <ImageView
         android:id="@+id/logo_of_keranjang_fragment"
@@ -138,7 +135,6 @@
                 android:overScrollMode="never"/>
         </LinearLayout>
     </LinearLayout>
-
 </LinearLayout>
 
 </ScrollView>

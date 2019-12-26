@@ -19,17 +19,47 @@ public class AddCategoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_category);
 
-        final RadioGroup rgGender = (RadioGroup) findViewById(R.id.rg_gender);
+        final RadioGroup rg_kategori = (RadioGroup) findViewById(R.id.rg_kategori);
         Button btSubmit = (Button) findViewById(R.id.bt_submit);
         btSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int id = rgGender.getCheckedRadioButtonId();
+                int id = rg_kategori.getCheckedRadioButtonId();
                 switch (id){
-                    case R.id.rb_male :
+                    case R.id.rb_novel :
                         Toast.makeText(AddCategoryActivity.this,"Clicked "+((RadioButton)findViewById(id)).getText(), Toast.LENGTH_SHORT).show();
                         break;
-                    case R.id.rb_female :
+                    case R.id.rb_komik :
+                        Toast.makeText(AddCategoryActivity.this,"Clicked "+((RadioButton)findViewById(id)).getText(), Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.rb_biografi :
+                        Toast.makeText(AddCategoryActivity.this,"Clicked "+((RadioButton)findViewById(id)).getText(), Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.rb_penelitian :
+                        Toast.makeText(AddCategoryActivity.this,"Clicked "+((RadioButton)findViewById(id)).getText(), Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.rb_ilmu_sains :
+                        Toast.makeText(AddCategoryActivity.this,"Clicked "+((RadioButton)findViewById(id)).getText(), Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.rb_ilmu_agama :
+                        Toast.makeText(AddCategoryActivity.this,"Clicked "+((RadioButton)findViewById(id)).getText(), Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.rb_ilmu_sastra :
+                        Toast.makeText(AddCategoryActivity.this,"Clicked "+((RadioButton)findViewById(id)).getText(), Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.rb_teknologi :
+                        Toast.makeText(AddCategoryActivity.this,"Clicked "+((RadioButton)findViewById(id)).getText(), Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.rb_hukum :
+                        Toast.makeText(AddCategoryActivity.this,"Clicked "+((RadioButton)findViewById(id)).getText(), Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.rb_ekonomi :
+                        Toast.makeText(AddCategoryActivity.this,"Clicked "+((RadioButton)findViewById(id)).getText(), Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.rb_psikologi :
+                        Toast.makeText(AddCategoryActivity.this,"Clicked "+((RadioButton)findViewById(id)).getText(), Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.rb_seni :
                         Toast.makeText(AddCategoryActivity.this,"Clicked "+((RadioButton)findViewById(id)).getText(), Toast.LENGTH_SHORT).show();
                         break;
                 }

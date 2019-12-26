@@ -10,8 +10,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_of_add_book"
@@ -43,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/tambah_buku"
                 android:padding="8dp"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:fontFamily="@font/poppins_medium"
                 android:textColor="@color/colorLight"
                 android:textAlignment="textStart"/>
@@ -101,6 +100,8 @@
                     android:paddingStart="8dp"
                     android:paddingEnd="8dp"
                     android:text="Lengkapi Via Judul"
+                    android:textAllCaps="false"
+                    android:fontFamily="@font/poppins_regular"
                     android:textSize="10sp"
                     android:textColor="@color/colorLight"
                     />
@@ -121,7 +122,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="2dp"
-                android:textSize="16sp"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="14sp"
                 android:text="@string/kategori" />
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -142,20 +144,20 @@
                         android:fontFamily="@font/poppins_light"
                         android:ems="10"
                         android:inputType="text"
-                        android:textSize="20sp"/>
+                        android:textSize="14sp"/>
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignRight="@id/textI_kategori"
                         android:onClick="toAddCategory"
                         android:src="@drawable/ic_plus"
-                        android:layout_margin="16dp"/>
+                        android:padding="8dp"/>
                 </RelativeLayout>
             </com.google.android.material.textfield.TextInputLayout>
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/harga"
+            android:id="@+id/harga_book"
             android:layout_below="@id/kategori"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -168,7 +170,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="2dp"
-                android:textSize="16sp"
+                android:textSize="14sp"
+                android:fontFamily="@font/poppins_regular"
                 android:text="Harga" />
             <TextView
                 android:id="@+id/txtV_harga_rp"
@@ -176,8 +179,9 @@
                 android:layout_height="wrap_content"
                 android:padding="8dp"
                 android:layout_below="@id/txtV_harga"
+                android:fontFamily="@font/poppins_regular"
                 android:layout_marginBottom="2dp"
-                android:textSize="24sp"
+                android:textSize="14sp"
                 android:text="Rp." />
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textIL_harga"
@@ -190,16 +194,19 @@
                 android:focusableInTouchMode="true"
                 android:textColorHint="@color/colorUnactiveDark"
                 app:hintEnabled="false"
-                android:layout_marginEnd="16dp">
+                android:layout_marginEnd="16dp"
+                app:counterEnabled="true"
+                app:counterMaxLength="6">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/textI_harga"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_light"
+                    android:maxLength="6"
                     android:hint=" "
                     android:ems="10"
                     android:inputType="text"
-                    android:textSize="16sp"/>
+                    android:textSize="14sp"/>
             </com.google.android.material.textfield.TextInputLayout>
         </RelativeLayout>
 
@@ -217,7 +224,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="2dp"
-                android:textSize="16sp"
+                android:textSize="14sp"
+                android:fontFamily="@font/poppins_regular"
                 android:text="Deskripsi" />
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -227,7 +235,8 @@
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:textColorHint="@color/colorUnactiveDark"
-                app:hintEnabled="false">
+                app:hintEnabled="false"
+                app:counterMaxLength="50">
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
@@ -237,15 +246,16 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_light"
                         android:ems="10"
+                        android:maxLength="50"
                         android:inputType="text"
-                        android:textSize="20sp"/>
+                        android:textSize="14sp"/>
                     <ImageButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:onClick="toAddDescBook"
                         android:layout_alignEnd="@id/textI_deskripsi"
                         android:background="@drawable/ic_plus"
-                        android:layout_margin="16dp"
+                        android:layout_margin="4dp"
                         android:padding="8dp"/>
                 </RelativeLayout>
             </com.google.android.material.textfield.TextInputLayout>
@@ -266,7 +276,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="6dp"
-                android:textSize="16sp"
+                android:textSize="14sp"
+                android:fontFamily="@font/poppins_regular"
                 android:text="Jumlah" />
 
             <LinearLayout
@@ -277,27 +288,27 @@
                 android:layout_marginTop="20dp">
                 <Button
                     android:id="@+id/minusBtn"
-                    android:layout_width="40dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
                     android:text="-"
-                    android:textSize="20sp"/>
+                    android:textSize="12sp"/>
 
                 <TextView
                     android:id="@+id/counterTxt_jumlah"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
-                    android:text="25"/>
+                    android:text="14"/>
 
                 <Button
                     android:id="@+id/plusBtn"
-                    android:layout_width="40dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
                     android:text="+"
-                    android:textSize="20sp"/>
+                    android:textSize="12sp"/>
 
             </LinearLayout>
         </RelativeLayout>
@@ -307,18 +318,18 @@
             android:onClick="mainBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
             android:layout_below="@id/stok"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/poppins_medium"
             android:background="@drawable/btn_rounded"
-            android:elevation="10dp"
+            android:elevation="8dp"
             android:layout_centerHorizontal="true"
             android:text="Tambah Buku"
             android:textAllCaps="false"
             android:textColor="@color/colorLight"
-            android:textSize="15sp"
+            android:textSize="14sp"
             tools:ignore="OnClick" />
 
     </RelativeLayout>

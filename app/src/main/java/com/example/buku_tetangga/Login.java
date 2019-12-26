@@ -12,7 +12,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
@@ -23,6 +25,11 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
@@ -43,7 +50,9 @@ public class Login extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    SignInButton signin;
+    //google sign
+//    SignInButton signin;
+    Button signin;
     GoogleSignInClient mGoogleSignInClient;
     int RC_SIGN_IN = 0;
 
@@ -51,6 +60,17 @@ public class Login extends Fragment {
 
     ListView listView;
     private Activity activity;
+
+    //butang sign
+    private TextView regText;
+    Login.OnLoginFormActivityListener loginFormActivityListener;
+    private TextInputEditText user_name, user_pass;
+    public Button btn_login;
+
+    public interface OnLoginFormActivityListener{
+        public void performRegister();
+        public void performLogin(String name);
+    }
 
     public Login() {
         // Required empty public constructor
@@ -88,8 +108,29 @@ public class Login extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_login, container, false);
+        //set butang sign
+        regText = rootView.findViewById(R.id.txtV_reg);
+        user_name = rootView.findViewById(R.id.txtIET_user_name_login);
+        user_pass = rootView.findViewById(R.id.txtIET_user_pass_login);
+        btn_login = rootView.findViewById(R.id.btn_login_main);
+
+        btn_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().finish(); performLogin();
+            }
+        });
+
+        regText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loginFormActivityListener.performRegister();
+            }
+        });
+
         //set google sign
-        signin = (SignInButton) rootView.findViewById(R.id.sign_in_button);
+//        signin = (SignInButton) rootView.findViewById(R.id.sign_in_button);
+        signin = (Button) rootView.findViewById(R.id.sign_in_button);
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -119,6 +160,10 @@ public class Login extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        super.onAttach(context);
+        Activity activity = (Activity) context;
+        loginFormActivityListener = (Login.OnLoginFormActivityListener) activity;
+
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
@@ -155,14 +200,41 @@ public class Login extends Fragment {
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-
             // Signed in successfully, show authenticated UI.
+            getActivity().finish();
             startActivity(new Intent(getActivity(), Navbar.class));
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
             Log.w("Error", "signInResult:failed code=" + e.getStatusCode());
         }
+    }
+
+    //set butang sign
+    private void performLogin(){
+        String user_name_login = user_name.getText().toString();
+        String user_pass_login = user_pass.getText().toString();
+
+        Call<User> call = VerifyActivity.apiInterface.performLogin(user_name_login, user_pass_login);
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (response.body().getResponse().equals("ok")){
+                    VerifyActivity.prefConfig.writeLoginStatus(true);
+                    VerifyActivity.prefConfig.displayToast("Selamat datang, " + user_name_login);
+                    loginFormActivityListener.performLogin(response.body().getName());
+                }else if (response.body().getResponse().equals("failed")){
+                    VerifyActivity.prefConfig.displayToast("Silahkan periksa kembali Username/Passoword Anda");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+
+            }
+        });
+        user_name.setText("");
+        user_pass.setText("");
     }
 
     /**

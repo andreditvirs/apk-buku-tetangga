@@ -1,51 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:padding="30dp"
+    android:padding="32dp"
+    android:background="@color/colorLight"
     tools:context=".Login">
 
     <!-- TODO: Update blank fragment layout -->
 
-    <androidx.appcompat.widget.AppCompatImageView
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/border_solid_area"
+        android:padding="16dp">
+
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="100dp"
         android:src="@drawable/ic_logobutangaja"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        />
+        android:layout_marginTop="18dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/poppins_regular"
-        android:text="Silahkan login dengan mengisikan"
+        android:text="Login"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/poppins_medium"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/poppins_light"
+        android:text="Silahkan login dengan akun Anda"
         android:textColor="@color/colorSecondary"
         android:textSize="14sp"
         />
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="18dp">
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:fontFamily="@font/poppins_regular"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:textColorHint="@color/colorUnactiveDark">
+        android:textColorHint="@color/colorSecondary">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtIET_user_name_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email"
+            android:hint="Username atau Email"
             android:fontFamily="@font/poppins_regular"
             android:ems="10"
-            android:inputType="text"
-            android:textSize="20sp"
-            />
+            android:inputType="textEmailAddress"
+            android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -55,18 +77,30 @@
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:layout_marginTop="5dp"
-        android:textColorHint="@color/colorUnactiveDark">
+        android:textColorHint="@color/colorSecondary"
+        app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtIET_user_pass_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
+            android:fontFamily="@font/poppins_regular"
             android:ems="10"
-            android:inputType="numberPassword"
-            android:textSize="20sp"
-
-            />
+            android:inputType="textPassword"
+            android:textSize="14sp"/>
     </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/txtV_reg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/poppins_light"
+        android:text="Belum punya akun? Daftar dahulu"
+        android:textSize="14sp"
+        android:textColor="@color/colorSecondary"
+        />
 
     <TextView
         android:id="@+id/lupa_password"
@@ -80,9 +114,9 @@
         android:textColor="@color/colorSecondary"
         />
 
+    </LinearLayout>
     <Button
-        android:id="@+id/button_masuk_of_login"
-        android:onClick="mainBtn"
+        android:id="@+id/btn_login_main"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -93,7 +127,7 @@
         android:text="Masuk"
         android:textAllCaps="false"
         android:textColor="@color/colorLight"
-        android:textSize="15sp"
+        android:textSize="14sp"
         tools:ignore="OnClick" />
 
     <TextView
@@ -105,26 +139,13 @@
         android:text="atau"
         />
 
-<!--    <Button-->
-<!--        android:layout_width="100dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="10dp"-->
-<!--        android:background="@drawable/btn_rounded_white"-->
-<!--        android:drawableLeft="@drawable/ic_google_icon"-->
-<!--        android:elevation="10dp"-->
-<!--        android:layout_gravity="center"-->
-<!--        android:text="Masuk"-->
-<!--        android:padding="16dp"-->
-<!--        android:textAllCaps="false"-->
-<!--        android:textColor="@color/colorActiveDark"-->
-<!--        android:textSize="15sp"-->
-<!--        />-->
-
-    <com.google.android.gms.common.SignInButton
+    <Button
         android:id="@+id/sign_in_button"
+        android:background="@drawable/ic_google_sign"
+        android:stateListAnimator="@null"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"/>
-
+    </LinearLayout>
 
 </LinearLayout>

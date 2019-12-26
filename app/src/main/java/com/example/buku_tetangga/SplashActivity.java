@@ -7,7 +7,7 @@ import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-public class SplashActivity extends AppCompatActivity {
+public class SplashActivity extends AppCompatActivity{
 
 //    private static int SPLASH_TIME_OUT = 4000;
     ProgressBar progressBar;
@@ -49,4 +49,5 @@ public class SplashActivity extends AppCompatActivity {
         anim.setDuration(4000);
         progressBar.setAnimation(anim);
     }
+
 }

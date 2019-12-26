@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DepositActivity"
+    android:background="@color/colorLight"
+    android:padding="32dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/border_solid_area"
+        android:padding="16dp">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_logobutangaja"
+            android:layout_gravity="center"
+            android:layout_marginTop="24dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="BANK BUTANG"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/colorUnactiveDark"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/poppins_regular"
+            android:text="140001410402"
+            android:textColor="@color/colorActiveDark"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/poppins_regular"
+            android:text="User"
+            android:textColor="@color/colorSecondary"
+            android:textSize="14sp" />
+
+        <RelativeLayout
+            android:id="@+id/nominal_deposit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp">
+            <TextView
+                android:id="@+id/txtV_nominal_deposit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:textSize="14sp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Nominal Deposit" />
+            <TextView
+                android:id="@+id/txtV_harga_rp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:layout_below="@id/txtV_nominal_deposit"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_marginBottom="2dp"
+                android:textSize="14sp"
+                android:text="Rp." />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textIL_nominal_deposit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtV_nominal_deposit"
+                android:layout_toEndOf="@id/txtV_harga_rp"
+                android:fontFamily="@font/poppins_regular"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:textColorHint="@color/colorUnactiveDark"
+                app:hintEnabled="false"
+                android:layout_marginEnd="16dp"
+                app:counterEnabled="true"
+                app:counterMaxLength="6">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textIET_nominal_deposit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_light"
+                    android:maxLength="6"
+                    android:hint=" "
+                    android:ems="10"
+                    android:inputType="text"
+                    android:textSize="14sp"/>
+            </com.google.android.material.textfield.TextInputLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rL_upload_bukti_transfer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp">
+            <TextView
+                android:id="@+id/txtV_bukti_transfer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Upload Bukti Transfer" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_below="@id/txtV_bukti_transfer"
+                    android:background="@drawable/border_dash_area">
+                    <ImageView
+                        android:id="@+id/iV_camera_upload_bukti_transfer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:background="@drawable/ic_photo_camera_unactive_24dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Upload foto..."
+                        android:layout_margin="4dp"
+                        android:textSize="12sp"
+                        android:textColor="@color/colorUnactiveDark"
+                        android:fontFamily="@font/poppins_light"/>
+                </LinearLayout>
+            </RelativeLayout>
+
+        <Button
+            android:id="@+id/bt_submit_bukti_transfer"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="32dp"
+            android:textSize="14sp"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/colorLight"
+            android:textAllCaps="false"
+            android:background="@drawable/btn_rounded"
+            android:text="Selesai" />
+
+    </LinearLayout>
+</LinearLayout>

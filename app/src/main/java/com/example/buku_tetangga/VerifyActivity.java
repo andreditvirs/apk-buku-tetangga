@@ -21,8 +21,11 @@ import com.google.android.material.tabs.TabLayout;
 
 import com.example.buku_tetangga.activities.SearchAddBookActivity;
 
-public class VerifyActivity extends AppCompatActivity implements Login.OnFragmentInteractionListener,Register.OnFragmentInteractionListener{
+public class VerifyActivity extends AppCompatActivity implements Login.OnFragmentInteractionListener,Register.OnFragmentInteractionListener, Login.OnLoginFormActivityListener, AkunFragment.OnLogoutListener{
 
+    public static PrefConfig prefConfig;
+    public static ApiInterface apiInterface;
+    private ViewPager viewPager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +37,7 @@ public class VerifyActivity extends AppCompatActivity implements Login.OnFragmen
 
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        final ViewPager viewPager = (ViewPager)findViewById(R.id.pager);
+        viewPager = (ViewPager)findViewById(R.id.pager);
         final PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(),tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
         viewPager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
@@ -56,6 +59,22 @@ public class VerifyActivity extends AppCompatActivity implements Login.OnFragmen
             }
         });
 
+        //set api sign and log
+        prefConfig = new PrefConfig(this);
+        apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
+//        if (findViewById(R.id.fragment_container)!= null){
+            if(savedInstanceState != null){
+                return;
+            }
+            if(prefConfig.readLoginStatus()) {
+//                getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new WelcomeFragment2()).commit();
+                startActivity(new Intent(this, Navbar.class));
+            }
+//            else{
+////                getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new LoginFragment2()).commit();
+//            }
+
+//        }
 
     }
 
@@ -64,14 +83,31 @@ public class VerifyActivity extends AppCompatActivity implements Login.OnFragmen
 
     }
 
-    //set transition_from_login_to_navbar
-    public void mainBtn(View view) {
-        startActivity(new Intent(this, Navbar.class));
-        Animatoo.animateSlideUp(this);
+    @Override
+    public void performRegister() {
+//        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+////                new RegistrationFragment2()).addToBackStack(null).commit();
+        viewPager.setCurrentItem(1);
     }
 
+    @Override
+    public void performLogin(String name) {
+        prefConfig.writeName(name);
+//        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+//                new WelcomeFragment2()).commit();
+        startActivity(new Intent(this, Navbar.class));
+    }
+
+    @Override
+    public void logoutPerformed() {
+        prefConfig.writeLoginStatus(false);
+        prefConfig.writeName("User");
+//        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+//                new LoginFragment2()).commit();
+    }
 
     public void toLupaPassword(View view) {
+        finish();
         startActivity(new Intent(this, ForgetPasswordActivity.class));
         Animatoo.animateSlideLeft(this);
     }

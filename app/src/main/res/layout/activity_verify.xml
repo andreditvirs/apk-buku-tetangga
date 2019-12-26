@@ -27,6 +27,9 @@
         app:tabTextColor="#ffffff"
         android:minHeight="?attr/actionBarSize"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:elevation="8dp"
+        android:clipToPadding="false"
+        android:dividerPadding="8dp"
         />
 
     <androidx.viewpager.widget.ViewPager

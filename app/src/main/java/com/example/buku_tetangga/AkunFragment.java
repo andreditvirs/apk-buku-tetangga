@@ -3,6 +3,7 @@ package com.example.buku_tetangga;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -15,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +28,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.example.buku_tetangga.VerifyActivity;
 
 
 /**
@@ -33,10 +36,18 @@ import com.google.android.gms.tasks.Task;
  */
 public class AkunFragment extends Fragment {
 
-    TextView nama, email;
+    TextView nama, email, username;
     ImageView imageView;
     Button signout;
     GoogleSignInClient mGoogleSignInClient;
+
+    //butang logout
+    private ImageButton btn_logout;
+    OnLogoutListener logoutListener;
+
+    public interface OnLogoutListener{
+        public void logoutPerformed();
+    }
 
 
     public AkunFragment() {
@@ -58,6 +69,7 @@ public class AkunFragment extends Fragment {
         mGoogleSignInClient = GoogleSignIn.getClient(this.getActivity(), gso);
 
         nama = rootView.findViewById(R.id.txtV_nama);
+        username = rootView.findViewById(R.id.txtV_username);
         email = rootView.findViewById(R.id.txtV_email);
         imageView = rootView.findViewById(R.id.imgv_profil);
         signout = (Button) rootView.findViewById(R.id.btn_signout);
@@ -82,10 +94,24 @@ public class AkunFragment extends Fragment {
             Uri personPhoto = acct.getPhotoUrl();
 
             nama.setText(personName);
+            username.setText(personId);
             email.setText(personEmail);
             Glide.with(this).load(personPhoto).into(imageView);
-        }
+        }else {
 
+            //butang logout
+            btn_logout = (ImageButton) rootView.findViewById(R.id.btn_logout_main);
+            String nama_user = VerifyActivity.prefConfig.readName();
+            nama.setText(nama_user);
+
+            btn_logout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    logOut();
+//                logoutListener.logoutPerformed();
+                }
+            });
+        }
         return rootView;
     }
 
@@ -94,6 +120,22 @@ public class AkunFragment extends Fragment {
         tampilDialog();
         getActivity().finish();
         startActivity(new Intent(getActivity(), VerifyActivity.class));
+    }
+
+    private void logOut(){
+        VerifyActivity verifyActivity = new VerifyActivity();
+        verifyActivity.logoutPerformed();
+        getActivity().finish();
+        startActivity(new Intent(getActivity(), VerifyActivity.class));
+    }
+
+
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+//        Activity activity = (Activity) context;
+//        logoutListener = (OnLogoutListener) activity;
     }
 
     private AlertDialog.Builder builder;

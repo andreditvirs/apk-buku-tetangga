@@ -9,6 +9,14 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+
+import com.google.android.material.textfield.TextInputEditText;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
@@ -24,6 +32,9 @@ public class Register extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    private TextInputEditText name, user_name, user_password;
+    private Button btn_register;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -66,7 +77,19 @@ public class Register extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_register, container, false);
+        View rootView =  inflater.inflate(R.layout.fragment_register, container, false);
+        name = rootView.findViewById(R.id.txtIET_name_reg);
+        user_name = rootView.findViewById(R.id.txtIET_user_name_reg);
+        user_password = rootView.findViewById(R.id.txtIET_user_pass_reg);
+        btn_register = rootView.findViewById(R.id.btn_register_main);
+
+        btn_register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    performRegistration();
+            }
+        });
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -92,6 +115,35 @@ public class Register extends Fragment {
         super.onDetach();
         mListener = null;
     }
+
+    //butang reg
+    public void performRegistration(){
+        String name_register = name.getText().toString();
+        String user_name_register = user_name.getText().toString();
+        String user_password_register = user_password.getText().toString();
+        Call<User> call = VerifyActivity.apiInterface.performRegistration(name_register, user_name_register, user_password_register);
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if(response.body().getResponse().equals("ok")){
+                    VerifyActivity.prefConfig.displayToast("Registrasi Berhasil");
+                }else if(response.body().getResponse().equals("exist")){
+                    VerifyActivity.prefConfig.displayToast("Maaf, Username sudah terpakai");
+                }else if(response.body().getResponse().equals("error")){
+                    VerifyActivity.prefConfig.displayToast("Telah terjadi kesalahan");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+
+            }
+        });
+        name.setText("");
+        user_password.setText("");
+        user_name.setText("");
+    }
+
 
     /**
      * This interface must be implemented by activities that contain this
