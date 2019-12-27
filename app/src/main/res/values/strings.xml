@@ -43,5 +43,7 @@
     <string name="terpopuler">Terpopuler</string>
     <string name="kategori">Kategori</string>
     <string name="obrolan">Obrolan</string>
+    <string name="novel">Novel</string>
+    <string name="komik">Komik</string>
 
 </resources>

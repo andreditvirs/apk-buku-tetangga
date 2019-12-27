@@ -11,4 +11,16 @@
     <color name="color2">#7e455e</color>
     <color name="color3">#796e25</color>
     <color name="color4">#59717c</color>
+
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="normal_btn_pressed_false">#8AAD90</color>
+    <color name="normal_btn_pressed_true">#6da176</color>
+
+    <color name="button_pressed_true">#11331b</color>
+    <color name="button_pressed_false">#3a5d42</color>
+
+    <color name="light_button_pressed_false">#50805c</color>
+    <color name="light_button_pressed_true">#245332</color>
+    <color name="white">#fff</color>
+    <color name="graycolor">#9E9E9E</color>
 </resources>

@@ -43,14 +43,25 @@
                 android:background="@color/colorSecondary"
                 android:orientation="vertical">
 
-                <ImageView
+<!--                <ImageView-->
+<!--                    android:id="@+id/imgv_profil"-->
+<!--                    android:layout_width="107dp"-->
+<!--                    android:layout_height="111dp"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:layout_marginTop="50dp"-->
+<!--                    android:layout_marginBottom="18dp"-->
+<!--                    android:contentDescription="desc" />-->
+
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imgv_profil"
                     android:layout_width="107dp"
                     android:layout_height="111dp"
                     android:layout_gravity="center"
-                    android:layout_marginTop="50dp"
                     android:layout_marginBottom="18dp"
-                    android:contentDescription="desc" />
+                    android:layout_marginLeft="@dimen/padding_10"
+                    android:layout_marginRight="@dimen/padding_10"
+                    android:layout_marginTop="50dp"
+                    android:src="@drawable/ic_logo_butang_putih" />
 
                 <TextView
                     android:id="@+id/txtV_username"

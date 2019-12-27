@@ -129,7 +129,6 @@ public class Login extends Fragment {
         });
 
         //set google sign
-//        signin = (SignInButton) rootView.findViewById(R.id.sign_in_button);
         signin = (Button) rootView.findViewById(R.id.sign_in_button);
         signin.setOnClickListener(new View.OnClickListener() {
             @Override

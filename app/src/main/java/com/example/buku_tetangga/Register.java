@@ -6,13 +6,19 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,6 +40,7 @@ public class Register extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     private TextInputEditText name, user_name, user_password;
+
     private Button btn_register;
 
     // TODO: Rename and change types of parameters
@@ -86,7 +93,11 @@ public class Register extends Fragment {
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(checkDataEntered(name, user_name, user_password)){
                     performRegistration();
+                }else{
+                    VerifyActivity.prefConfig.displayToast("Silahkan mengisikan formulir secara lengkap");
+                }
             }
         });
         return rootView;
@@ -143,6 +154,43 @@ public class Register extends Fragment {
         user_password.setText("");
         user_name.setText("");
     }
+
+    private boolean checkDataEntered(TextInputEditText name, TextInputEditText user_name, TextInputEditText user_password /*TextInputEditText email*/) {
+        if(isEmpty(name, user_name, user_password)){
+            VerifyActivity.prefConfig.displayToast("Silahkan mengisikan formulir secara lengkap");
+            return false;
+        }else if (isEmpty(name)) {
+            name.setError("Silahkan memasukkan nama");
+            return false;
+        }else if(isEmpty(user_name)){
+            user_name.setError("Silahkan memasukkan username");
+            return false;
+        }else if(isEmpty(user_password)){
+            user_password.setError("Silahkan memasukkan username");
+            return false;
+        }
+//        else if(!isEmail(email)){
+//            email.setError("Silahkan memasukkan email yang benar");
+//        }
+        return true;
+    }
+
+    boolean isEmpty(TextInputEditText text){
+        CharSequence str = text.getText().toString();
+        return TextUtils.isEmpty(str);
+    }
+
+    boolean isEmpty(TextInputEditText text1, TextInputEditText text2, TextInputEditText text3){
+        if(isEmpty(text1) && isEmpty(text2) && isEmpty(text3)){
+            return true;
+        }
+        return false;
+    }
+
+//    boolean isEmail(TextInputEditText text) {
+//        CharSequence email = text.getText().toString();
+//        return (!TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches());
+//    }
 
 
     /**

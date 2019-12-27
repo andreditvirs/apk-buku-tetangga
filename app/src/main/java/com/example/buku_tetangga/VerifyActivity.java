@@ -62,19 +62,12 @@ public class VerifyActivity extends AppCompatActivity implements Login.OnFragmen
         //set api sign and log
         prefConfig = new PrefConfig(this);
         apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
-//        if (findViewById(R.id.fragment_container)!= null){
             if(savedInstanceState != null){
                 return;
             }
             if(prefConfig.readLoginStatus()) {
-//                getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new WelcomeFragment2()).commit();
                 startActivity(new Intent(this, Navbar.class));
             }
-//            else{
-////                getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new LoginFragment2()).commit();
-//            }
-
-//        }
 
     }
 

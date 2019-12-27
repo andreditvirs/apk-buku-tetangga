@@ -90,17 +90,27 @@
             android:text="Buku yang cocok untuk Anda sewa"
             android:fontFamily="@font/poppins_light"
             android:textColor="@color/colorUnactiveDark"
-            android:textSize="12sp"
-            />
+            android:textSize="12sp" />
 
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/viewPager_rekomendasi"
+<!--            <androidx.viewpager.widget.ViewPager-->
+<!--                android:id="@+id/viewPager_rekomendasi"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="300dp"-->
+<!--                android:layout_marginBottom="8dp"-->
+<!--                android:clipToPadding="false"-->
+<!--                android:foregroundGravity="center"-->
+<!--                android:overScrollMode="never"/>-->
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/products"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                android:layout_marginBottom="8dp"
-                android:clipToPadding="false"
-                android:foregroundGravity="center"
-                android:overScrollMode="never"/>
+                android:layout_marginLeft="@dimen/padding_10"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -126,8 +136,7 @@
                     android:text="@string/terpopuler"
                     android:fontFamily="@font/poppins_medium"
                     android:textSize="20sp"
-                    android:textColor="@color/colorSecondary"
-                    />
+                    android:textColor="@color/colorSecondary" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -156,15 +165,6 @@
                 android:textSize="12sp"
                 />
 
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/viewPager2"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_marginBottom="8dp"
-                android:foregroundGravity="center"
-                android:overScrollMode="never"
-                android:clipToPadding="false">
-            </androidx.viewpager.widget.ViewPager>
 
         </LinearLayout>
 

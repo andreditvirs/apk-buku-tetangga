@@ -71,7 +71,7 @@ public class AkunFragment extends Fragment {
         nama = rootView.findViewById(R.id.txtV_nama);
         username = rootView.findViewById(R.id.txtV_username);
         email = rootView.findViewById(R.id.txtV_email);
-        imageView = rootView.findViewById(R.id.imgv_profil);
+        imageView = (ImageView) rootView.findViewById(R.id.imgv_profil);
         signout = (Button) rootView.findViewById(R.id.btn_signout);
         signout.setOnClickListener(new View.OnClickListener() {
             @Override

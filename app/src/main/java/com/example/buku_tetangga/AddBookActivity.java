@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.example.buku_tetangga.activities.SearchAddBookActivity;
+import com.google.android.material.textfield.TextInputEditText;
 
 public class AddBookActivity extends AppCompatActivity {
 
@@ -41,7 +42,6 @@ public class AddBookActivity extends AppCompatActivity {
         minusBtn.setOnClickListener(clickListener);
         plusBtn = (Button) findViewById(R.id.plusBtn);
         plusBtn.setOnClickListener(clickListener);
-
 
         initCounter();
     }
