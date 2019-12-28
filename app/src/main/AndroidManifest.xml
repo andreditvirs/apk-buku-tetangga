@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_logobutangajaicon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".DepositActivity"></activity>
+        <activity android:name=".PetunjukPenggunaActivity"></activity>
+        <activity android:name=".DepositActivity" />
         <activity android:name=".UnverifyForgetPasswordActivity" />
         <activity android:name=".BookSewaActivity" />
         <activity android:name=".SewaActivity" />
@@ -34,3 +35,5 @@
     </application>
 
 </manifest>
+
+

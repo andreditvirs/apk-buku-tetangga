@@ -76,4 +76,15 @@ public class Navbar extends AppCompatActivity {
         startActivity(new Intent(this, AddBookActivity.class));
         Animatoo.animateSlideUp(this);
     }
+
+    public void toPetunjukPengguna(View view) {
+        startActivity(new Intent(this, PetunjukPenggunaActivity.class));
+        Animatoo.animateSlideUp(this);
+    }
+
+    public void toWebBukuTetanga(View view) {
+        Intent openURL = new Intent(android.content.Intent.ACTION_VIEW);
+        openURL.setData(Uri.parse("https://bukutetangga.000webhostapp.com"));
+        startActivity(openURL);
+    }
 }

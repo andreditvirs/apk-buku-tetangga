@@ -66,6 +66,7 @@ public class VerifyActivity extends AppCompatActivity implements Login.OnFragmen
                 return;
             }
             if(prefConfig.readLoginStatus()) {
+                finish();
                 startActivity(new Intent(this, Navbar.class));
             }
 

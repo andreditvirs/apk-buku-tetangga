@@ -207,7 +207,7 @@
                     android:maxLength="6"
                     android:hint=" "
                     android:ems="10"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:textSize="14sp"/>
             </com.google.android.material.textfield.TextInputLayout>
         </RelativeLayout>
