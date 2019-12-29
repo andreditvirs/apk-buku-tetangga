@@ -3,9 +3,10 @@
     <color name="colorPrimary">#DC1857</color>
     <color name="colorSecondary">#EA3D75</color>
     <color name="colorAccent">#EA3D74</color>
-    <color name="colorActiveDark">#161515</color>
+    <color name="colorActiveDark">#252222</color>
     <color name="colorUnactiveDark">#B3A5AA</color>
     <color name="colorLight">#FFFFFF</color>
+    <color name="colorGray">#9E9E9E</color>
     
     <color name="color1">#424549</color>
     <color name="color2">#7e455e</color>

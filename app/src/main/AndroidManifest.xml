@@ -12,7 +12,10 @@
         android:roundIcon="@mipmap/ic_logobutangajaicon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".PetunjukPenggunaActivity"></activity>
+        <activity android:name=".KebijakanPrivasiActivity"></activity>
+        <activity android:name=".JaminanActivity" />
+        <activity android:name=".JaminanDepositActivity" />
+        <activity android:name=".PetunjukPenggunaActivity" />
         <activity android:name=".DepositActivity" />
         <activity android:name=".UnverifyForgetPasswordActivity" />
         <activity android:name=".BookSewaActivity" />
@@ -25,21 +28,25 @@
         <activity android:name=".ForgetPasswordActivity" />
         <activity android:name=".Navbar" />
         <activity android:name=".VerifyActivity" />
-        <activity android:name=".MainActivity2" android:launchMode="singleTop" android:theme="@style/AppThemeSearch">
+        <activity
+            android:name=".MainActivity2"
+            android:launchMode="singleTop"
+            android:theme="@style/AppThemeSearch">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
-            <meta-data android:name="android.app.searchable"
+
+            <meta-data
+                android:name="android.app.searchable"
                 android:resource="@xml/searchable2" />
         </activity>
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
 
 </manifest>
-
-

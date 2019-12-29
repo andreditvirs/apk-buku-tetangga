@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".KebijakanPrivasiActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_of_ad_desc_book"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/colorPrimary">
+
+        <ImageButton
+            android:id="@+id/back_from_add_desc_book"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="toJaminan"
+            android:layout_margin="8dp"
+            android:layout_gravity="center"
+            android:background="@drawable/ic_arrow_back_black_24dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/kebijakan_privasi"
+            android:padding="8dp"
+            android:textSize="20sp"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/colorLight"
+            android:textAlignment="textStart"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_marginTop="8dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kebijakan Privasi"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/colorPrimary"
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="18dp"/>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="28dp"
+                android:layout_marginStart="28dp"
+                android:layout_marginEnd="28dp"
+                android:background="@drawable/border_solid_area"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="textStart"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorSecondary"
+                    android:text="@string/kebijakan_privasi"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/colorActiveDark"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/baris_kebijakan_dan_privasi"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="textStart"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorSecondary"
+                    android:text="Lainnya"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/colorActiveDark"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/baris_lainnya"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="textStart"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorSecondary"
+                    android:text="Pernyataan dan Persetujuan"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/colorActiveDark"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/baris_lainnya"/>
+
+            </LinearLayout>
+            </ScrollView>
+            <Button
+                android:id="@+id/btn_login_main"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/poppins_medium"
+                android:background="@drawable/btn_rounded"
+                android:elevation="10dp"
+                android:layout_gravity="center"
+                android:text="Oke, saya mengerti"
+                android:textAllCaps="false"
+                android:textColor="@color/colorLight"
+                android:textSize="14sp"
+                android:onClick="toBack"
+                tools:ignore="OnClick" />
+        </LinearLayout>
+
+</LinearLayout>

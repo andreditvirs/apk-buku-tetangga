@@ -270,6 +270,7 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+
     <androidx.appcompat.widget.AppCompatCheckBox
         android:id="@+id/checkbox_register"
         android:layout_width="match_parent"
@@ -281,6 +282,17 @@
         android:layout_marginLeft="2dp"
         android:textAlignment="viewStart"
         android:textSize="12sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lihat detail kebijakan privasi..."
+        android:textColor="@color/colorUnactiveDark"
+        android:textSize="8sp"
+        android:textStyle=""
+        android:fontFamily="@font/poppins_light"
+        android:layout_marginStart="32dp"
+        android:onClick="toKebijakanPrivasi"/>
 
     <Button
         android:id="@+id/btn_register_main"

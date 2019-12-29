@@ -16,6 +16,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.Objects;
+
 public class Navbar extends AppCompatActivity {
 
     private BottomNavigationView mMainNav;
@@ -86,5 +88,23 @@ public class Navbar extends AppCompatActivity {
         Intent openURL = new Intent(android.content.Intent.ACTION_VIEW);
         openURL.setData(Uri.parse("https://bukutetangga.000webhostapp.com"));
         startActivity(openURL);
+    }
+
+    public void toGetShareAbleLinkButang(View view) {
+            Intent whatsappIntent = new Intent(Intent.ACTION_SEND);
+            whatsappIntent.setType("text/plain");
+            whatsappIntent.setPackage("com.whatsapp");
+            whatsappIntent.putExtra(Intent.EXTRA_TEXT, "Mau beli buku? Tapi mahal? Padahal cuman buat dibaca satu kali? Eitss, yuk Sewa Buku di Buku Tetangga, download aplikasi di https://bukutetangga.000webhostapp.com, sekarang juga!");
+            try {
+                Objects.requireNonNull(this).startActivity(whatsappIntent);
+            } catch (android.content.ActivityNotFoundException ex) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=com.whatsapp")));
+            }
+        }
+
+    public void toKebijakanPrivasi(View view) {
+        startActivity(new Intent(this, KebijakanPrivasiActivity.class));
+        finish();
+        Animatoo.animateSlideUp(this);
     }
 }

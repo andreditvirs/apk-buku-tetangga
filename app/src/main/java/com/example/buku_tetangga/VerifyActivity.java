@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -106,4 +107,8 @@ public class VerifyActivity extends AppCompatActivity implements Login.OnFragmen
         Animatoo.animateSlideLeft(this);
     }
 
+    public void toKebijakanPrivasi(View view) {
+        startActivity(new Intent(this, KebijakanPrivasiActivity.class));
+        Animatoo.animateSlideDown(this);
+    }
 }

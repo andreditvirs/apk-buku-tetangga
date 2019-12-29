@@ -47,4 +47,30 @@
     <string name="komik">Komik</string>
     <string name="petunjuk_pengguna">Petunjuk Pengguna</string>
 
+    <string name="judul_intruksi">Intruksi</string>
+    <string name="baris_intruksi">1. Masukkan nominal yang akan di deposit\n
+        2. Transfer uang ke Nomer Rekening Buku Tetangga\n
+        3. Upload foto bukti transfer\n
+        4. Pada Profil akan ditampilkan nominal deposit</string>
+
+    <string name="judul_catatan">Catatan</string>
+    <string name="baris_catatan">Minimal daposit sebesar Rp 25.000 Jika Anda mendepositkan Uang sebesar 25.000 maka Anda dapat menyewa buku yang harga aslinya 25.000 kebawah dan tetap membayar harga sewa ke penyedia buku.\n\n
+    Uang deposit akan dipotong ketika Anda sedang menyewa buku. Setelah Selesai melakukan transaksi dengan penyedia buku dan mengembalikan buku yang disewa, maka uang deposit akan dikembalikan lagi.</string>
+    <string name="deposit">Deposit</string>
+
+    <string name="baris_kebijakan_dan_privasi">Informasi pribadi Anda adalah perhatian kami. Kami ingin memastikan bahwa setiap informasi yang kami kumpulkan adalah upaya untuk memberikan manfaat bagi Anda. Informasi mengai diri Anda seperti nama, email, alamat, pekerjaan, nomor telepon, dan dokumen lain diperlukan untuk dapat mengidentifikasi Anda sebagai Pengguna.\n\n
+    Berikut adalah contoh jenis informasi pribadi yang dapat dikumpulkan Tim Buku Tetangga beserta cara menggunakannya.\n\n
+    Saat Anda membuat akun Buku Tetangga, atau menghubungi kami. Kami dapat mengumpulkan berbagai jenis informasi,termasuk nama dan informasi kontak, alamat, nomor telepon, alamat email, preferensi kontak, pekerjaan, informasi identifikas pribadi  (KTP, SIM, paspor, dan identifikasi pribadi lainnya ).\n\n
+    Kami dapat meminta tanda pengenal yang dikeluarkan pemerintah dalam kondisi tertentu termasuk bila diwajibkan berdasarkan hukum.\n\n
+    Informasi pribadi yang kami kumpulkan memungkinkan kami terus mengabari anda tengtang pemberitahuan buku terkini, penargetan ulang, promosi jika memungkinkan, pengembangan layanan, dan pembaruan perangkat lunak.\n\n
+    kami juga menggunakan informasi pribadi untuk membantu membuat, mengembangkan, mengoperasikan, memberikan, dan meningkatkan aplikasi kami, serta untuk mencegah kehilangan dan penipuan\n\n
+    kami menggunakan informasi pribadi seperti nama, nomor telepon, email, alamat tempat pelanggan, untuk dapat berhubungan dengan pelanggan, dan mungkin perlu untuk beberapa informasi ini dengan pihak ketiga lainnya yaitu penyedia buku untuk menyelesaikan transaksi.\n\n
+    </string>
+    <string name="kebijakan_privasi">Kebijakan Privasi</string>
+
+    <string name="baris_lainnya">Undang - Undang, proses hukum, litigasi, dan\ atau permintaan di dalam atau luar negara domisili Anda mungkin mengharuskan kami mengungkapkan informasi tentang Anda jika kami menilai bahwa pengungkapan untuk tujuan keamanan nasional, penegakan hukum, atau masalah lain demi kepentingan publik harus atau perlu dilakukan\n\n
+Kami juga dapat mengungkapkan informasi tentang Anda jika kami menilai bahwa pengungkapan tersebut dianggap perlu untuk menegakkan persyaratan dan ketentuan kamu atau melindungi operasional kami maupun pengguna\n\n</string>
+
+    <string name="baris_pernyataan_dan_persetujuan">Dengan memggunakan aplikasi kami, bearti Anda menyatakan bahwa Anda telah membaca dan mengerti Kebijakan Privasi ini dan Ketentuan Penggunaan dan menyetujui serta memperkenankan kami untuk menggunakan, menerapkan, memproses, dan mengalihkan informasi pribadi Anda sebagaimana yang dinyatakan dalam Kebijakan Privasi sebelumnya.\n\n
+Anda juga menyatakan bahwa Anda berhak untuk membagikan atas seluruh informasi yang telah diberikan kepada kami dan memberikan kepada kami kewenangan untuk menggunakan dan membagikan data informasi pribadi Anda untuk mendukung dan melaksanakan layanan kami.\n\n</string>
 </resources>
