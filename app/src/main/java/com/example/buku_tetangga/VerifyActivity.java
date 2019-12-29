@@ -102,7 +102,7 @@ public class VerifyActivity extends AppCompatActivity implements Login.OnFragmen
 
     public void toLupaPassword(View view) {
         finish();
-        startActivity(new Intent(this, ForgetPasswordActivity.class));
+        startActivity(new Intent(this, MainActivity2.class));
         Animatoo.animateSlideLeft(this);
     }
 
