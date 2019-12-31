@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".TentangAplikasiActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_of_ad_desc_book"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/colorPrimary">
+
+        <ImageButton
+            android:id="@+id/back_from_add_desc_book"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="toVerify"
+            android:layout_margin="8dp"
+            android:layout_gravity="center"
+            android:background="@drawable/ic_arrow_back_black_24dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tentang_aplikasi"
+            android:padding="8dp"
+            android:textSize="20sp"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/colorLight"
+            android:textAlignment="textStart"/>
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="40dp"
+        android:paddingBottom="44dp"
+        android:paddingStart="44dp"
+        android:paddingEnd="44dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/border_solid_area"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tentang_aplikasi"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/colorPrimary"
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="18dp"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_logobutangaja"
+                android:layout_gravity="center"
+                android:layout_marginTop="12dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="@string/versi"
+                android:textColor="@color/colorGray"
+                android:fontFamily="@font/poppins_light"
+                android:textSize="8sp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Tentang Aplikasi 'Buku Tetangga'"
+                android:textColor="@color/colorActiveDark"
+                android:layout_marginTop="18dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="@color/colorActiveDark"
+                android:fontFamily="@font/poppins_regular"
+                android:text="@string/baris_tentang_aplikasi"
+                android:layout_marginTop="8dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

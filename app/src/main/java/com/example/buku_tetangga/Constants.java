@@ -1,1 +1,1 @@
-package com.example.buku_tetangga;public class Constants {    public final static String SERVER_IP="http://192.168.43.147";    public final static String SERVER_FOLDER="/shop/";    public final static String SERVER_FILE = "upload.json";}
+package com.example.buku_tetangga;public class Constants {    public final static String SERVER_IP="http://192.168.43.147";    public final static String SERVER_FOLDER="/shop/";    public final static String SERVER_FILE = "upload.php";}

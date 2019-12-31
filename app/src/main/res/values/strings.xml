@@ -17,6 +17,13 @@
     <string name="tambah_buku">Tambah Buku</string>
     <string name="cari_buku">Cari Buku</string>
 
+    <!--    google maps-->
+    <string name="google_maps_api_key">AIzaSyBIq-HrZZtIGlkxb1TT8Snho0MMkK2tOKw</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="start">Start</string>
+    <string name="word_GPS_not_enabled">gps not enabled</string>
+    <string name="word_GPS_enable">gps enabled</string>
+    <string name="word_GPS">GPS</string>
     <!--    search bar-->
 
     <string name="thumbnail">thumbnail</string>
@@ -69,8 +76,18 @@
     <string name="kebijakan_privasi">Kebijakan Privasi</string>
 
     <string name="baris_lainnya">Undang - Undang, proses hukum, litigasi, dan\ atau permintaan di dalam atau luar negara domisili Anda mungkin mengharuskan kami mengungkapkan informasi tentang Anda jika kami menilai bahwa pengungkapan untuk tujuan keamanan nasional, penegakan hukum, atau masalah lain demi kepentingan publik harus atau perlu dilakukan\n\n
-Kami juga dapat mengungkapkan informasi tentang Anda jika kami menilai bahwa pengungkapan tersebut dianggap perlu untuk menegakkan persyaratan dan ketentuan kamu atau melindungi operasional kami maupun pengguna\n\n</string>
+    Kami juga dapat mengungkapkan informasi tentang Anda jika kami menilai bahwa pengungkapan tersebut dianggap perlu untuk menegakkan persyaratan dan ketentuan kamu atau melindungi operasional kami maupun pengguna\n\n</string>
 
     <string name="baris_pernyataan_dan_persetujuan">Dengan memggunakan aplikasi kami, bearti Anda menyatakan bahwa Anda telah membaca dan mengerti Kebijakan Privasi ini dan Ketentuan Penggunaan dan menyetujui serta memperkenankan kami untuk menggunakan, menerapkan, memproses, dan mengalihkan informasi pribadi Anda sebagaimana yang dinyatakan dalam Kebijakan Privasi sebelumnya.\n\n
-Anda juga menyatakan bahwa Anda berhak untuk membagikan atas seluruh informasi yang telah diberikan kepada kami dan memberikan kepada kami kewenangan untuk menggunakan dan membagikan data informasi pribadi Anda untuk mendukung dan melaksanakan layanan kami.\n\n</string>
+        Anda juga menyatakan bahwa Anda berhak untuk membagikan atas seluruh informasi yang telah diberikan kepada kami dan memberikan kepada kami kewenangan untuk menggunakan dan membagikan data informasi pribadi Anda untuk mendukung dan melaksanakan layanan kami.\n\n</string>
+
+    <string name="baris_tentang_aplikasi">Buku Tetangga adalah aplikasi yang mempermuah pengguna dalam mencari buku dengan cara menyewa buku berdasarkan lokasi terdekat layaknya tetangga.\n\n
+        Tidak hanya dapat menyewa buku, aplikasi ini juga dapat membuka peluang usaha bagi pengguna untuk menyewakan bukunya yang sedang menganggur atau tidak dibaca sehingga memperoleh keuntungan secara komersial.\n\n
+        Aplikasi ini masih masih dalam tahap pengembangan, mohon bantuan dan dukungannya.\n\n\n
+        Salam Tim Tonggo Dewe\n
+        Aplikasi Buku Tetangga\n
+        D3 IT B PENS</string>
+
+    <string name="tentang_aplikasi">Tentang Aplikasi</string>
+    <string name="versi">Versi beta v0.1</string>
 </resources>

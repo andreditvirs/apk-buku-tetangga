@@ -10,10 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-/**
- * Created by haerul on 17/03/18.
- */
-
 public class Adapter2 extends RecyclerView.Adapter<Adapter2.MyViewHolder> {
 
     private List<Contact2> contact2s;

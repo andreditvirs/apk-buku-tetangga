@@ -61,4 +61,7 @@ dependencies {
 
     //expendable area
     implementation 'com.thoughtbot:expandablerecyclerview:1.3'
+
+    //picasoo support retrofit2
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }

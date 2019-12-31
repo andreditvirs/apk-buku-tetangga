@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Juan"
+            android:text="Nama Penyedia"
             android:textColor="@color/txt_nr_phone"
             android:textSize="16sp"
             android:textStyle="bold" />

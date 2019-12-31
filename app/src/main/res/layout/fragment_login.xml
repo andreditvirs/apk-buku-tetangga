@@ -148,5 +148,24 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"/>
     </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/versi"
+            android:textAlignment="center"
+            android:textSize="8sp"
+            android:paddingTop="12dp"
+            android:fontFamily="@font/poppins_light"
+            android:textColor="@color/colorSecondary"
+            android:onClick="toTentangAplikasi"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tentang_aplikasi"
+            android:textAlignment="center"
+            android:textSize="8sp"
+            android:fontFamily="@font/poppins_light"
+            android:textColor="@color/colorSecondary"
+            android:onClick="toTentangAplikasi"/>
     </LinearLayout>
 </ScrollView>

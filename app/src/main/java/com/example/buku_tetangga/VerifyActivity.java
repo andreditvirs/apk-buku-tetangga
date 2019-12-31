@@ -111,4 +111,9 @@ public class VerifyActivity extends AppCompatActivity implements Login.OnFragmen
         startActivity(new Intent(this, KebijakanPrivasiActivity.class));
         Animatoo.animateSlideDown(this);
     }
+
+    public void toTentangAplikasi(View view) {
+        startActivity(new Intent(this, TentangAplikasiActivity.class));
+        Animatoo.animateSlideDown(this);
+    }
 }

@@ -11,24 +11,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_of_akun"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark" />
+
         <LinearLayout
+            android:id="@+id/toolbar_akun"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="30dp"
-            android:paddingBottom="8dp"
-            android:orientation="vertical"
-            android:background="@drawable/rounded_bottom"
-            android:elevation="8dp"
-            android:clipToPadding="false"
-            android:dividerPadding="8dp">
+            android:orientation="horizontal"
+            android:background="@color/colorPrimary">
+
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="28dp"
+                android:layout_height="wrap_content"
                 android:text="@string/nav_account"
+                android:padding="8dp"
+                android:textSize="18sp"
                 android:fontFamily="@font/poppins_medium"
-                android:textColor="@color/colorPrimary"
-                android:textSize="18dp"
-                android:gravity="center"/>
+                android:textColor="@color/colorLight"
+                android:textAlignment="center"/>
         </LinearLayout>
         
         <RelativeLayout
@@ -61,7 +67,7 @@
                     android:layout_marginLeft="@dimen/padding_10"
                     android:layout_marginRight="@dimen/padding_10"
                     android:layout_marginTop="50dp"
-                    android:src="@drawable/ic_logo_butang_putih" />
+                    android:src="@drawable/ic_person_primary_24dp" />
 
                 <TextView
                     android:id="@+id/txtV_username"
