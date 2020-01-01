@@ -1,6 +1,5 @@
 package com.example.buku_tetangga;
 
-
 import java.util.List;
 
 import retrofit2.Call;
@@ -18,4 +17,7 @@ public interface ApiInterface2 {
             @Query("item_type") String item_type,
             @Query("key") String keyword
     );
+
+    @GET("getSpacecrafts.php")
+    Call<List<ModalRakBuku>> getSpacecrafts();
 }

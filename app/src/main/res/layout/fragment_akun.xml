@@ -49,15 +49,6 @@
                 android:background="@color/colorSecondary"
                 android:orientation="vertical">
 
-<!--                <ImageView-->
-<!--                    android:id="@+id/imgv_profil"-->
-<!--                    android:layout_width="107dp"-->
-<!--                    android:layout_height="111dp"-->
-<!--                    android:layout_gravity="center"-->
-<!--                    android:layout_marginTop="50dp"-->
-<!--                    android:layout_marginBottom="18dp"-->
-<!--                    android:contentDescription="desc" />-->
-
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imgv_profil"
                     android:layout_width="107dp"
@@ -270,18 +261,19 @@
             android:background="@color/colorLight"
             android:orientation="vertical">
         <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
-                android:layout_marginStart="18dp"
-                android:layout_marginEnd="18dp"
-                android:layout_marginTop="10dp">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:layout_marginStart="18dp"
+            android:layout_marginEnd="18dp"
+            android:layout_marginTop="10dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Koleksi buku :"
                     android:textColor="@color/colorLight"
-                    android:layout_marginLeft="20dp"
                     android:fontFamily="@font/poppins_medium"
                     android:textSize="18sp"/>
             </LinearLayout>
@@ -290,7 +282,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="32dp">
+                android:layout_marginTop="24dp">
+                <ProgressBar
+                    android:id="@+id/myProgressBar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true"
+                    android:indeterminateBehavior="cycle"
+                    android:visibility="gone" />
+
+                <com.example.buku_tetangga.ExpandableHeightGridView
+                    android:id="@+id/mGridView"
+                    android:layout_weight="0.5"
+                    android:numColumns="auto_fit"
+                    android:layout_width="match_parent"
+                    android:paddingBottom="18dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="8dp"
+                    android:layout_height="0dp"/>
+
                 <ImageButton
                     android:id="@+id/btn_addBook"
                     android:layout_width="wrap_content"
