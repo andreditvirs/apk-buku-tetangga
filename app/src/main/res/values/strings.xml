@@ -17,13 +17,8 @@
     <string name="tambah_buku">Tambah Buku</string>
     <string name="cari_buku">Cari Buku</string>
 
-    <!--    google maps-->
-    <string name="google_maps_api_key">AIzaSyBIq-HrZZtIGlkxb1TT8Snho0MMkK2tOKw</string>
-    <string name="title_activity_maps">Map</string>
-    <string name="start">Start</string>
-    <string name="word_GPS_not_enabled">gps not enabled</string>
-    <string name="word_GPS_enable">gps enabled</string>
-    <string name="word_GPS">GPS</string>
+    <!--    mapbox maps-->
+    <string name="access_token">pk.eyJ1IjoiYW5kcmVkaXR2aXJzIiwiYSI6ImNrNHV6MGlrYjUyeHgza29iYnE5MnZ5cDgifQ.f0qXFQSdFfNglpanb6smCg</string>
     <!--    search bar-->
 
     <string name="thumbnail">thumbnail</string>

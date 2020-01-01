@@ -195,10 +195,6 @@ public class AkunFragment extends Fragment {
 //            chkTechExists.setChecked( thisSpacecraft.getTechnologyExists()==1);
 //            chkTechExists.setEnabled(false);
 
-
-
-
-
             if(thisSpacecraft.getImageURL() != null && thisSpacecraft.getImageURL().length()>0)
             {
                 Picasso.get().load(thisSpacecraft.getImageURL()).placeholder(R.drawable.ic_person_primary_24dp).into(spacecraftImageView);

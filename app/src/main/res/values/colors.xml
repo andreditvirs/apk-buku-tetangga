@@ -27,4 +27,9 @@
 
     <color name="txt_color">#5f5f5f</color>
     <color name="txt_nr_phone">#012E52</color>
+    
+    //mapbox color
+    <color name="mapboxWhite">#ffffff</color>
+    <color name="mapboxBlue">#4264fb</color>
+    <color name="mapboxGrayLight">#c6d2e1</color>
 </resources>
