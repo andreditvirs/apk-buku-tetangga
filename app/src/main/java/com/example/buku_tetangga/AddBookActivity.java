@@ -79,7 +79,7 @@ public class AddBookActivity extends AppCompatActivity {
     }
 
     public void mainBtn(View view) {
-        startActivity(new Intent(this, VerifyActivity.class));
+        startActivity(new Intent(this, MapsActivity.class));
         Animatoo.animateSlideLeft(this);
     }
 

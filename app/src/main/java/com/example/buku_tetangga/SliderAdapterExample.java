@@ -31,22 +31,22 @@ public class SliderAdapterExample extends SliderViewAdapter<SliderAdapterExample
         switch (position) {
             case 0:
                 Glide.with(viewHolder.itemView)
-                        .load("http://bukutetangga.000webhostapp.com/iklan/iklan_butang_1.jpg")
+                        .load("http://bukutetangga.000webhostapp.com/iklan/iklan_butang_1.png")
                         .into(viewHolder.imageViewBackground);
                 break;
             case 1:
                 Glide.with(viewHolder.itemView)
-                        .load("http://bukutetangga.000webhostapp.com/iklan/iklan_butang_2.jpg")
+                        .load("http://bukutetangga.000webhostapp.com/iklan/iklan_butang_2.png")
                         .into(viewHolder.imageViewBackground);
                 break;
             case 2:
                 Glide.with(viewHolder.itemView)
-                        .load("http://bukutetangga.000webhostapp.com/iklan/iklan_butang_3.jpg")
+                        .load("http://bukutetangga.000webhostapp.com/iklan/iklan_butang_3.png")
                         .into(viewHolder.imageViewBackground);
                 break;
             default:
                 Glide.with(viewHolder.itemView)
-                        .load("http://bukutetangga.000webhostapp.com/iklan/iklan_butang_4.jpg")
+                        .load("http://bukutetangga.000webhostapp.com/iklan/iklan_butang_4.png")
                         .into(viewHolder.imageViewBackground);
                 break;
 

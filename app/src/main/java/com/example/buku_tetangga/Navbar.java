@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
+import com.example.buku_tetangga.activities.SearchAddBookActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -104,6 +105,12 @@ public class Navbar extends AppCompatActivity {
 
     public void toKebijakanPrivasi(View view) {
         startActivity(new Intent(this, KebijakanPrivasiActivity.class));
+        finish();
+        Animatoo.animateSlideUp(this);
+    }
+
+    public void toPencarian(View view) {
+        startActivity(new Intent(this, MainActivity2.class));
         finish();
         Animatoo.animateSlideUp(this);
     }

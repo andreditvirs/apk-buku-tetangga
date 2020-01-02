@@ -191,7 +191,7 @@ public class AkunFragment extends Fragment {
 
             nameTxt.setText(thisSpacecraft.getName());
             txtPropellant.setText(thisSpacecraft.getPropellant());
-            stock.setText(thisSpacecraft.setStock());
+//            stock.setText(thisSpacecraft.setStock());
 //            chkTechExists.setChecked( thisSpacecraft.getTechnologyExists()==1);
 //            chkTechExists.setEnabled(false);
 

@@ -11,8 +11,8 @@
         android:title="@string/nav_keranjang" />
     <item
         android:id="@+id/nav_riwayat"
-        android:icon="@drawable/ic_history_black_44dp"
-        android:title="@string/nav_riwayat" />
+        android:icon="@drawable/ic_event_note_black_44dp"
+        android:title="@string/nav_notif" />
     <item
         android:id="@+id/nav_akun"
         android:icon="@drawable/ic_person_black_44dp"

@@ -2,10 +2,6 @@ package com.example.buku_tetangga;
 
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by haerul on 17/03/18.
- */
-
 public class Contact2 {
 
     @SerializedName("id") private int Id;
