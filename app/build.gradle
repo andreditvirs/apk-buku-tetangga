@@ -65,4 +65,8 @@ dependencies {
 
     //picasoo support retrofit2
     implementation 'com.squareup.picasso:picasso:2.71828'
+
+    // The Big Box Api
+    implementation 'net.mainapi.sdk:core:1.0.4@aar'
+    implementation 'net.mainapi.sdk:vericallotp:0.0.3@aar'
 }

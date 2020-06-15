@@ -97,8 +97,6 @@ public class VerifyActivity extends AppCompatActivity implements Login.OnFragmen
     public void logoutPerformed() {
         prefConfig.writeLoginStatus(false);
         prefConfig.writeName("User");
-//        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-//                new LoginFragment2()).commit();
     }
 
     public void toLupaPassword(View view) {

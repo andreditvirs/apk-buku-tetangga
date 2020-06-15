@@ -3,18 +3,18 @@ package com.example.buku_tetangga;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ApiClient2 {
-
-    public static final String BASE_URL = "http://192.168.43.147/users/GET/";
+public class ApiClientSmsNotif {
     public static Retrofit retrofit;
+    public static final String SMS_NOTIF = "https://api.thebigbox.id/sms-notification/1.0.0/";
 
-    public static Retrofit getApiClient(){
-        if (retrofit==null){
+    public static Retrofit getRetrofitInstance(){
+        if (retrofit == null){
             retrofit = new Retrofit.Builder()
-                    .baseUrl(BASE_URL)
+                    .baseUrl(SMS_NOTIF)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
         return retrofit;
     }
+
 }

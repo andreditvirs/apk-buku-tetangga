@@ -3,18 +3,18 @@ package com.example.buku_tetangga;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ApiClient2 {
-
-    public static final String BASE_URL = "http://192.168.43.147/users/GET/";
+public class ApiClientVoicecallOtp {
     public static Retrofit retrofit;
+    public static final String VER_OTP = "https://api.thebigbox.id/voice-otp/1.0.0/";
 
-    public static Retrofit getApiClient(){
-        if (retrofit==null){
+    public static Retrofit getRetrofitInstance(){
+        if (retrofit == null){
             retrofit = new Retrofit.Builder()
-                    .baseUrl(BASE_URL)
+                    .baseUrl(VER_OTP)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
         return retrofit;
     }
+
 }
