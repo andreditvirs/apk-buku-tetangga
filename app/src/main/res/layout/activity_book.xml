@@ -32,7 +32,6 @@
                 android:theme="@style/ThemeOverlay.AppCompat.Light">
             </androidx.appcompat.widget.Toolbar>
 
-
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"

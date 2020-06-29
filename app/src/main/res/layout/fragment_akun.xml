@@ -11,13 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar_of_akun"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:background="?attr/colorPrimary"
-            android:minHeight="?attr/actionBarSize"
-            app:theme="@style/ThemeOverlay.AppCompat.Dark" />
 
         <LinearLayout
             android:id="@+id/toolbar_akun"
@@ -302,10 +295,10 @@
                     android:paddingEnd="8dp"
                     android:layout_height="0dp"/>
 
-                <ImageButton
-                    android:id="@+id/btn_addBook"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <Button
+                    android:id="@+id/btn_toAddBook"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:onClick="toAddBook"
                     android:layout_gravity="center"
                     android:background="@drawable/ic_add_book_akun"/>

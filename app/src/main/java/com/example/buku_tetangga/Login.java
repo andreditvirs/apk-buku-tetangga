@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -27,6 +28,13 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -159,7 +167,6 @@ public class Login extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        super.onAttach(context);
         Activity activity = (Activity) context;
         loginFormActivityListener = (Login.OnLoginFormActivityListener) activity;
 
@@ -176,7 +183,6 @@ public class Login extends Fragment {
         super.onDetach();
         mListener = null;
     }
-
 
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
@@ -211,24 +217,40 @@ public class Login extends Fragment {
 
     //set butang sign
     private void performLogin(){
-        String user_name_login = user_name.getText().toString();
-        String user_pass_login = user_pass.getText().toString();
+        String username = user_name.getText().toString();
+        String userpass = user_pass.getText().toString();
 
-        Call<User> call = VerifyActivity.apiInterface.performLogin(user_name_login, user_pass_login);
-        call.enqueue(new Callback<User>() {
+        Call<ResponseBody> call = VerifyActivity.apiInterface.performLogin(username, userpass);
+        call.enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                if (response.body().getResponse().equals("ok")){
-                    VerifyActivity.prefConfig.writeLoginStatus(true);
-                    VerifyActivity.prefConfig.displayToast("Selamat datang, " + user_name_login);
-                    loginFormActivityListener.performLogin(response.body().getName());
-                }else if (response.body().getResponse().equals("failed")){
-                    VerifyActivity.prefConfig.displayToast("Silahkan periksa kembali Username/Passoword Anda");
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                Activity activity = getActivity();
+                if (response.isSuccessful()){
+                    try {
+                        JSONObject jsonObject = new JSONObject(response.body().string());
+                        if(!jsonObject.getBoolean("error")){
+                            String nama_lengkap = jsonObject.getJSONObject("user").getString("nama_lengkap");
+                            ArrayList<String> profile = new ArrayList<>();
+                            profile.add(nama_lengkap);
+                            Intent i = new Intent(activity, Navbar.class);
+                            Bundle bundle = new Bundle();
+                            bundle.putStringArrayList("profile", profile);
+                            i.putExtras(bundle);
+                            getActivity().finish();
+                            startActivity(i);
+                        }else{
+                            String error_msg = jsonObject.getString("error_msg");
+                        }
+                    }catch (JSONException e){
+                        e.printStackTrace();
+                    }catch (IOException e){
+                        e.printStackTrace();
+                    }
                 }
             }
 
             @Override
-            public void onFailure(Call<User> call, Throwable t) {
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
 
             }
         });
@@ -236,16 +258,6 @@ public class Login extends Fragment {
         user_pass.setText("");
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);

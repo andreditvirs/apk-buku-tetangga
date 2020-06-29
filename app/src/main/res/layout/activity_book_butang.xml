@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BookButangActivity"
+    android:background="@color/colorBackGray"
+    android:orientation="vertical">
+    <ScrollView
+        android:id="@+id/scrV_rakbuku"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="70dp"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/foto_book_butang"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorLight"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="8dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="24dp"
+                    android:elevation="4dp"
+                    android:background="@color/colorLight"
+                    android:clipToPadding="false"
+                    android:dividerPadding="8dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/txtV_judul_buku_rakbuku"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="3"
+                        android:fontFamily="@font/poppins_medium"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorActiveDark"
+                        android:text="Judul Buku"/>
+                    <TextView
+                        android:id="@+id/txtV_penyedia_rakbuku"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorActiveDark"
+                        android:text="Penyedia"/>
+                    <TextView
+                        android:id="@+id/txtV_harga_rakbuku"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:maxLines="3"
+                        android:fontFamily="@font/poppins_medium"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorSecondary"
+                        android:text="Rp. Harga"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:orientation="vertical"
+                android:elevation="4dp"
+                android:background="@color/colorLight"
+                android:clipToPadding="false"
+                android:dividerPadding="8dp"
+                android:layout_marginTop="16dp">
+                <com.google.android.material.tabs.TabLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tabLayoutRakbuku"
+                    android:background="@color/colorLight"
+                    app:tabTextColor="@color/colorPrimary"
+                    android:minHeight="?attr/actionBarSize"
+                    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+                <androidx.viewpager.widget.ViewPager
+                    android:padding="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/pagerRakbuku" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/round_of_card_home"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="18dp"
+                android:paddingStart="20dp"
+                android:paddingTop="22dp"
+                android:elevation="8dp"
+                android:clipToPadding="false"
+                android:dividerPadding="8dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/txtV_rekomendasi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/rekomendasi"
+                        android:fontFamily="@font/poppins_medium"
+                        android:textSize="20sp"
+                        android:textColor="@color/colorSecondary"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="LIHAT SEMUA"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textSize="12sp"
+                        android:textColor="@color/colorUnactiveDark"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/btn_outlined"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
+                        android:paddingStart="6dp"
+                        android:paddingEnd="6dp"
+                        android:layout_marginEnd="24dp"
+                        />
+                </RelativeLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Buku lain yang direkomendasikan"
+                    android:fontFamily="@font/poppins_light"
+                    android:textColor="@color/colorUnactiveDark"
+                    android:textSize="12sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/book_butang_lain"
+                    android:layout_width="match_parent"
+                    android:layout_height="280dp"
+                    android:layout_marginBottom="18dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:padding="8dp"
+        android:background="@color/colorBackGray">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Sewa Buku"
+            android:textColor="@color/colorLight"
+            android:background="@drawable/btn_rounded"/>
+    </LinearLayout>
+</RelativeLayout>

@@ -5,17 +5,20 @@ import retrofit2.http.Body;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Path;
 
 public interface ApiVoicecallOtp {
-    @PUT("otp/wew")
+    @PUT("otp/{id}")
     Call<VoicecallOtp> sendOTP(@Header("Accept") String accept,
                                @Header("x-api-key") String key,
                                @Header("Content-Type") String contentType,
-                               @Body VoicecallOtp voicecallOtp);
+                               @Body VoicecallOtp voicecallOtp,
+                               @Path("id") String id);
 
-    @POST("otp/adit/verifications")
-    Call<VoicecallOtp> validateOTP(@Header("Accept") String accept,
+    @POST("otp/{id}/verifications")
+    Call<VoicecallOtp2> validateOTP(@Header("Accept") String accept,
                                    @Header("x-api-key") String key,
                                    @Header("Content-Type") String contentType,
-                                   @Body VoicecallOtp voicecallOtp);
+                                   @Body VoicecallOtp2 voicecallOtp2,
+                                   @Path("id") String id);
 }

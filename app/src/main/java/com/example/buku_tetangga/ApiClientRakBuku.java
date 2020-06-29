@@ -3,7 +3,7 @@ package com.example.buku_tetangga;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ApiClient2 {
+public class ApiClientRakBuku {
 
     public static final String BASE_URL = "http://192.168.43.147/users/GET/";
     public static Retrofit retrofit;

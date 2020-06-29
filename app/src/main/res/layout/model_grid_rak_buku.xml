@@ -16,7 +16,7 @@
         app:cardUseCompatPadding="true">
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="300dp"
+            android:layout_height="250dp"
             android:orientation="vertical"
             android:background="@color/colorLight"
             android:layout_gravity="center_horizontal">
@@ -27,7 +27,7 @@
                 android:orientation="vertical"
                 android:layout_margin="8dp">
                 <ImageView
-                    android:id="@+id/spacecraftImageView"
+                    android:id="@+id/foto_buku"
                     android:src="@drawable/cover_buku_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
                     tools:ignore="HardcodedText" />
 
                 <TextView
-                    android:id="@+id/nameTextView"
+                    android:id="@+id/judul_buku"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_regular"
@@ -47,7 +47,7 @@
                     android:textColor="@color/colorActiveDark" />
 
                 <TextView
-                    android:id="@+id/propellantTextView"
+                    android:id="@+id/penerbitBuku"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
@@ -60,7 +60,7 @@
                     android:ellipsize="end" />
 
                 <TextView
-                    android:id="@+id/stcokValue"
+                    android:id="@+id/jumlah_stock"
                     android:layout_width="72dp"
                     android:layout_height="wrap_content"
                     android:textAlignment="textStart"

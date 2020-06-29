@@ -35,7 +35,8 @@ public class ModalRakBuku {
             this.id = id;
         }
         public String getName() {
-            return name;
+            ApiClient apiClient = new ApiClient();
+            return apiClient.getBASE_URL()+"image/"+name;
         }
         public void setName(String name) {
             this.name = name;

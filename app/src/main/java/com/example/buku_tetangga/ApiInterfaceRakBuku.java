@@ -10,7 +10,7 @@ import retrofit2.http.Query;
  * Created by haerul on 17/03/18.
  */
 
-public interface ApiInterface2 {
+public interface ApiInterfaceRakBuku {
 
     @GET("getcontacts.php")
     Call<List<Contact2>> getContact(

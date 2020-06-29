@@ -26,7 +26,7 @@ public class MainActivity2 extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private List<Contact2> contact2s;
     private Adapter2 adapter2;
-    private ApiInterface2 apiInterface2;
+    private ApiInterfaceRakBuku apiInterfaceRakBuku;
     ProgressBar progressBar;
     TextView search;
     String[] item;
@@ -47,9 +47,9 @@ public class MainActivity2 extends AppCompatActivity {
 
     public void fetchContact(String type, String key){
 
-        apiInterface2 = ApiClient2.getApiClient().create(ApiInterface2.class);
+        apiInterfaceRakBuku = ApiClientRakBuku.getApiClient().create(ApiInterfaceRakBuku.class);
 
-        Call<List<Contact2>> call = apiInterface2.getContact(type, key);
+        Call<List<Contact2>> call = apiInterfaceRakBuku.getContact(type, key);
         call.enqueue(new Callback<List<Contact2>>() {
             @Override
             public void onResponse(Call<List<Contact2>> call, Response<List<Contact2>> response) {

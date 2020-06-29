@@ -3,7 +3,6 @@ package com.example.buku_tetangga;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -26,8 +25,8 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.buku_tetangga.Adaptors.ProductAdaptor;
-import com.example.buku_tetangga.Items.ProductsItem;
+import com.example.buku_tetangga.Adaptors.BukuRekomendasiAdapter;
+import com.example.buku_tetangga.Items.Buku;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -48,8 +47,8 @@ public class KeranjangFragment extends Fragment {
 
     //set card_of_keranjang horizontal
     private ProgressDialog progressDialog;
-    private List<ProductsItem> productsItems = new ArrayList<ProductsItem>();
-    private ProductAdaptor productAdaptor;
+    private List<Buku> bukus = new ArrayList<Buku>();
+    private BukuRekomendasiAdapter bukuRekomendasiAdapter;
     private RecyclerView recyclerView;
     private String TAG = HomeFragment.class.getSimpleName();
     private LinearLayoutManager linearLayoutManager;
@@ -77,13 +76,13 @@ public class KeranjangFragment extends Fragment {
             }
         });
 
-        recyclerView = rootView.findViewById(R.id.products);
+        recyclerView = rootView.findViewById(R.id.home_buku_rekomendasi);
 
         linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        productAdaptor = new ProductAdaptor(getActivity(), productsItems);
-        recyclerView.setAdapter(productAdaptor);
+        bukuRekomendasiAdapter = new BukuRekomendasiAdapter(getActivity(), bukus);
+        recyclerView.setAdapter(bukuRekomendasiAdapter);
         getProductsFromServer();
 
         return rootView;
@@ -99,7 +98,7 @@ public class KeranjangFragment extends Fragment {
 
     private void getProductsFromServer() {
         try {
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, Constants.SERVER_IP + Constants.SERVER_FOLDER + Constants.SERVER_FILE,
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, Constants.SERVER_IP + Constants.SERVER_FD_KATEGORI_BUKU + Constants.SERVER_FILE_GET_KATEGORI_BUKU,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
@@ -119,17 +118,17 @@ public class KeranjangFragment extends Fragment {
                                         String farmername = jsonObject1.getString("region");
                                         String stock = jsonObject1.getString("stock");
 
-                                        ProductsItem productsItem = new ProductsItem();
-                                        productsItem.setProductName(name);
-                                        productsItem.setFarmerName(farmername);
-                                        productsItem.setStock(stock);
-                                        productsItem.setProductImageUrl(imageurl);
+                                        Buku buku = new Buku();
+                                        buku.setJudul_buku(name);
+                                        buku.setPenerbit(farmername);
+                                        buku.setStock(stock);
+                                        buku.setFoto(imageurl);
 
-                                        productsItems.add(productsItem);
+                                        bukus.add(buku);
                                     }
                                 }
 
-                                productAdaptor.notifyDataSetChanged();
+                                bukuRekomendasiAdapter.notifyDataSetChanged();
                             }catch (Exception ex)
                             {
                                 Log.e(TAG, ""+ex.getLocalizedMessage());

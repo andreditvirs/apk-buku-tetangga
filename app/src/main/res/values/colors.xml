@@ -7,6 +7,7 @@
     <color name="colorUnactiveDark">#B3A5AA</color>
     <color name="colorLight">#FFFFFF</color>
     <color name="colorGray">#9E9E9E</color>
+    <color name="colorBackGray">#EFEFEF</color>
     
     <color name="color1">#424549</color>
     <color name="color2">#7e455e</color>

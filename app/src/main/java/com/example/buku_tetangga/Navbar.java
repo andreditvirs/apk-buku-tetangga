@@ -17,6 +17,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Navbar extends AppCompatActivity {
@@ -29,12 +30,11 @@ public class Navbar extends AppCompatActivity {
     private RiwayatFragment riwayatFragment;
     private AkunFragment akunFragment;
 
+    private ArrayList<String> profile = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
-
 
         //Set BottomNavigationView
         mMainFrame = (FrameLayout) findViewById(R.id.main_frame);
@@ -47,6 +47,8 @@ public class Navbar extends AppCompatActivity {
 
         setFragment(homeFragment);
 
+        Bundle bundle = getIntent().getExtras();
+        profile = bundle.getStringArrayList("profile");
         mMainNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -61,6 +63,8 @@ public class Navbar extends AppCompatActivity {
                         setFragment(riwayatFragment);
                         return true;
                     case R.id.nav_akun:
+                        AkunFragment akunFragment = new AkunFragment();
+                        akunFragment.setProfile(profile);
                         setFragment(akunFragment);
                         return true;
                     default: return false;

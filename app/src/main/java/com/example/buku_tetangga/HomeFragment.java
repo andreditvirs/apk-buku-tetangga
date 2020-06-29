@@ -16,7 +16,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -24,8 +23,10 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.buku_tetangga.Adaptors.ProductAdaptor;
-import com.example.buku_tetangga.Items.ProductsItem;
+import com.example.buku_tetangga.Adaptors.BukuRekomendasiAdapter;
+import com.example.buku_tetangga.Adaptors.BukuTerbaruAdapter;
+import com.example.buku_tetangga.Adaptors.BukuTerpopulerAdapter;
+import com.example.buku_tetangga.Items.Buku;
 import com.smarteist.autoimageslider.IndicatorAnimations;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
@@ -34,9 +35,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 /**
@@ -53,11 +52,15 @@ public class HomeFragment extends Fragment {
 
     //set card_of_home_horizontal
     private ProgressDialog progressDialog;
-    private List<ProductsItem> productsItems = new ArrayList<ProductsItem>();
-    private ProductAdaptor productAdaptor;
-    private RecyclerView recyclerView;
+    private List<Buku> buku_rekomendasi = new ArrayList<Buku>();
+    private List<Buku> buku_terpopuler = new ArrayList<Buku>();
+    private List<Buku> buku_terbaru = new ArrayList<Buku>();
+    private BukuRekomendasiAdapter bukuRekomendasiAdapter;
+    private BukuTerpopulerAdapter bukuTerpopulerAdapter;
+    private BukuTerbaruAdapter bukuTerbaruAdapter;
+    private RecyclerView recyclerViewRekomendasi, recyclerViewTerpopuler, recyclerViewTerbaru;
     private String TAG = HomeFragment.class.getSimpleName();
-    private LinearLayoutManager linearLayoutManager;
+    private LinearLayoutManager linearLayoutManagerRekomendasi, linearLayoutManagerTerpopuler, linearLayoutManagerTerbaru;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -100,22 +103,34 @@ public class HomeFragment extends Fragment {
 //        viewPager.setAdapter(adapter2);
 //        viewPager.setPadding(130, 0, 130, 0);
 
-        //set card_of_home_horizontal
-        recyclerView = rootView.findViewById(R.id.products);
+        //set card Buku Rekomendasi
+        linearLayoutManagerRekomendasi = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        recyclerViewRekomendasi = rootView.findViewById(R.id.home_buku_rekomendasi);
+        recyclerViewRekomendasi.setLayoutManager(linearLayoutManagerRekomendasi);
+        bukuRekomendasiAdapter = new BukuRekomendasiAdapter(getActivity(), buku_rekomendasi);
+        recyclerViewRekomendasi.setAdapter(bukuRekomendasiAdapter);
+        reqGetBooksFromServer(Request.Method.GET, Constants.SERVER_IP + Constants.SERVER_FD_KATEGORI_BUKU + Constants.SERVER_FILE_GET_KATEGORI_BUKU + Constants.PARAM_REKOMENDASI, 'r');
 
-        linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        recyclerView.setLayoutManager(linearLayoutManager);
+        linearLayoutManagerTerpopuler = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        recyclerViewTerpopuler = rootView.findViewById(R.id.home_buku_terpopuler);
+        recyclerViewTerpopuler.setLayoutManager(linearLayoutManagerTerpopuler);
+        bukuTerpopulerAdapter = new BukuTerpopulerAdapter(getActivity(), buku_terpopuler);
+        recyclerViewTerpopuler.setAdapter(bukuTerpopulerAdapter);
+        reqGetBooksFromServer(Request.Method.GET, Constants.SERVER_IP + Constants.SERVER_FD_KATEGORI_BUKU + Constants.SERVER_FILE_GET_KATEGORI_BUKU + Constants.PARAM_TERPOPULER, 'p');
 
-        productAdaptor = new ProductAdaptor(getActivity(), productsItems);
-        recyclerView.setAdapter(productAdaptor);
-        getProductsFromServer();
+        linearLayoutManagerTerbaru = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        recyclerViewTerbaru = rootView.findViewById(R.id.home_buku_terbaru);
+        recyclerViewTerbaru.setLayoutManager(linearLayoutManagerTerbaru);
+        bukuTerbaruAdapter = new BukuTerbaruAdapter(getActivity(), buku_terbaru);
+        recyclerViewTerbaru.setAdapter(bukuTerbaruAdapter);
+        reqGetBooksFromServer(Request.Method.GET, Constants.SERVER_IP + Constants.SERVER_FD_KATEGORI_BUKU + Constants.SERVER_FILE_GET_KATEGORI_BUKU + Constants.PARAM_TERBARU, 'b');
 
         return rootView;
     }
 
-    private void getProductsFromServer() {
+    private void reqGetBooksFromServer(int method, String uri, final char code) {
         try {
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, Constants.SERVER_IP + Constants.SERVER_FOLDER + Constants.SERVER_FILE,
+            StringRequest stringRequest = new StringRequest(method, uri,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
@@ -124,28 +139,52 @@ public class HomeFragment extends Fragment {
                             try
                             {
                                 JSONObject jsonObject = new JSONObject(response);
-                                JSONArray jsonArray = jsonObject.getJSONArray("productList");
+                                JSONArray jsonArray = new JSONArray();
+                                if(code == 'r'){
+                                    jsonArray = jsonObject.getJSONArray("buku_rekomendasi");
+                                }else if(code == 'p'){
+                                    jsonArray = jsonObject.getJSONArray("buku_terpopuler");
+                                }else if(code == 'b'){
+                                    jsonArray = jsonObject.getJSONArray("buku_terbaru");
+                                }
                                 if(jsonArray!=null)
                                 {
                                     for(int i=0;i<jsonArray.length();i++)
                                     {
-                                        JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                                        String name  =jsonObject1.getString("productName");
-                                        String imageurl = jsonObject1.getString("productImageUrl");
-                                        String farmername = jsonObject1.getString("region");
-                                        String stock = jsonObject1.getString("stock");
+                                        JSONObject jsonObjects = jsonArray.getJSONObject(i);
+                                        String rakbuku_id  = String.valueOf(jsonObjects.getInt("rakbuku_id"));
+                                        String judul_buku = jsonObjects.getString("judul_buku");
+                                        String pengarang = jsonObjects.getString("pengarang");
+                                        String penerbit = jsonObjects.getString("penerbit");
+                                        String harga = String.valueOf(jsonObjects.getInt("harga"));
+                                        String jumlah_stock = String.valueOf(jsonObjects.getInt("jumlah_stock"));
+                                        String foto = jsonObjects.getString("foto");
 
-                                        ProductsItem productsItem = new ProductsItem();
-                                        productsItem.setProductName(name);
-                                        productsItem.setFarmerName(farmername);
-                                        productsItem.setStock(stock);
-                                        productsItem.setProductImageUrl(imageurl);
+                                        Buku buku = new Buku();
+                                        buku.setRakbuku_id(rakbuku_id);
+                                        buku.setJudul_buku(judul_buku);
+                                        buku.setPengarang(pengarang);
+                                        buku.setPenerbit(penerbit);
+                                        buku.setHarga(harga);
+                                        buku.setStock(jumlah_stock);
+                                        buku.setFoto(foto);
 
-                                        productsItems.add(productsItem);
+                                        if(code == 'r'){
+                                            buku_rekomendasi.add(buku);
+                                        }else if(code == 'p'){
+                                            buku_terpopuler.add(buku);
+                                        }else if(code == 'b'){
+                                            buku_terbaru.add(buku);
+                                        }
                                     }
                                 }
-
-                                productAdaptor.notifyDataSetChanged();
+                                if(code == 'r'){
+                                    bukuRekomendasiAdapter.notifyDataSetChanged();;
+                                }else if(code == 'p') {
+                                    bukuTerpopulerAdapter.notifyDataSetChanged();
+                                }else if(code == 'b'){
+                                    bukuTerbaruAdapter.notifyDataSetChanged();
+                                }
                             }catch (Exception ex)
                             {
                                 Log.e(TAG, ""+ex.getLocalizedMessage());
@@ -157,14 +196,15 @@ public class HomeFragment extends Fragment {
                 public void onErrorResponse(VolleyError error) {
                     Log.e(TAG,""+error.getLocalizedMessage());
                 }
-            }) {
-                @Override
-                protected Map<String, String> getParams() throws AuthFailureError {
-                    Map<String, String> map = new HashMap<>();
-                    map.put("orderid", "1");
-                    return map;
-                }
-            };
+            }) ;
+//            {
+//                @Override
+//                protected Map<String, String> getParams() throws AuthFailureError {
+//                    Map<String, String> map = new HashMap<>();
+//                    map.put("orderid", "1");
+//                    return map;
+//                }
+//            };
 
             RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
             requestQueue.add(stringRequest);

@@ -33,7 +33,7 @@
     <string name="pref_login_status">com.example.preference_login_status</string>
     <string name="pref_user_name">com.example.preference_user_name</string>
 
-    <string name="search">Cari</string>
+    <string name="search">Cari buku yang Ada suka disini...</string>
     <string name="hint">"Masukkan judul buku"</string>
     <string name="description_image_view">Template for  the image</string>
     <string name="description_divider">Divider</string>
@@ -44,6 +44,7 @@
     <string name="penerbit">Penerbit</string>
     <string name="rekomendasi">Rekomendasi</string>
     <string name="terpopuler">Terpopuler</string>
+    <string name="terbaru">Terbaru</string>
     <string name="kategori">Kategori</string>
     <string name="obrolan">Obrolan</string>
     <string name="novel">Novel</string>

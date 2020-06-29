@@ -53,19 +53,19 @@ public class SmsOtpActivity extends AppCompatActivity {
         VoicecallOtp voicecallOtp = new VoicecallOtp("089687542332", 4);
 //        VoicecallOtp voicecallOtp = new VoicecallOtp("0231", 4);
         ApiVoicecallOtp apiVoicecallOtp = ApiClientVoicecallOtp.getRetrofitInstance().create(ApiVoicecallOtp.class);
-        Call<VoicecallOtp> call = apiVoicecallOtp.sendOTP(accept, xapikey, contentType, voicecallOtp);
+//        Call<VoicecallOtp> call = apiVoicecallOtp.sendOTP(accept, xapikey, contentType, voicecallOtp);
 //        Call<VoicecallOtp> call = apiVoicecallOtp.validateOTP(accept, xapikey, contentType, voicecallOtp);
-        call.enqueue(new Callback<VoicecallOtp>() {
-            @Override
-            public void onResponse(Call<VoicecallOtp> call, Response<VoicecallOtp> response) {
-                System.out.println("================"+response);
-            }
-
-            @Override
-            public void onFailure(Call<VoicecallOtp> call, Throwable t) {
-                System.out.println("++++++++++++"+t.getLocalizedMessage());
-            }
-        });
+//        call.enqueue(new Callback<VoicecallOtp>() {
+//            @Override
+//            public void onResponse(Call<VoicecallOtp> call, Response<VoicecallOtp> response) {
+//                System.out.println("================"+response);
+//            }
+//
+//            @Override
+//            public void onFailure(Call<VoicecallOtp> call, Throwable t) {
+//                System.out.println("++++++++++++"+t.getLocalizedMessage());
+//            }
+//        });
 
     }
 }

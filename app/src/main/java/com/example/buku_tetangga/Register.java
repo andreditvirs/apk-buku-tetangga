@@ -1,6 +1,7 @@
 package com.example.buku_tetangga;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -17,12 +18,19 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static java.lang.String.valueOf;
 
 
 /**
@@ -34,12 +42,10 @@ import retrofit2.Response;
  * create an instance of this fragment.
  */
 public class Register extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    private TextInputEditText name, user_name, user_password;
+    private TextInputEditText name, user_name, user_password, reuser_password, user_mail, user_notelp;
 
     private Button btn_register;
 
@@ -88,13 +94,43 @@ public class Register extends Fragment {
         name = rootView.findViewById(R.id.txtIET_name_reg);
         user_name = rootView.findViewById(R.id.txtIET_user_name_reg);
         user_password = rootView.findViewById(R.id.txtIET_user_pass_reg);
+        reuser_password = rootView.findViewById(R.id.txtIET_reuser_pass_reg);
+        user_mail = rootView.findViewById(R.id.txtIET_email);
+        user_notelp = rootView.findViewById(R.id.txtIET_notelp);
         btn_register = rootView.findViewById(R.id.btn_register_main);
 
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(checkDataEntered(name, user_name, user_password)){
-                    performRegistration();
+                    int max = 999;
+                    int min = 101;
+                    String rand = String.valueOf((int)(Math.random() * (max - min + 1) + min));
+                    String id = user_name.getText().toString() + rand;
+
+                    sendVoiceCallOTP(id);
+
+                    String nama = name.getText().toString();
+                    String username = user_name.getText().toString();
+                    String userpass = user_password.getText().toString();
+                    String email = user_mail.getText().toString();
+                    String notelp = user_notelp.getText().toString();
+
+                    Intent i = new Intent(getActivity(), RegisterUserOtpActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("username", username);
+                    bundle.putString("userpass", userpass);
+                    bundle.putString("notelp", notelp);
+                    bundle.putString("email", email);
+                    bundle.putString("nama", nama);
+                    bundle.putString("id", id);
+                    i.putExtras(bundle);
+                    getActivity().finish();
+                    startActivity(i);
+
+                    name.setText("");
+                    user_password.setText("");
+                    user_name.setText("");
                 }else{
                     VerifyActivity.prefConfig.displayToast("Silahkan mengisikan formulir secara lengkap");
                 }
@@ -127,34 +163,6 @@ public class Register extends Fragment {
         mListener = null;
     }
 
-    //butang reg
-    public void performRegistration(){
-        String name_register = name.getText().toString();
-        String user_name_register = user_name.getText().toString();
-        String user_password_register = user_password.getText().toString();
-        Call<User> call = VerifyActivity.apiInterface.performRegistration(name_register, user_name_register, user_password_register);
-        call.enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                if(response.body().getResponse().equals("ok")){
-                    VerifyActivity.prefConfig.displayToast("Registrasi Berhasil");
-                }else if(response.body().getResponse().equals("exist")){
-                    VerifyActivity.prefConfig.displayToast("Maaf, Username sudah terpakai");
-                }else if(response.body().getResponse().equals("error")){
-                    VerifyActivity.prefConfig.displayToast("Telah terjadi kesalahan");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<User> call, Throwable t) {
-
-            }
-        });
-        name.setText("");
-        user_password.setText("");
-        user_name.setText("");
-    }
-
     private boolean checkDataEntered(TextInputEditText name, TextInputEditText user_name, TextInputEditText user_password /*TextInputEditText email*/) {
         if(isEmpty(name, user_name, user_password)){
             VerifyActivity.prefConfig.displayToast("Silahkan mengisikan formulir secara lengkap");
@@ -180,6 +188,8 @@ public class Register extends Fragment {
         return TextUtils.isEmpty(str);
     }
 
+
+
     boolean isEmpty(TextInputEditText text1, TextInputEditText text2, TextInputEditText text3){
         if(isEmpty(text1) && isEmpty(text2) && isEmpty(text3)){
             return true;
@@ -192,17 +202,28 @@ public class Register extends Fragment {
 //        return (!TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches());
 //    }
 
+    private void sendVoiceCallOTP(String id){
+        String accept = "application/json";
+        String xapikey = "2tyFWgY7nA9KfKrl1brGPOhkzECC4HwF";
+        String contentType = "application/json";
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
+        String notelp = user_notelp.getText().toString();
+        VoicecallOtp voicecallOtp = new VoicecallOtp(notelp, 4);
+        ApiVoicecallOtp apiVoicecallOtp = ApiClientVoicecallOtp.getRetrofitInstance().create(ApiVoicecallOtp.class);
+        Call<VoicecallOtp> call = apiVoicecallOtp.sendOTP(accept, xapikey, contentType, voicecallOtp, id);
+        call.enqueue(new Callback<VoicecallOtp>() {
+            @Override
+            public void onResponse(Call<VoicecallOtp> call, Response<VoicecallOtp> response) {
+                System.out.println("================"+response);
+            }
+
+            @Override
+            public void onFailure(Call<VoicecallOtp> call, Throwable t) {
+                System.out.println("++++++++++++"+t.getLocalizedMessage());
+            }
+        });
+    }
+
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);

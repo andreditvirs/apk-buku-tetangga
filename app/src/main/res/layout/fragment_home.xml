@@ -12,43 +12,48 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="30dp">
+        android:orientation="vertical">
     <!-- TODO: Update blank fragment layout -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="28dp"
+            android:layout_height="50dp"
             android:paddingStart="18dp"
             android:paddingEnd="18dp"
             android:paddingTop="8dp"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="@color/colorSecondary">
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_search_ruby_24dp"
-                android:onClick="toPencarian"
-                android:padding="8dp"
-                android:layout_marginEnd="8dp"/>
-            <TextView
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:text="@string/search"
-                android:textSize="12sp"
-                android:textColor="@color/colorPrimary"
-                android:background="@drawable/round_area"/>
+                android:onClick="toPencarian"/>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="24dp"
+                android:layout_weight="1"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:background="@drawable/round_area">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/search"
+                    android:textAlignment="textStart"
+                    android:textSize="14sp"
+                    android:textColor="@color/colorGray"/>
+            </LinearLayout>
             <ImageButton
-                android:layout_width="18dp"
-                android:layout_height="18dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:background="@drawable/ic_history_black_44dp"/>
         </LinearLayout>
         <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="18dp"
-        android:layout_margin="18dp">
-
-        <com.smarteist.autoimageslider.SliderView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="18dp"
+            android:layout_margin="18dp">
+            <com.smarteist.autoimageslider.SliderView
             android:id="@+id/imageSlider"
             android:layout_width="match_parent"
             android:layout_height="200dp"
@@ -66,8 +71,7 @@
             app:sliderIndicatorUnselectedColor="#FFF"
             app:sliderScrollTimeInSec="1"
             app:sliderStartAutoCycle="true" />
-
-    </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -130,7 +134,7 @@
 <!--                android:overScrollMode="never"/>-->
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/products"
+                android:id="@+id/home_buku_rekomendasi"
                 android:layout_width="match_parent"
                 android:layout_height="280dp"
                 android:layout_marginBottom="18dp"
@@ -196,7 +200,7 @@
                 />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@id/products"
+                android:id="@+id/home_buku_terpopuler"
                 android:layout_width="match_parent"
                 android:layout_height="280dp"
                 android:layout_marginBottom="18dp"
@@ -208,6 +212,73 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/round_of_card_home"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="18dp"
+            android:paddingStart="20dp"
+            android:paddingTop="22dp"
+            android:elevation="8dp"
+            android:clipToPadding="false"
+            android:dividerPadding="8dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/txtV_terbaru"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/terbaru"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorSecondary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="LIHAT SEMUA"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorUnactiveDark"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/btn_outlined"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:paddingStart="6dp"
+                    android:paddingEnd="6dp"
+                    android:layout_marginEnd="24dp"
+                    />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Buku yang baru - baru ini"
+                android:fontFamily="@font/poppins_light"
+                android:textColor="@color/colorUnactiveDark"
+                android:textSize="12sp"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/home_buku_terbaru"
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:layout_marginBottom="18dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -255,7 +326,7 @@
                     android:textColor="@color/colorSecondary"
                     android:onClick="toWebBukuTetanga"/>
 
-            </LinearLayout>git i
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"

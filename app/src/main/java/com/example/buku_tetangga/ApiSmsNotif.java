@@ -8,11 +8,13 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Path;
 
 public interface ApiSmsNotif {
-    @GET("messages/9513603993/status")
+    @GET("messages/{id}/status")
     Call<SmsNotif> getStatus(@Header("Accept") String accept,
-                             @Header("x-api-key") String key);
+                             @Header("x-api-key") String key,
+                             @Path("id") String id);
 
     @FormUrlEncoded
     @POST("messages")

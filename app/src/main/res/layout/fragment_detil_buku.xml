@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetilBukuFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/txtV_book_butang_isbn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ISBN"/>
+    <TextView
+        android:id="@+id/txtV_book_butang_pengarang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pengarang"/>
+    <TextView
+        android:id="@+id/txtV_book_butang_penerbit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Penerbit"/>
+    <TextView
+        android:id="@+id/txtV_book_butang_bahasa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bahasa"/>
+    <TextView
+        android:id="@+id/txtV_book_butang_berat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Berat"/>
+    <TextView
+        android:id="@+id/txtV_book_butang_panjang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Panjang"/>
+    <TextView
+        android:id="@+id/txtV_book_butang_lebar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lebar"/>
+</LinearLayout>

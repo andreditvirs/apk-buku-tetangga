@@ -2,21 +2,15 @@ package com.example.buku_tetangga;
 
 import com.google.gson.annotations.SerializedName;
 
-public class VoicecallOtp {
-    @SerializedName("phoneNum")
-    private String phoneNum;
+public class VoicecallOtp2 {
     @SerializedName("digit")
     private int digit;
     @SerializedName("otpStr")
     private String otpStr;
 
-    public VoicecallOtp(String phoneNum, int digit) {
-        this.phoneNum = phoneNum;
+    public VoicecallOtp2(String otpStr, int digit) {
+        this.otpStr = otpStr;
         this.digit = digit;
-    }
-
-    public String getPhoneNum() {
-        return phoneNum;
     }
 
     public int getDigit() {

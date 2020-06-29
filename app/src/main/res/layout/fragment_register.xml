@@ -108,6 +108,7 @@
             android:background="@drawable/ic_email_primary_24dp" />
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtIET_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_light"
@@ -208,6 +209,7 @@
             android:background="@drawable/ic_vpn_key_primary_24dp" />
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtIET_reuser_pass_reg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_light"
@@ -250,6 +252,7 @@
             android:background="@drawable/ic_call_primary_24dp" />
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtIET_notelp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_light"

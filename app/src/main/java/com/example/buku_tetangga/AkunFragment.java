@@ -1,10 +1,8 @@
 package com.example.buku_tetangga;
 
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,8 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -30,21 +26,14 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.example.buku_tetangga.VerifyActivity;
-import com.google.gson.annotations.SerializedName;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.GET;
-
 
 /**
  * A simple {@link Fragment} subclass.
@@ -53,7 +42,7 @@ public class AkunFragment extends Fragment {
 
     TextView nama, email, username;
     ImageView imageView;
-    Button signout;
+    Button signout, btn_toAddBook;
     GoogleSignInClient mGoogleSignInClient;
 
     //butang logout
@@ -61,112 +50,34 @@ public class AkunFragment extends Fragment {
     OnLogoutListener logoutListener;
 
     //butang rak buku
-    private ApiInterface2 apiInterfaceRakBuku;
+    private ApiInterface apiInterface;
+
+    // Simpan info lewat bundle
+    private ArrayList<String> profile;
 
     public interface OnLogoutListener{
         public void logoutPerformed();
     }
 
     //butang rak buku
-//    class Spacecraft {
-//        /*
-//        INSTANCE FIELDS
-//         */
-//        @SerializedName("id")
-//        private int id;
-//        @SerializedName("name")
-//        private String name;
-//        @SerializedName("propellant")
-//        private String propellant;
-//        @SerializedName("imageurl")
-//        private String imageURL;
-//        @SerializedName("technologyexists")
-//        private int technologyExists;
-//
-//        public Spacecraft(int id, String name, String propellant, String imageURL, int technologyExists) {
-//            this.id = id;
-//            this.name = name;
-//            this.propellant = propellant;
-//            this.imageURL = imageURL;
-//            this.technologyExists = technologyExists;
-//        }
-//
-//        /*
-//         *GETTERS AND SETTERS
-//         */
-//        public int getId() {
-//            return id;
-//        }
-//        public void setId(int id) {
-//            this.id = id;
-//        }
-//        public String getName() {
-//            return name;
-//        }
-//        public void setName(String name) {
-//            this.name = name;
-//        }
-//        public String getPropellant() {
-//            return propellant;
-//        }
-//
-//        public String getImageURL() {
-//            return imageURL;
-//        }
-//
-//        public int getTechnologyExists() {
-//            return technologyExists;
-//        }
-//
-//        /*
-//        TOSTRING
-//         */
-//        @Override
-//        public String toString() {
-//            return name;
-//        }
-//    }
-
-//    interface MyAPIService {
-//
-//        @GET("/Oclemy/SampleJSON/338d9585/spacecrafts.json")
-//        Call<List<ModalRakBuku>> getSpacecrafts();
-//    }
-
-//    static class RetrofitClientInstance {
-//
-//        private static Retrofit retrofit;
-//        private static final String BASE_URL = "https://raw.githubusercontent.com/";
-//
-//        public static Retrofit getRetrofitInstance() {
-//            if (retrofit == null) {
-//                retrofit = new Retrofit.Builder()
-//                        .baseUrl(BASE_URL)
-//                        .addConverterFactory(GsonConverterFactory.create())
-//                        .build();
-//            }
-//            return retrofit;
-//        }
-//    }
-
     class GridViewAdapter extends BaseAdapter {
 
-        private List<ModalRakBuku> spacecrafts;
+        private List<RakBuku> listRakBuku;
         private Context context;
 
-        public GridViewAdapter(Context context,List<ModalRakBuku> spacecrafts){
+        public GridViewAdapter(Context context,List<RakBuku> listRakBuku){
             this.context = context;
-            this.spacecrafts = spacecrafts;
+            this.listRakBuku = listRakBuku;
         }
 
         @Override
         public int getCount() {
-            return spacecrafts.size();
+            return listRakBuku.size();
         }
 
         @Override
         public Object getItem(int pos) {
-            return spacecrafts.get(pos);
+            return listRakBuku.get(pos);
         }
 
         @Override
@@ -181,32 +92,28 @@ public class AkunFragment extends Fragment {
                 view=LayoutInflater.from(context).inflate(R.layout.model_grid_rak_buku,viewGroup,false);
             }
 
-            TextView nameTxt = view.findViewById(R.id.nameTextView);
-            TextView txtPropellant = view.findViewById(R.id.propellantTextView);
-//            CheckBox chkTechExists = view.findViewById(R.id.myCheckBox);
-            ImageView spacecraftImageView = view.findViewById(R.id.spacecraftImageView);
-            TextView stock = view.findViewById(R.id.stockValue);
+            TextView judul_buku = view.findViewById(R.id.judul_buku);
+            TextView penerbitBuku = view.findViewById(R.id.penerbitBuku);
+            ImageView fotoBuku = view.findViewById(R.id.foto_buku);
+            TextView stock = view.findViewById(R.id.jumlah_stock);
 
-            final ModalRakBuku thisSpacecraft= spacecrafts.get(position);
+            final RakBuku rakBuku= listRakBuku.get(position);
 
-            nameTxt.setText(thisSpacecraft.getName());
-            txtPropellant.setText(thisSpacecraft.getPropellant());
-//            stock.setText(thisSpacecraft.setStock());
-//            chkTechExists.setChecked( thisSpacecraft.getTechnologyExists()==1);
-//            chkTechExists.setEnabled(false);
+            judul_buku.setText(rakBuku.getJudul_buku());
+            penerbitBuku.setText(rakBuku.getPengarang());
 
-            if(thisSpacecraft.getImageURL() != null && thisSpacecraft.getImageURL().length()>0)
+            if(rakBuku.getFoto() != null && rakBuku.getFoto().length()>0)
             {
-                Picasso.get().load(thisSpacecraft.getImageURL()).placeholder(R.drawable.ic_person_primary_24dp).into(spacecraftImageView);
+                Picasso.get().load(rakBuku.getFoto()).placeholder(R.drawable.cover_buku_1).into(fotoBuku);
             }else {
-                Toast.makeText(context, "Empty Image URL", Toast.LENGTH_LONG).show();
-                Picasso.get().load(R.drawable.ic_person_primary_24dp).into(spacecraftImageView);
+//                Toast.makeText(context, "Empty Image URL", Toast.LENGTH_LONG).show();
+//                Picasso.get().load(R.drawable.ic_person_primary_24dp).into(fotoBuku);
             }
 
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(context, thisSpacecraft.getName(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, rakBuku.getJudul_buku(), Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -221,7 +128,6 @@ public class AkunFragment extends Fragment {
     public AkunFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -254,6 +160,35 @@ public class AkunFragment extends Fragment {
 
             }
         });
+
+        nama.setText(profile.get(0));
+        username.setText(profile.get(0));
+
+        //butang rak buku
+        final ProgressBar myProgressBar= rootView.findViewById(R.id.myProgressBar);
+        myProgressBar.setIndeterminate(true);
+        myProgressBar.setVisibility(View.VISIBLE);
+
+        apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
+        Call<List<RakBuku>> call = apiInterface.getRakBuku(profile.get(0));
+        call.enqueue(new Callback<List<RakBuku>>() {
+            @Override
+            public void onResponse(Call<List<RakBuku>> call, Response<List<RakBuku>> response) {
+                myProgressBar.setVisibility(View.GONE);
+                mGridView = (ExpandableHeightGridView) rootView.findViewById(R.id.mGridView);
+                adapter = new AkunFragment.GridViewAdapter(getActivity(),response.body());
+                mGridView.setNumColumns(2);
+                mGridView.setAdapter(adapter);
+                mGridView.setExpanded(true);
+            }
+            @Override
+            public void onFailure(Call<List<RakBuku>> call, Throwable throwable) {
+                System.out.println("RESPONSE-"+ throwable.getMessage());
+                myProgressBar.setVisibility(View.GONE);
+                Toast.makeText(getActivity(), throwable.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this.getActivity());
         if (acct != null) {
             String personName = acct.getDisplayName();
@@ -280,32 +215,13 @@ public class AkunFragment extends Fragment {
             });
         }
 
-        //butang rak buku
-        final ProgressBar myProgressBar= rootView.findViewById(R.id.myProgressBar);
-        myProgressBar.setIndeterminate(true);
-        myProgressBar.setVisibility(View.VISIBLE);
-
-        apiInterfaceRakBuku = ApiClient2.getApiClient().create(ApiInterface2.class);
-
-        Call<List<ModalRakBuku>> call = apiInterfaceRakBuku.getSpacecrafts();
-        call.enqueue(new Callback<List<ModalRakBuku>>() {
-
+        btn_toAddBook = rootView.findViewById(R.id.btn_toAddBook);
+        btn_toAddBook.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onResponse(Call<List<ModalRakBuku>> call, Response<List<ModalRakBuku>> response) {
-                myProgressBar.setVisibility(View.GONE);
-                mGridView = (ExpandableHeightGridView) rootView.findViewById(R.id.mGridView);
-                adapter = new AkunFragment.GridViewAdapter(getActivity(),response.body());
-                mGridView.setNumColumns(2);
-                mGridView.setAdapter(adapter);
-                mGridView.setExpanded(true);
-            }
-            @Override
-            public void onFailure(Call<List<ModalRakBuku>> call, Throwable throwable) {
-                myProgressBar.setVisibility(View.GONE);
-                Toast.makeText(getActivity(), throwable.getMessage(), Toast.LENGTH_LONG).show();
+            public void onClick(View v) {
+                cekStatusUser(profile.get(0));
             }
         });
-
         return rootView;
     }
 
@@ -323,8 +239,6 @@ public class AkunFragment extends Fragment {
         startActivity(new Intent(getActivity(), VerifyActivity.class));
     }
 
-
-
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -341,7 +255,32 @@ public class AkunFragment extends Fragment {
         builder.setTitle("Konfirmasi");
         builder.setMessage("Apakah Anda Telah Log Out!");
         builder.create().show();
-
     }
 
+    private void cekStatusUser(String username){
+        apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
+        Call<StatusUser> call = apiInterface.cekStatusUser(username);
+        call.enqueue(new Callback<StatusUser>() {
+            @Override
+            public void onResponse(Call<StatusUser> call, Response<StatusUser> response) {
+                if (!response.body().getError()){
+                    startActivity(new Intent(getActivity(), AddBookActivity.class));
+//                    switch (response.body().getStatus()){
+//                        case "Pengunjung" : startActivity(new Intent(getActivity(), Regi));break;
+//                        case "Penyewa" : ;break;
+//                        case "Penyedia" : ;break;
+//                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<StatusUser> call, Throwable throwable) {
+                Toast.makeText(getActivity(), throwable.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    public void setProfile(ArrayList<String> profile) {
+        this.profile = profile;
+    }
 }
+
