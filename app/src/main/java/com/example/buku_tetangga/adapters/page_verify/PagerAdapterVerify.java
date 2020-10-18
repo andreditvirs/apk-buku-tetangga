@@ -1,8 +1,11 @@
-package com.example.buku_tetangga;
+package com.example.buku_tetangga.adapters.page_verify;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
+
+import com.example.buku_tetangga.Login;
+import com.example.buku_tetangga.Register;
 
 public class PagerAdapterVerify extends FragmentStatePagerAdapter {
 

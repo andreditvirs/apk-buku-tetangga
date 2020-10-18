@@ -3,6 +3,7 @@ package com.example.buku_tetangga;
 
 import android.animation.ArgbEvaluator;
 import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,9 +25,9 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.buku_tetangga.Adaptors.BukuRekomendasiAdapter;
-import com.example.buku_tetangga.Adaptors.BukuTerbaruAdapter;
-import com.example.buku_tetangga.Adaptors.BukuTerpopulerAdapter;
+import com.example.buku_tetangga.adapters.book.BukuRekomendasiAdapter;
+import com.example.buku_tetangga.adapters.book.BukuTerbaruAdapter;
+import com.example.buku_tetangga.adapters.book.BukuTerpopulerAdapter;
 import com.example.buku_tetangga.Items.Buku;
 import com.smarteist.autoimageslider.IndicatorAnimations;
 import com.smarteist.autoimageslider.SliderAnimations;
@@ -36,7 +38,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-
 
 /**
  * A simple {@link Fragment} subclass.
@@ -87,43 +88,33 @@ public class HomeFragment extends Fragment {
         sliderView.setScrollTimeInSec(4); //set scroll delay in seconds :
         sliderView.startAutoCycle();
 
-        // set card_of_home
-//        models = new ArrayList<>();
-//        models.add(new Model(R.drawable.cover_buku_1, "Brochure", "Ini adalah brosur"));
-//        models.add(new Model(R.drawable.cover_buku_1, "Stiker", "Ini adalah stiker"));
-//        models.add(new Model(R.drawable.cover_buku_1, "Poster", "Ini adalah poster"));
-//        models.add(new Model(R.drawable.cover_buku_1, "Namecard", "Ini adalah kartu nama"));
-//        models.add(new Model(R.drawable.cover_buku_1, "Namecard", "Ini adalah kartu nama"));
-//        models.add(new Model(R.drawable.cover_buku_1, "Namecard", "Ini adalah kartu nama"));
-//        models.add(new Model(R.drawable.cover_buku_1, "Namecard", "Ini adalah kartu nama"));
-//
-//        adapter2 = new Adapter(models, this.getActivity());
-//
-//        viewPager = (ViewPager) rootView.findViewById(R.id.viewPager_rekomendasi);
-//        viewPager.setAdapter(adapter2);
-//        viewPager.setPadding(130, 0, 130, 0);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        String nama = prefs.getString("nama", "loading...");
+        String username = prefs.getString("username", "loading...");
 
-        //set card Buku Rekomendasi
+        // Set card Buku Rekomendasi
         linearLayoutManagerRekomendasi = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerViewRekomendasi = rootView.findViewById(R.id.home_buku_rekomendasi);
         recyclerViewRekomendasi.setLayoutManager(linearLayoutManagerRekomendasi);
         bukuRekomendasiAdapter = new BukuRekomendasiAdapter(getActivity(), buku_rekomendasi);
         recyclerViewRekomendasi.setAdapter(bukuRekomendasiAdapter);
-        reqGetBooksFromServer(Request.Method.GET, Constants.SERVER_IP + Constants.SERVER_FD_KATEGORI_BUKU + Constants.SERVER_FILE_GET_KATEGORI_BUKU + Constants.PARAM_REKOMENDASI, 'r');
+        reqGetBooksFromServer(Request.Method.GET, Constants.FD_KATEGORI_BUKU + Constants.GET_KATEGORI_BUKU + Constants.PARAM_REKOMENDASI + username, 'r');
 
+        // Set card Buku Terpopuler
         linearLayoutManagerTerpopuler = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerViewTerpopuler = rootView.findViewById(R.id.home_buku_terpopuler);
         recyclerViewTerpopuler.setLayoutManager(linearLayoutManagerTerpopuler);
         bukuTerpopulerAdapter = new BukuTerpopulerAdapter(getActivity(), buku_terpopuler);
         recyclerViewTerpopuler.setAdapter(bukuTerpopulerAdapter);
-        reqGetBooksFromServer(Request.Method.GET, Constants.SERVER_IP + Constants.SERVER_FD_KATEGORI_BUKU + Constants.SERVER_FILE_GET_KATEGORI_BUKU + Constants.PARAM_TERPOPULER, 'p');
+        reqGetBooksFromServer(Request.Method.GET, Constants.FD_KATEGORI_BUKU + Constants.GET_KATEGORI_BUKU + Constants.PARAM_TERPOPULER, 'p');
 
+        // Set card Buku Terbaru
         linearLayoutManagerTerbaru = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerViewTerbaru = rootView.findViewById(R.id.home_buku_terbaru);
         recyclerViewTerbaru.setLayoutManager(linearLayoutManagerTerbaru);
         bukuTerbaruAdapter = new BukuTerbaruAdapter(getActivity(), buku_terbaru);
         recyclerViewTerbaru.setAdapter(bukuTerbaruAdapter);
-        reqGetBooksFromServer(Request.Method.GET, Constants.SERVER_IP + Constants.SERVER_FD_KATEGORI_BUKU + Constants.SERVER_FILE_GET_KATEGORI_BUKU + Constants.PARAM_TERBARU, 'b');
+        reqGetBooksFromServer(Request.Method.GET, Constants.FD_KATEGORI_BUKU + Constants.GET_KATEGORI_BUKU + Constants.PARAM_TERBARU, 'b');
 
         return rootView;
     }
@@ -153,7 +144,7 @@ public class HomeFragment extends Fragment {
                                     {
                                         JSONObject jsonObjects = jsonArray.getJSONObject(i);
                                         String rakbuku_id  = String.valueOf(jsonObjects.getInt("rakbuku_id"));
-                                        String judul_buku = jsonObjects.getString("judul_buku");
+                                        String judul = jsonObjects.getString("judul");
                                         String pengarang = jsonObjects.getString("pengarang");
                                         String penerbit = jsonObjects.getString("penerbit");
                                         String harga = String.valueOf(jsonObjects.getInt("harga"));
@@ -162,7 +153,7 @@ public class HomeFragment extends Fragment {
 
                                         Buku buku = new Buku();
                                         buku.setRakbuku_id(rakbuku_id);
-                                        buku.setJudul_buku(judul_buku);
+                                        buku.setJudul_buku(judul);
                                         buku.setPengarang(pengarang);
                                         buku.setPenerbit(penerbit);
                                         buku.setHarga(harga);
@@ -197,14 +188,6 @@ public class HomeFragment extends Fragment {
                     Log.e(TAG,""+error.getLocalizedMessage());
                 }
             }) ;
-//            {
-//                @Override
-//                protected Map<String, String> getParams() throws AuthFailureError {
-//                    Map<String, String> map = new HashMap<>();
-//                    map.put("orderid", "1");
-//                    return map;
-//                }
-//            };
 
             RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
             requestQueue.add(stringRequest);
@@ -229,5 +212,4 @@ public class HomeFragment extends Fragment {
             Log.e(TAG, "" + ex.getLocalizedMessage());
         }
     }
-
 }

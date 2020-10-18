@@ -74,7 +74,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.tvPrice.setText(book.getPrice());
         holder.tvCategory.setText(book.getCategories());
 
-        //load image from internet and set it into imageView using Glide
+        // Load image from object
         Glide.with(mContext).load(book.getThumbnail()).apply(options).into(holder.ivThumbnail);
 
     }

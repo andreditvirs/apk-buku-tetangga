@@ -48,10 +48,4 @@ public interface ApiInterface {
     @Multipart
     @POST("crud/upload_foto_buku.php")
     Call<FotoBuku> uploadFotoBuku(@Part MultipartBody.Part file, @Part("file") RequestBody name);
-
-    @FormUrlEncoded
-    @POST("rakbuku/get_rakbuku.php")
-    Call<RakBuku> getRakbuku(
-            @Field("rakbuku_id") String rakbuku_id
-    );
 }

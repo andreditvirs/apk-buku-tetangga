@@ -7,7 +7,6 @@ public class Book {
     private String mDescription;
     private String mCategories;
     private String mThumbnail;
-    private String mrRetailPrice;
     private String mBuy;
     private String mPreview;
     private String mPrice;
@@ -60,7 +59,6 @@ public class Book {
     public String getThumbnail() {
         return mThumbnail;
     }
-
 
     public String getBuy() {
         return mBuy;

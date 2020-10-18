@@ -22,11 +22,12 @@ public class BookActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book);
 
-        //Receive
+        // Recive Data from API
         Bundle extras = getIntent().getExtras();
         String title =""
                 , authors ="", description="" , categories ="", publishDate=""
                 ,info ="", buy ="",preview ="" ,thumbnail ="";
+
         if(extras != null){
             title = extras.getString("book_title");
             authors = extras.getString("book_author");

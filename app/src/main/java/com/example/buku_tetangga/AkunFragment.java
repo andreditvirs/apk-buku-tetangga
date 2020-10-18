@@ -4,12 +4,14 @@ package com.example.buku_tetangga;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,9 +53,6 @@ public class AkunFragment extends Fragment {
 
     //butang rak buku
     private ApiInterface apiInterface;
-
-    // Simpan info lewat bundle
-    private ArrayList<String> profile;
 
     public interface OnLogoutListener{
         public void logoutPerformed();
@@ -161,8 +160,12 @@ public class AkunFragment extends Fragment {
             }
         });
 
-        nama.setText(profile.get(0));
-        username.setText(profile.get(0));
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        String nama = prefs.getString("nama", "loading...");
+        String username = prefs.getString("username", "loading...");
+
+        this.nama.setText(nama);
+        this.username.setText(username);
 
         //butang rak buku
         final ProgressBar myProgressBar= rootView.findViewById(R.id.myProgressBar);
@@ -170,7 +173,7 @@ public class AkunFragment extends Fragment {
         myProgressBar.setVisibility(View.VISIBLE);
 
         apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
-        Call<List<RakBuku>> call = apiInterface.getRakBuku(profile.get(0));
+        Call<List<RakBuku>> call = apiInterface.getRakBuku(username);
         call.enqueue(new Callback<List<RakBuku>>() {
             @Override
             public void onResponse(Call<List<RakBuku>> call, Response<List<RakBuku>> response) {
@@ -183,7 +186,7 @@ public class AkunFragment extends Fragment {
             }
             @Override
             public void onFailure(Call<List<RakBuku>> call, Throwable throwable) {
-                System.out.println("RESPONSE-"+ throwable.getMessage());
+                System.out.println("RESPONSE===="+ throwable.getMessage());
                 myProgressBar.setVisibility(View.GONE);
                 Toast.makeText(getActivity(), throwable.getMessage(), Toast.LENGTH_LONG).show();
             }
@@ -196,8 +199,8 @@ public class AkunFragment extends Fragment {
             String personId = acct.getId();
             Uri personPhoto = acct.getPhotoUrl();
 
-            nama.setText(personName);
-            username.setText(personId);
+            this.nama.setText(personName);
+            this.username.setText(personId);
             email.setText(personEmail);
             Glide.with(this).load(personPhoto).into(imageView);
         }else {
@@ -205,7 +208,7 @@ public class AkunFragment extends Fragment {
             //butang logout
             btn_logout = (ImageButton) rootView.findViewById(R.id.btn_logout_main);
             String nama_user = VerifyActivity.prefConfig.readName();
-            nama.setText(nama_user);
+            this.nama.setText(nama_user);
 
             btn_logout.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -219,7 +222,7 @@ public class AkunFragment extends Fragment {
         btn_toAddBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cekStatusUser(profile.get(0));
+                cekStatusUser(username);
             }
         });
         return rootView;
@@ -242,8 +245,6 @@ public class AkunFragment extends Fragment {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-//        Activity activity = (Activity) context;
-//        logoutListener = (OnLogoutListener) activity;
     }
 
     private AlertDialog.Builder builder;
@@ -265,11 +266,6 @@ public class AkunFragment extends Fragment {
             public void onResponse(Call<StatusUser> call, Response<StatusUser> response) {
                 if (!response.body().getError()){
                     startActivity(new Intent(getActivity(), AddBookActivity.class));
-//                    switch (response.body().getStatus()){
-//                        case "Pengunjung" : startActivity(new Intent(getActivity(), Regi));break;
-//                        case "Penyewa" : ;break;
-//                        case "Penyedia" : ;break;
-//                    }
                 }
             }
             @Override
@@ -279,8 +275,5 @@ public class AkunFragment extends Fragment {
         });
     }
 
-    public void setProfile(ArrayList<String> profile) {
-        this.profile = profile;
-    }
 }
 

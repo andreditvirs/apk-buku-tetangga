@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
+import com.example.buku_tetangga.adapters.page_verify.PagerAdapterVerify;
 import com.google.android.material.tabs.TabLayout;
 
 public class VerifyActivity extends AppCompatActivity implements Login.OnFragmentInteractionListener,Register.OnFragmentInteractionListener, Login.OnLoginFormActivityListener, AkunFragment.OnLogoutListener{
@@ -64,21 +65,17 @@ public class VerifyActivity extends AppCompatActivity implements Login.OnFragmen
 
     @Override
     public void onFragmentInteraction(Uri uri) {
-
+        //
     }
 
     @Override
     public void performRegister() {
-//        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-////                new RegistrationFragment2()).addToBackStack(null).commit();
         viewPager.setCurrentItem(1);
     }
 
     @Override
     public void performLogin(String name) {
         prefConfig.writeName(name);
-//        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-//                new WelcomeFragment2()).commit();
         startActivity(new Intent(this, Navbar.class));
     }
 

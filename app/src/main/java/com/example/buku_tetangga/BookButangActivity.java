@@ -1,5 +1,6 @@
 package com.example.buku_tetangga;
 
+import android.app.Application;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,8 +16,11 @@ import androidx.viewpager.widget.ViewPager;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
 import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
@@ -24,11 +28,12 @@ import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
-import com.example.buku_tetangga.Adaptors.BukuLainAdapter;
+import com.example.buku_tetangga.adapters.book.BukuLainAdapter;
 import com.example.buku_tetangga.Items.Buku;
 import com.google.android.material.tabs.TabLayout;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -38,7 +43,6 @@ import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
-import retrofit2.Response;
 
 //import android.support.design.widget.CollapsingToolbarLayout;
 
@@ -63,8 +67,8 @@ public class BookButangActivity extends AppCompatActivity{
 
         Bundle bundle = getIntent().getExtras();
         String rakbuku_id = bundle.getString("rakbuku_id");
-        reqRakbuku(rakbuku_id);
-        imageView = findViewById(R.id.foto_book_butang);
+        reqDetailBuku(Request.Method.POST, Constants.FD_BUKU + Constants.GET_DETAIL_BUKU, rakbuku_id);
+        imageView = findViewById(R.id.imgV_book_butang);
         judul_buku = findViewById(R.id.txtV_judul_buku_rakbuku);
         harga = findViewById(R.id.txtV_harga_rakbuku);
         penyedia = findViewById(R.id.txtV_penyedia_rakbuku);
@@ -101,29 +105,67 @@ public class BookButangActivity extends AppCompatActivity{
         recyclerViewLain.setLayoutManager(linearLayoutManagerLain);
         bukuLainAdapter = new BukuLainAdapter(this, buku_lain);
         recyclerViewLain.setAdapter(bukuLainAdapter);
-        reqPostBooksFromServer(Request.Method.POST, Constants.SERVER_IP + Constants.SERVER_FD_KATEGORI_BUKU + Constants.SERVER_FILE_GET_KATEGORI_BUKU + Constants.PARAM_LAIN, rakbuku_id);
+        reqPostBooksFromServer(Request.Method.POST, Constants.FD_KATEGORI_BUKU + Constants.GET_KATEGORI_BUKU + Constants.PARAM_LAIN, rakbuku_id);
 
     }
 
-    private void reqRakbuku(String rakbuku_id){
-        apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
-        Call<RakBuku> call = apiInterface.getRakbuku(rakbuku_id);
-        call.enqueue(new Callback<RakBuku>() {
-            @Override
-            public void onResponse(Call<RakBuku> call, Response<RakBuku> response) {
-                if (response.isSuccessful()){
-                    setRakbuku(response.body());
-                }
-            }
+    private void reqDetailBuku(int method, String uri, String rakbuku_id) {
+//
 
+// Make call
+        final String URL = "http://api.dribbble.com/shots/everyone";
+        // pass second argument as "null" for GET requests
+        JsonObjectRequest req = new JsonObjectRequest(URL, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            VolleyLog.v("Response:%n %s", response.toString(4));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
             @Override
-            public void onFailure(Call<RakBuku> call, Throwable t) {
-
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.e("Error: ", error.getMessage());
             }
         });
+
+        // add the request object to the queue to be executed
+        ApplicationController.getInstance().addToRequestQueue(req);
+//
+
+        try {
+            final String URL = "URL";
+            // Data post
+            HashMap<String, String> params = new HashMap<String, String>();
+            params.put("rakbuku_id", rakbuku_id);
+            JsonObjectRequest request_json = new JsonObjectRequest(uri, new JSONObject(params),
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    VolleyLog.e("Error: ", error.getMessage());
+                }
+            });
+            // Add the request object to queue
+            Application
+        } catch (Exception ex) {
+            Log.e(TAG, "" + ex.getLocalizedMessage());
+        }
     }
 
     public void setRakbuku(RakBuku rakBuku){
+        System.out.println("RESPONSE===="+rakBuku.toString());
         judul_buku.setText(rakBuku.getJudul_buku());
         penyedia.setText(rakBuku.getUsername());
         harga.setText("Rp. "+rakBuku.getHarga());

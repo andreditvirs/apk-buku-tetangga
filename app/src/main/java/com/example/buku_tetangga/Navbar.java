@@ -30,7 +30,6 @@ public class Navbar extends AppCompatActivity {
     private RiwayatFragment riwayatFragment;
     private AkunFragment akunFragment;
 
-    private ArrayList<String> profile = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,8 +46,8 @@ public class Navbar extends AppCompatActivity {
 
         setFragment(homeFragment);
 
-        Bundle bundle = getIntent().getExtras();
-        profile = bundle.getStringArrayList("profile");
+        ArrayList<String> profile = new ArrayList<>();
+
         mMainNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -63,8 +62,6 @@ public class Navbar extends AppCompatActivity {
                         setFragment(riwayatFragment);
                         return true;
                     case R.id.nav_akun:
-                        AkunFragment akunFragment = new AkunFragment();
-                        akunFragment.setProfile(profile);
                         setFragment(akunFragment);
                         return true;
                     default: return false;

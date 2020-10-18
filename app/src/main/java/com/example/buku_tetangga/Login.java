@@ -3,12 +3,14 @@ package com.example.buku_tetangga;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -116,6 +118,7 @@ public class Login extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_login, container, false);
+
         //set butang sign
         regText = rootView.findViewById(R.id.txtV_reg);
         user_name = rootView.findViewById(R.id.txtIET_user_name_login);
@@ -167,7 +170,7 @@ public class Login extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        Activity activity = (Activity) context;
+        this.activity = (Activity) context;
         loginFormActivityListener = (Login.OnLoginFormActivityListener) activity;
 
         if (context instanceof OnFragmentInteractionListener) {
@@ -224,7 +227,6 @@ public class Login extends Fragment {
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                Activity activity = getActivity();
                 if (response.isSuccessful()){
                     try {
                         JSONObject jsonObject = new JSONObject(response.body().string());
@@ -232,12 +234,15 @@ public class Login extends Fragment {
                             String nama_lengkap = jsonObject.getJSONObject("user").getString("nama_lengkap");
                             ArrayList<String> profile = new ArrayList<>();
                             profile.add(nama_lengkap);
+                            profile.add(username);
                             Intent i = new Intent(activity, Navbar.class);
-                            Bundle bundle = new Bundle();
-                            bundle.putStringArrayList("profile", profile);
-                            i.putExtras(bundle);
-                            getActivity().finish();
+                            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
+                            SharedPreferences.Editor editor = prefs.edit();
+                            editor.putString("username", username);
+                            editor.putString("nama", nama_lengkap);
+                            editor.apply();
                             startActivity(i);
+                            activity.finish();
                         }else{
                             String error_msg = jsonObject.getString("error_msg");
                         }

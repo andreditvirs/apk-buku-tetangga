@@ -105,6 +105,6 @@ public class RegisterUserOtpActivity extends AppCompatActivity {
     private void toLogin(){
         Toast.makeText(RegisterUserOtpActivity.this, "Anda Berhasil Registrasi", Toast.LENGTH_SHORT).show();
         this.finish();
-        startActivity(new Intent(RegisterUserOtpActivity.this, Login.class));
+        startActivity(new Intent(RegisterUserOtpActivity.this, VerifyActivity.class));
     }
 }

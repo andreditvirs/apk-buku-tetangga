@@ -25,7 +25,7 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.buku_tetangga.Adaptors.BukuRekomendasiAdapter;
+import com.example.buku_tetangga.adapters.book.BukuRekomendasiAdapter;
 import com.example.buku_tetangga.Items.Buku;
 
 import org.json.JSONArray;
@@ -98,7 +98,7 @@ public class KeranjangFragment extends Fragment {
 
     private void getProductsFromServer() {
         try {
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, Constants.SERVER_IP + Constants.SERVER_FD_KATEGORI_BUKU + Constants.SERVER_FILE_GET_KATEGORI_BUKU,
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, Constants.FD_KATEGORI_BUKU + Constants.GET_KATEGORI_BUKU,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
