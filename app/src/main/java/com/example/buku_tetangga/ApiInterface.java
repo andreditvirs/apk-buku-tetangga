@@ -1,6 +1,6 @@
 package com.example.buku_tetangga;
 
-import com.example.buku_tetangga.Items.Buku;
+import com.example.buku_tetangga.model.BookButangActivity.RakBuku;
 
 import java.util.List;
 

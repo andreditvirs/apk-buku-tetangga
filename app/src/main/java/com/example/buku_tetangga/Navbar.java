@@ -1,6 +1,7 @@
 package com.example.buku_tetangga;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -44,7 +45,13 @@ public class Navbar extends AppCompatActivity {
         riwayatFragment = new RiwayatFragment();
         akunFragment = new AkunFragment();
 
-        setFragment(homeFragment);
+        Intent i = getIntent();
+        String data = i.getStringExtra("intentTo");
+        if(data!=null && data.contentEquals("2")){
+            setFragment(keranjangFragment);
+        }else{
+            setFragment(homeFragment);
+        }
 
         ArrayList<String> profile = new ArrayList<>();
 
@@ -68,7 +75,7 @@ public class Navbar extends AppCompatActivity {
                 }
             }
         });
-            }
+    }
 
     private void setFragment(androidx.fragment.app.Fragment fragment) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();

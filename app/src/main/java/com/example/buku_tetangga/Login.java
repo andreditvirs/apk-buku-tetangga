@@ -232,12 +232,14 @@ public class Login extends Fragment {
                         JSONObject jsonObject = new JSONObject(response.body().string());
                         if(!jsonObject.getBoolean("error")){
                             String nama_lengkap = jsonObject.getJSONObject("user").getString("nama_lengkap");
+                            String id = jsonObject.getJSONObject("user").getString("id");
                             ArrayList<String> profile = new ArrayList<>();
                             profile.add(nama_lengkap);
                             profile.add(username);
                             Intent i = new Intent(activity, Navbar.class);
                             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
                             SharedPreferences.Editor editor = prefs.edit();
+                            editor.putString("id", id);
                             editor.putString("username", username);
                             editor.putString("nama", nama_lengkap);
                             editor.apply();

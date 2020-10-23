@@ -26,7 +26,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.buku_tetangga.adapters.book.BukuRekomendasiAdapter;
-import com.example.buku_tetangga.Items.Buku;
+import com.example.buku_tetangga.model.BookButangActivity.Buku;
+import com.example.buku_tetangga.model.BookButangActivity.RakBuku;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -48,6 +49,7 @@ public class KeranjangFragment extends Fragment {
     //set card_of_keranjang horizontal
     private ProgressDialog progressDialog;
     private List<Buku> bukus = new ArrayList<Buku>();
+    private List<RakBuku> rakbukus = new ArrayList<RakBuku>();
     private BukuRekomendasiAdapter bukuRekomendasiAdapter;
     private RecyclerView recyclerView;
     private String TAG = HomeFragment.class.getSimpleName();
@@ -81,9 +83,8 @@ public class KeranjangFragment extends Fragment {
         linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        bukuRekomendasiAdapter = new BukuRekomendasiAdapter(getActivity(), bukus);
+        bukuRekomendasiAdapter = new BukuRekomendasiAdapter(getActivity(), bukus, rakbukus);
         recyclerView.setAdapter(bukuRekomendasiAdapter);
-        getProductsFromServer();
 
         return rootView;
     }
@@ -95,82 +96,4 @@ public class KeranjangFragment extends Fragment {
         i.setData(Uri.parse(url));
         startActivity(i);
     }
-
-    private void getProductsFromServer() {
-        try {
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, Constants.FD_KATEGORI_BUKU + Constants.GET_KATEGORI_BUKU,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            // parse data from server and asign to the list view
-                            Log.e(TAG, response);
-                            try
-                            {
-                                JSONObject jsonObject = new JSONObject(response);
-                                JSONArray jsonArray = jsonObject.getJSONArray("productList");
-                                if(jsonArray!=null)
-                                {
-                                    for(int i=0;i<jsonArray.length();i++)
-                                    {
-                                        JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                                        String name  =jsonObject1.getString("productName");
-                                        String imageurl = jsonObject1.getString("productImageUrl");
-                                        String farmername = jsonObject1.getString("region");
-                                        String stock = jsonObject1.getString("stock");
-
-                                        Buku buku = new Buku();
-                                        buku.setJudul_buku(name);
-                                        buku.setPenerbit(farmername);
-                                        buku.setStock(stock);
-                                        buku.setFoto(imageurl);
-
-                                        bukus.add(buku);
-                                    }
-                                }
-
-                                bukuRekomendasiAdapter.notifyDataSetChanged();
-                            }catch (Exception ex)
-                            {
-                                Log.e(TAG, ""+ex.getLocalizedMessage());
-                            }
-
-                        }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Log.e(TAG,""+error.getLocalizedMessage());
-                }
-            }) {
-                @Override
-                protected Map<String, String> getParams() throws AuthFailureError {
-                    Map<String, String> map = new HashMap<>();
-                    map.put("orderid", "1");
-                    return map;
-                }
-            };
-
-            RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
-            requestQueue.add(stringRequest);
-
-            stringRequest.setRetryPolicy(new RetryPolicy() {
-                @Override
-                public int getCurrentTimeout() {
-                    return 0;
-                }
-
-                @Override
-                public int getCurrentRetryCount() {
-                    return 0;
-                }
-
-                @Override
-                public void retry(VolleyError error) throws VolleyError {
-
-                }
-            });
-        } catch (Exception ex) {
-            Log.e(TAG, "" + ex.getLocalizedMessage());
-        }
-    }
-
 }

@@ -1,9 +1,13 @@
 package com.example.buku_tetangga;
 
-import android.app.Application;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,8 +23,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
@@ -29,11 +31,14 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.example.buku_tetangga.adapters.book.BukuLainAdapter;
-import com.example.buku_tetangga.Items.Buku;
+import com.example.buku_tetangga.adapters.book.BukuTerbaruAdapter;
+import com.example.buku_tetangga.model.BookButangActivity.Buku;
+import com.example.buku_tetangga.model.BookButangActivity.Penyedia;
+import com.example.buku_tetangga.model.BookButangActivity.RakBuku;
 import com.google.android.material.tabs.TabLayout;
+import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -41,22 +46,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-
-//import android.support.design.widget.CollapsingToolbarLayout;
-
 public class BookButangActivity extends AppCompatActivity{
 
     private ViewPager viewPager;
     private ApiInterface apiInterface;
     private ImageView imageView;
-    private TextView judul_buku, harga, penyedia;
+    private TextView judul_buku, harga, nama_penyedia;
     private List<Buku> buku_lain = new ArrayList<Buku>();
+    private List<RakBuku> rakbuku_lain = new ArrayList<RakBuku>();
     private BukuLainAdapter bukuLainAdapter;
     private RecyclerView recyclerViewLain;
     private LinearLayoutManager linearLayoutManagerLain;
     private String TAG = BookButangActivity.class.getSimpleName();
+
+    private Button btn_sewa_buku;
+    private Bundle bundle1 = new Bundle();
 
     public BookButangActivity(){}
 
@@ -65,109 +69,167 @@ public class BookButangActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_butang);
 
+        // Request dulu datanya
         Bundle bundle = getIntent().getExtras();
         String rakbuku_id = bundle.getString("rakbuku_id");
-        reqDetailBuku(Request.Method.POST, Constants.FD_BUKU + Constants.GET_DETAIL_BUKU, rakbuku_id);
+        reqDetailBuku(Constants.FD_BUKU + Constants.GET_DETAIL_BUKU, rakbuku_id);
+
+        // Masukkan ke layout
         imageView = findViewById(R.id.imgV_book_butang);
         judul_buku = findViewById(R.id.txtV_judul_buku_rakbuku);
         harga = findViewById(R.id.txtV_harga_rakbuku);
-        penyedia = findViewById(R.id.txtV_penyedia_rakbuku);
+        nama_penyedia = findViewById(R.id.txtV_penyedia_rakbuku);
+        btn_sewa_buku = findViewById(R.id.btn_book_butang_sewa_buku);
 
-        TabLayout tabLayout = (TabLayout)findViewById(R.id.tabLayoutRakbuku);
-        tabLayout.addTab(tabLayout.newTab().setText("DESKRIPSI"));
-        tabLayout.addTab(tabLayout.newTab().setText("DETIL PRODUK"));
-        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-
-        viewPager = (ViewPager)findViewById(R.id.pagerRakbuku);
-        final PagerAdapterRakbuku adapter = new PagerAdapterRakbuku(getSupportFragmentManager(),tabLayout.getTabCount(), rakbuku_id);
-        viewPager.setAdapter(adapter);
-        viewPager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        // Handler button ke keranjang
+        btn_sewa_buku.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
-            }
+            public void onClick(View v) {
+                // Global variabel
+                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(BookButangActivity.this);
+                String penyewa_id = prefs.getString("id", "loading...");
 
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
+                // Masukkan bukunya dulu
+                reqAddKeranjang(Constants.FD_KERANJANG+Constants.GET_DETAIL_KERANJANG, penyewa_id, rakbuku_id);
 
-            }
+                // Pindah halaman dengan membawa data keranjang_id
+                KeranjangFragment keranjangFragment = new KeranjangFragment();
+                keranjangFragment.setArguments(bundle1);
 
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
+                Intent i = new Intent(BookButangActivity.this, Navbar.class);
+                i.putExtra("intentTo", "2");
+                startActivity(i);
             }
         });
 
+        // Set card Buku Lain
         linearLayoutManagerLain = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerViewLain = findViewById(R.id.book_butang_lain);
         recyclerViewLain.setLayoutManager(linearLayoutManagerLain);
-        bukuLainAdapter = new BukuLainAdapter(this, buku_lain);
+        bukuLainAdapter = new BukuLainAdapter(this, buku_lain, rakbuku_lain);
         recyclerViewLain.setAdapter(bukuLainAdapter);
-        reqPostBooksFromServer(Request.Method.POST, Constants.FD_KATEGORI_BUKU + Constants.GET_KATEGORI_BUKU + Constants.PARAM_LAIN, rakbuku_id);
+        reqGetBooksFromServer(Request.Method.GET, Constants.FD_KATEGORI_BUKU + Constants.GET_KATEGORI_BUKU + Constants.PARAM_LAIN, 'b');
 
     }
 
-    private void reqDetailBuku(int method, String uri, String rakbuku_id) {
-//
-
-// Make call
-        final String URL = "http://api.dribbble.com/shots/everyone";
-        // pass second argument as "null" for GET requests
-        JsonObjectRequest req = new JsonObjectRequest(URL, null,
-                new Response.Listener<JSONObject>() {
+    private void reqAddKeranjang(String url, String penyewa_id, String rakbuku_id) {
+        RequestQueue queue = Volley.newRequestQueue(this);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
                     @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            VolleyLog.v("Response:%n %s", response.toString(4));
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                    public void onResponse(String response) {
+                        try
+                        {
+                            JSONObject jsonObject = new JSONObject(response);
+                            if(!jsonObject.getBoolean("error")){
+                                bundle1.putString("keranjang_id", jsonObject.getString("penyewa_id"));
+                            }
+                        }catch (Exception ex)
+                        {
+                            Log.e(TAG, ""+ex.getLocalizedMessage());
                         }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                VolleyLog.e("Error: ", error.getMessage());
+                System.out.println("ERROR");
             }
-        });
+        }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("penyewa_id", penyewa_id);
+                params.put("rakbuku_id", rakbuku_id);
+                return params;
+            }
+        };
+        queue.add(stringRequest);
+    }
 
-        // add the request object to the queue to be executed
-        ApplicationController.getInstance().addToRequestQueue(req);
-//
+    private void reqDetailBuku(String url, String rakbuku_id) {
+        RequestQueue queue = Volley.newRequestQueue(this);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try
+                        {
+                            JSONObject jsonObject = new JSONObject(response);
+                            JSONArray jsonArray = new JSONArray();
+                            jsonArray = jsonObject.getJSONArray("detail_buku");
 
-        try {
-            final String URL = "URL";
-            // Data post
-            HashMap<String, String> params = new HashMap<String, String>();
-            params.put("rakbuku_id", rakbuku_id);
-            JsonObjectRequest request_json = new JsonObjectRequest(uri, new JSONObject(params),
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            try {
+                            JSONObject jsonObject1 =  jsonArray.getJSONObject(0);
+                            // Ambil data PENYEDIA
+                            JSONObject jsonObjectPenyedia = jsonObject1.getJSONObject("penyedia");
+                            // Ambil data BUKU
+                            JSONObject jsonObjectBuku = jsonObject1.getJSONObject("buku");
+                            // Ambil data RAKBUKU
+                            JSONObject jsonObjectRakBuku = jsonObject1.getJSONObject("rakbuku");
+                            if(jsonObjectPenyedia!=null && jsonObjectBuku!=null && jsonObjectRakBuku!=null)
+                            {
+                                String username  = String.valueOf(jsonObjectPenyedia.getString("username"));
+                                String notelp  = String.valueOf(jsonObjectPenyedia.getString("notelp"));
+                                String alamat  = String.valueOf(jsonObjectPenyedia.getString("alamat"));
+                                Penyedia penyedia = new Penyedia(username, notelp, alamat);
+                                setPenyedia(penyedia);
 
-                            } catch (JSONException e) {
-                                e.printStackTrace();
+                                String isbn  = String.valueOf(jsonObjectBuku.getString("isbn"));
+                                String judul  = String.valueOf(jsonObjectBuku.getString("judul"));
+                                String pengarang  = String.valueOf(jsonObjectBuku.getString("pengarang"));
+                                String penerbit  = String.valueOf(jsonObjectBuku.getString("penerbit"));
+                                String kategori  = String.valueOf(jsonObjectBuku.getString("kategori"));
+                                String deskripsi  = String.valueOf(jsonObjectBuku.getString("deskripsi"));
+                                Buku buku = new Buku(isbn, judul, pengarang, penerbit, kategori, deskripsi);
+                                setBuku(buku);
+
+                                String id  = String.valueOf(jsonObjectRakBuku.getString("id"));
+                                String harga  = String.valueOf(jsonObjectRakBuku.getString("harga"));
+                                String jumlah_stock  = String.valueOf(jsonObjectRakBuku.getString("jumlah_stock"));
+                                String keterangan  = String.valueOf(jsonObjectRakBuku.getString("keterangan"));
+                                String foto  = String.valueOf(jsonObjectRakBuku.getString("foto"));
+                                RakBuku rakbuku = new RakBuku(id, harga, jumlah_stock, keterangan, foto);
+                                setRakbuku(rakbuku);
+
+                                TabLayout tabLayout = (TabLayout)findViewById(R.id.tabLayoutRakbuku);
+                                setTabLayout(tabLayout, buku);
                             }
+                        }catch (Exception ex)
+                        {
+                            Log.e(TAG, ""+ex.getLocalizedMessage());
                         }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    VolleyLog.e("Error: ", error.getMessage());
-                }
-            });
-            // Add the request object to queue
-            Application
-        } catch (Exception ex) {
-            Log.e(TAG, "" + ex.getLocalizedMessage());
-        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println("ERROR");
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("rakbuku_id", rakbuku_id);
+                return params;
+            }
+        };
+        queue.add(stringRequest);
+    }
+
+    public void setPenyedia(Penyedia penyedia){
+        nama_penyedia.setText(penyedia.getUsername());
+//        notelp.setText(penyedia.getNotelp());
+//        alamat.setText(penyedia.getAlamat());
+    }
+
+    public void setBuku(Buku buku){
+        judul_buku.setText(buku.getJudul());
+//        isbn.setText(buku.getIsbn());
+//        pengarang.setText(buku.getPengarang());
+//        penerbit.setText(buku.getPenerbit());
+//        kategori.setText(buku.getKategori());
+//        deskripsi.setText(buku.getDeskripsi());
     }
 
     public void setRakbuku(RakBuku rakBuku){
-        System.out.println("RESPONSE===="+rakBuku.toString());
-        judul_buku.setText(rakBuku.getJudul_buku());
-        penyedia.setText(rakBuku.getUsername());
         harga.setText("Rp. "+rakBuku.getHarga());
         Glide.with(this)
                 .load(rakBuku.getFoto())
@@ -189,11 +251,10 @@ public class BookButangActivity extends AppCompatActivity{
                 .into(imageView);
     }
 
-    private void reqPostBooksFromServer(int method, String uri, String rakbuku_id) {
-        System.out.println("MELAKUKAN REQ BUKU");
+    private void reqGetBooksFromServer(int method, String uri, final char code) {
         try {
             StringRequest stringRequest = new StringRequest(method, uri,
-                    new com.android.volley.Response.Listener<String>() {
+                    new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
                             // parse data from server and asign to the list view
@@ -202,31 +263,24 @@ public class BookButangActivity extends AppCompatActivity{
                             {
                                 JSONObject jsonObject = new JSONObject(response);
                                 JSONArray jsonArray = new JSONArray();
-                                jsonArray = jsonObject.getJSONArray("buku_lain");
-
                                 if(jsonArray!=null)
                                 {
                                     for(int i=0;i<jsonArray.length();i++)
                                     {
                                         JSONObject jsonObjects = jsonArray.getJSONObject(i);
                                         String rakbuku_id  = String.valueOf(jsonObjects.getInt("rakbuku_id"));
-                                        String judul_buku = jsonObjects.getString("judul_buku");
+                                        String judul = jsonObjects.getString("judul");
                                         String pengarang = jsonObjects.getString("pengarang");
                                         String penerbit = jsonObjects.getString("penerbit");
                                         String harga = String.valueOf(jsonObjects.getInt("harga"));
                                         String jumlah_stock = String.valueOf(jsonObjects.getInt("jumlah_stock"));
                                         String foto = jsonObjects.getString("foto");
 
-                                        Buku buku = new Buku();
-                                        buku.setRakbuku_id(rakbuku_id);
-                                        buku.setJudul_buku(judul_buku);
-                                        buku.setPengarang(pengarang);
-                                        buku.setPenerbit(penerbit);
-                                        buku.setHarga(harga);
-                                        buku.setStock(jumlah_stock);
-                                        buku.setFoto(foto);
+                                        Buku buku = new Buku(judul, pengarang, penerbit);
+                                        RakBuku rakbuku = new RakBuku(rakbuku_id, harga, jumlah_stock, foto);
 
                                         buku_lain.add(buku);
+                                        rakbuku_lain.add(rakbuku);
                                     }
                                 }
                                 bukuLainAdapter.notifyDataSetChanged();
@@ -236,21 +290,12 @@ public class BookButangActivity extends AppCompatActivity{
                             }
 
                         }
-                    }, new com.android.volley.Response.ErrorListener() {
+                    }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     Log.e(TAG,""+error.getLocalizedMessage());
                 }
-            })
-            {
-                @Override
-                protected Map<String, String> getParams() throws AuthFailureError {
-                    Map<String, String> map = new HashMap<>();
-                    map.put("username", "BigBox");
-                    map.put("rakbuku_id", rakbuku_id);
-                    return map;
-                }
-            };
+            }) ;
 
             RequestQueue requestQueue = Volley.newRequestQueue(this);
             requestQueue.add(stringRequest);
@@ -274,5 +319,33 @@ public class BookButangActivity extends AppCompatActivity{
         } catch (Exception ex) {
             Log.e(TAG, "" + ex.getLocalizedMessage());
         }
+    }
+
+    public void setTabLayout(TabLayout tabLayout, Buku buku){
+        tabLayout.addTab(tabLayout.newTab().setText("DESKRIPSI"));
+        tabLayout.addTab(tabLayout.newTab().setText("DETIL PRODUK"));
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+        viewPager = (ViewPager)findViewById(R.id.pagerRakbuku);
+        final PagerAdapterRakbuku adapter = new PagerAdapterRakbuku(getSupportFragmentManager(),tabLayout.getTabCount(), buku);
+        viewPager.setAdapter(adapter);
+        viewPager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
 }

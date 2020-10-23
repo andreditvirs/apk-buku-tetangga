@@ -24,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.buku_tetangga.model.BookButangActivity.RakBuku;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -98,8 +99,8 @@ public class AkunFragment extends Fragment {
 
             final RakBuku rakBuku= listRakBuku.get(position);
 
-            judul_buku.setText(rakBuku.getJudul_buku());
-            penerbitBuku.setText(rakBuku.getPengarang());
+//            judul_buku.setText(rakBuku.getJudul_buku());
+//            penerbitBuku.setText(rakBuku.getPengarang());
 
             if(rakBuku.getFoto() != null && rakBuku.getFoto().length()>0)
             {
@@ -112,7 +113,7 @@ public class AkunFragment extends Fragment {
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(context, rakBuku.getJudul_buku(), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(context, rakBuku.getJudul_buku(), Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -173,24 +174,24 @@ public class AkunFragment extends Fragment {
         myProgressBar.setVisibility(View.VISIBLE);
 
         apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
-        Call<List<RakBuku>> call = apiInterface.getRakBuku(username);
-        call.enqueue(new Callback<List<RakBuku>>() {
-            @Override
-            public void onResponse(Call<List<RakBuku>> call, Response<List<RakBuku>> response) {
-                myProgressBar.setVisibility(View.GONE);
-                mGridView = (ExpandableHeightGridView) rootView.findViewById(R.id.mGridView);
-                adapter = new AkunFragment.GridViewAdapter(getActivity(),response.body());
-                mGridView.setNumColumns(2);
-                mGridView.setAdapter(adapter);
-                mGridView.setExpanded(true);
-            }
-            @Override
-            public void onFailure(Call<List<RakBuku>> call, Throwable throwable) {
-                System.out.println("RESPONSE===="+ throwable.getMessage());
-                myProgressBar.setVisibility(View.GONE);
-                Toast.makeText(getActivity(), throwable.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
+//        Call<List<RakBuku>> call = apiInterface.getRakBuku(username);
+//        call.enqueue(new Callback<List<RakBuku>>() {
+//            @Override
+//            public void onResponse(Call<List<RakBuku>> call, Response<List<RakBuku>> response) {
+//                myProgressBar.setVisibility(View.GONE);
+//                mGridView = (ExpandableHeightGridView) rootView.findViewById(R.id.mGridView);
+//                adapter = new AkunFragment.GridViewAdapter(getActivity(),response.body());
+//                mGridView.setNumColumns(2);
+//                mGridView.setAdapter(adapter);
+//                mGridView.setExpanded(true);
+//            }
+//            @Override
+//            public void onFailure(Call<List<RakBuku>> call, Throwable throwable) {
+//                System.out.println("RESPONSE===="+ throwable.getMessage());
+//                myProgressBar.setVisibility(View.GONE);
+//                Toast.makeText(getActivity(), throwable.getMessage(), Toast.LENGTH_LONG).show();
+//            }
+//        });
 
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this.getActivity());
         if (acct != null) {

@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.buku_tetangga.model.BookButangActivity.Buku;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -77,36 +79,17 @@ public class DetilBukuFragment extends Fragment {
         berat = rootView.findViewById(R.id.txtV_book_butang_berat);
         panjang = rootView.findViewById(R.id.txtV_book_butang_panjang);
         lebar = rootView.findViewById(R.id.txtV_book_butang_lebar);
-        reqRakbuku();
         return rootView;
     }
 
-    private void reqRakbuku(){
-        apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
-        Call<RakBuku> call = apiInterface.getRakbuku(rakbuku_id);
-        call.enqueue(new Callback<RakBuku>() {
-            @Override
-            public void onResponse(Call<RakBuku> call, Response<RakBuku> response) {
-                if (response.isSuccessful()){
-                    setRakbuku(response.body());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<RakBuku> call, Throwable t) {
-
-            }
-        });
-    }
-
-    public void setRakbuku(RakBuku rakbuku){
-        isbn.setText(rakbuku.getIsbn());
-        pengarang.setText(rakbuku.getPengarang());
-        penerbit.setText(rakbuku.getPenerbit());
-        bahasa.setText(rakbuku.getBahasa());
-        berat.setText(rakbuku.getBerat());
-        panjang.setText(rakbuku.getPanjang());
-        lebar.setText(rakbuku.getLebar());
+    public void setBuku(Buku buku){
+        isbn.setText(buku.getIsbn());
+        pengarang.setText(buku.getPengarang());
+        penerbit.setText(buku.getPenerbit());
+//        bahasa.setText(buku.getBahasa());
+//        berat.setText(buku.getBerat());
+//        panjang.setText(buku.getPanjang());
+//        lebar.setText(buku.getLebar());
     }
 
 

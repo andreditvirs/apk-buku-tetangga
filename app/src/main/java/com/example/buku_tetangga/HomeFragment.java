@@ -28,7 +28,9 @@ import com.android.volley.toolbox.Volley;
 import com.example.buku_tetangga.adapters.book.BukuRekomendasiAdapter;
 import com.example.buku_tetangga.adapters.book.BukuTerbaruAdapter;
 import com.example.buku_tetangga.adapters.book.BukuTerpopulerAdapter;
-import com.example.buku_tetangga.Items.Buku;
+import com.example.buku_tetangga.model.BookButangActivity.Buku;
+import com.example.buku_tetangga.model.BookButangActivity.Penyedia;
+import com.example.buku_tetangga.model.BookButangActivity.RakBuku;
 import com.smarteist.autoimageslider.IndicatorAnimations;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
@@ -56,6 +58,10 @@ public class HomeFragment extends Fragment {
     private List<Buku> buku_rekomendasi = new ArrayList<Buku>();
     private List<Buku> buku_terpopuler = new ArrayList<Buku>();
     private List<Buku> buku_terbaru = new ArrayList<Buku>();
+    private List<RakBuku> rakbuku_rekomendasi = new ArrayList<RakBuku>();
+    private List<RakBuku> rakbuku_terpopuler = new ArrayList<RakBuku>();
+    private List<RakBuku> rakbuku_terbaru = new ArrayList<RakBuku>();
+
     private BukuRekomendasiAdapter bukuRekomendasiAdapter;
     private BukuTerpopulerAdapter bukuTerpopulerAdapter;
     private BukuTerbaruAdapter bukuTerbaruAdapter;
@@ -73,11 +79,8 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         //Set Slider
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
-
         SliderView sliderView = (SliderView) rootView.findViewById(R.id.imageSlider);
-
         SliderAdapterExample adapter = new SliderAdapterExample(this.getActivity());
-
         sliderView.setSliderAdapter(adapter);
 
         sliderView.setIndicatorAnimation(IndicatorAnimations.WORM); //set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
@@ -88,6 +91,7 @@ public class HomeFragment extends Fragment {
         sliderView.setScrollTimeInSec(4); //set scroll delay in seconds :
         sliderView.startAutoCycle();
 
+        // Global variabel
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         String nama = prefs.getString("nama", "loading...");
         String username = prefs.getString("username", "loading...");
@@ -96,7 +100,7 @@ public class HomeFragment extends Fragment {
         linearLayoutManagerRekomendasi = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerViewRekomendasi = rootView.findViewById(R.id.home_buku_rekomendasi);
         recyclerViewRekomendasi.setLayoutManager(linearLayoutManagerRekomendasi);
-        bukuRekomendasiAdapter = new BukuRekomendasiAdapter(getActivity(), buku_rekomendasi);
+        bukuRekomendasiAdapter = new BukuRekomendasiAdapter(getActivity(), buku_rekomendasi, rakbuku_rekomendasi);
         recyclerViewRekomendasi.setAdapter(bukuRekomendasiAdapter);
         reqGetBooksFromServer(Request.Method.GET, Constants.FD_KATEGORI_BUKU + Constants.GET_KATEGORI_BUKU + Constants.PARAM_REKOMENDASI + username, 'r');
 
@@ -104,7 +108,7 @@ public class HomeFragment extends Fragment {
         linearLayoutManagerTerpopuler = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerViewTerpopuler = rootView.findViewById(R.id.home_buku_terpopuler);
         recyclerViewTerpopuler.setLayoutManager(linearLayoutManagerTerpopuler);
-        bukuTerpopulerAdapter = new BukuTerpopulerAdapter(getActivity(), buku_terpopuler);
+        bukuTerpopulerAdapter = new BukuTerpopulerAdapter(getActivity(), buku_terpopuler, rakbuku_terpopuler);
         recyclerViewTerpopuler.setAdapter(bukuTerpopulerAdapter);
         reqGetBooksFromServer(Request.Method.GET, Constants.FD_KATEGORI_BUKU + Constants.GET_KATEGORI_BUKU + Constants.PARAM_TERPOPULER, 'p');
 
@@ -112,7 +116,7 @@ public class HomeFragment extends Fragment {
         linearLayoutManagerTerbaru = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerViewTerbaru = rootView.findViewById(R.id.home_buku_terbaru);
         recyclerViewTerbaru.setLayoutManager(linearLayoutManagerTerbaru);
-        bukuTerbaruAdapter = new BukuTerbaruAdapter(getActivity(), buku_terbaru);
+        bukuTerbaruAdapter = new BukuTerbaruAdapter(getActivity(), buku_terbaru, rakbuku_terbaru);
         recyclerViewTerbaru.setAdapter(bukuTerbaruAdapter);
         reqGetBooksFromServer(Request.Method.GET, Constants.FD_KATEGORI_BUKU + Constants.GET_KATEGORI_BUKU + Constants.PARAM_TERBARU, 'b');
 
@@ -151,21 +155,18 @@ public class HomeFragment extends Fragment {
                                         String jumlah_stock = String.valueOf(jsonObjects.getInt("jumlah_stock"));
                                         String foto = jsonObjects.getString("foto");
 
-                                        Buku buku = new Buku();
-                                        buku.setRakbuku_id(rakbuku_id);
-                                        buku.setJudul_buku(judul);
-                                        buku.setPengarang(pengarang);
-                                        buku.setPenerbit(penerbit);
-                                        buku.setHarga(harga);
-                                        buku.setStock(jumlah_stock);
-                                        buku.setFoto(foto);
+                                        Buku buku = new Buku(judul, pengarang, penerbit);
+                                        RakBuku rakbuku = new RakBuku(rakbuku_id, harga, jumlah_stock, foto);
 
                                         if(code == 'r'){
                                             buku_rekomendasi.add(buku);
+                                            rakbuku_rekomendasi.add(rakbuku);
                                         }else if(code == 'p'){
                                             buku_terpopuler.add(buku);
+                                            rakbuku_terpopuler.add(rakbuku);
                                         }else if(code == 'b'){
                                             buku_terbaru.add(buku);
+                                            rakbuku_terbaru.add(rakbuku);
                                         }
                                     }
                                 }
