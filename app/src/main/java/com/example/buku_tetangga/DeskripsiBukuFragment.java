@@ -9,15 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.buku_tetangga.model.Book;
-import com.example.buku_tetangga.model.BookButangActivity.Buku;
-import com.example.buku_tetangga.model.BookButangActivity.Penyedia;
-import com.example.buku_tetangga.model.BookButangActivity.RakBuku;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 public class DeskripsiBukuFragment extends Fragment{
 
     // TODO: Rename parameter arguments, choose names that match

@@ -1,4 +1,4 @@
-package com.example.buku_tetangga.model.BookButangActivity;
+package com.example.buku_tetangga.model.book_butang_activity;
 
 public class Penyedia {
     private String username;

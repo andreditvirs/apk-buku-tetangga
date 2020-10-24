@@ -1,9 +1,7 @@
 package com.example.buku_tetangga;
 
-import android.content.Context;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -11,11 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.buku_tetangga.model.BookButangActivity.Buku;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import com.example.buku_tetangga.model.book_butang_activity.Buku;
 
 /**
  * A simple {@link Fragment} subclass.

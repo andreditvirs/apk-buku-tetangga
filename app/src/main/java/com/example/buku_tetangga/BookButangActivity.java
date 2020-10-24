@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -31,12 +30,10 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.example.buku_tetangga.adapters.book.BukuLainAdapter;
-import com.example.buku_tetangga.adapters.book.BukuTerbaruAdapter;
-import com.example.buku_tetangga.model.BookButangActivity.Buku;
-import com.example.buku_tetangga.model.BookButangActivity.Penyedia;
-import com.example.buku_tetangga.model.BookButangActivity.RakBuku;
+import com.example.buku_tetangga.model.book_butang_activity.Buku;
+import com.example.buku_tetangga.model.book_butang_activity.Penyedia;
+import com.example.buku_tetangga.model.book_butang_activity.RakBuku;
 import com.google.android.material.tabs.TabLayout;
-import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

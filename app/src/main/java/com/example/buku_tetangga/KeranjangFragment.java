@@ -10,32 +10,21 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.RetryPolicy;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.buku_tetangga.adapters.book.BukuRekomendasiAdapter;
-import com.example.buku_tetangga.model.BookButangActivity.Buku;
-import com.example.buku_tetangga.model.BookButangActivity.RakBuku;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
+import com.example.buku_tetangga.adapters.keranjang.RcvPenyediaAdapter;
+import com.example.buku_tetangga.model.book_butang_activity.Buku;
+import com.example.buku_tetangga.model.keranjang.Penyedia;
+import com.example.buku_tetangga.model.book_butang_activity.RakBuku;
+import com.example.buku_tetangga.model.keranjang.BukuInPenyedia;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 /**
@@ -86,7 +75,31 @@ public class KeranjangFragment extends Fragment {
         bukuRekomendasiAdapter = new BukuRekomendasiAdapter(getActivity(), bukus, rakbukus);
         recyclerView.setAdapter(bukuRekomendasiAdapter);
 
+        RecyclerView rvItem = rootView.findViewById(R.id.rcv_keranjang_penyedia);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        RcvPenyediaAdapter itemAdapter = new RcvPenyediaAdapter(buildItemList());
+        rvItem.setAdapter(itemAdapter);
+        rvItem.setLayoutManager(layoutManager);
+
         return rootView;
+    }
+
+    private List<Penyedia> buildItemList() {
+        List<Penyedia> itemList = new ArrayList<>();
+        for (int i=0; i<10; i++) {
+            Penyedia item = new Penyedia("Item "+i, buildSubItemList());
+            itemList.add(item);
+        }
+        return itemList;
+    }
+
+    private List<BukuInPenyedia> buildSubItemList() {
+        List<BukuInPenyedia> subItemList = new ArrayList<>();
+        for (int i=0; i<3; i++) {
+            BukuInPenyedia subItem = new BukuInPenyedia("Sub Item "+i, "Description "+i);
+            subItemList.add(subItem);
+        }
+        return subItemList;
     }
 
     public void setWhatsApp(String number){
