@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.buku_tetangga.model.book_butang_activity.Buku;
+import com.example.buku_tetangga.model.Buku;
 
 /**
  * A simple {@link Fragment} subclass.

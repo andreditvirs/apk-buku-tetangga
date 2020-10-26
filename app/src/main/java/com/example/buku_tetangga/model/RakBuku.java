@@ -1,4 +1,4 @@
-package com.example.buku_tetangga.model.book_butang_activity;
+package com.example.buku_tetangga.model;
 
 public class RakBuku {
     private String id;
@@ -6,6 +6,11 @@ public class RakBuku {
     private String jumlah_stock;
     private String keterangan;
     private String foto;
+
+    public RakBuku(String harga, String foto) {
+        this.harga = harga;
+        this.foto = foto;
+    }
 
     public RakBuku(String id, String harga, String jumlah_stock, String foto) {
         this.id = id;

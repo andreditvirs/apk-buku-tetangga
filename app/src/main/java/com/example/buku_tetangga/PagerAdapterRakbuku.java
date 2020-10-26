@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-import com.example.buku_tetangga.model.book_butang_activity.Buku;
+import com.example.buku_tetangga.model.Buku;
 
 public class PagerAdapterRakbuku extends FragmentStatePagerAdapter {
 

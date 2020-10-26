@@ -1,4 +1,4 @@
-package com.example.buku_tetangga.model.book_butang_activity;
+package com.example.buku_tetangga.model;
 
 public class Buku {
     private String isbn;
@@ -7,6 +7,10 @@ public class Buku {
     private String penerbit;
     private String kategori;
     private String deskripsi;
+
+    public Buku(String judul) {
+        this.judul = judul;
+    }
 
     public Buku(String judul, String pengarang, String penerbit) {
         this.judul = judul;

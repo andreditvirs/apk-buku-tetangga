@@ -30,9 +30,9 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.example.buku_tetangga.adapters.book.BukuLainAdapter;
-import com.example.buku_tetangga.model.book_butang_activity.Buku;
-import com.example.buku_tetangga.model.book_butang_activity.Penyedia;
-import com.example.buku_tetangga.model.book_butang_activity.RakBuku;
+import com.example.buku_tetangga.model.Buku;
+import com.example.buku_tetangga.model.Penyedia;
+import com.example.buku_tetangga.model.RakBuku;
 import com.google.android.material.tabs.TabLayout;
 
 import org.json.JSONArray;

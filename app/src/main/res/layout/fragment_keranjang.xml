@@ -31,7 +31,7 @@
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcv_keranjang_penyedia"
+            android:id="@+id/rcv_keranjang_buku"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 

@@ -3,6 +3,7 @@ package com.example.buku_tetangga;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -10,21 +11,35 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.buku_tetangga.adapters.book.BukuRekomendasiAdapter;
-import com.example.buku_tetangga.adapters.keranjang.RcvPenyediaAdapter;
-import com.example.buku_tetangga.model.book_butang_activity.Buku;
-import com.example.buku_tetangga.model.keranjang.Penyedia;
-import com.example.buku_tetangga.model.book_butang_activity.RakBuku;
-import com.example.buku_tetangga.model.keranjang.BukuInPenyedia;
+import com.example.buku_tetangga.adapters.keranjang.RcvBukuAdapter;
+import com.example.buku_tetangga.model.Buku;
+import com.example.buku_tetangga.model.DetailBuku;
+import com.example.buku_tetangga.model.Penyedia;
+import com.example.buku_tetangga.model.RakBuku;
+import com.google.android.material.tabs.TabLayout;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -39,6 +54,8 @@ public class KeranjangFragment extends Fragment {
     private ProgressDialog progressDialog;
     private List<Buku> bukus = new ArrayList<Buku>();
     private List<RakBuku> rakbukus = new ArrayList<RakBuku>();
+    private List<DetailBuku> detailBukus = new ArrayList<>();
+
     private BukuRekomendasiAdapter bukuRekomendasiAdapter;
     private RecyclerView recyclerView;
     private String TAG = HomeFragment.class.getSimpleName();
@@ -69,37 +86,89 @@ public class KeranjangFragment extends Fragment {
 
         recyclerView = rootView.findViewById(R.id.home_buku_rekomendasi);
 
+        // Global variabel
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        String penyewa_id = prefs.getString("id", "loading...");
+
+        reqDetailBuku(Request.Method.GET, Constants.FD_KERANJANG + Constants.GET_DETAIL_KERANJANG, penyewa_id);
+
         linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
 
         bukuRekomendasiAdapter = new BukuRekomendasiAdapter(getActivity(), bukus, rakbukus);
         recyclerView.setAdapter(bukuRekomendasiAdapter);
 
-        RecyclerView rvItem = rootView.findViewById(R.id.rcv_keranjang_penyedia);
+        RecyclerView rvItem = rootView.findViewById(R.id.rcv_keranjang_buku);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        RcvPenyediaAdapter itemAdapter = new RcvPenyediaAdapter(buildItemList());
+        RcvBukuAdapter itemAdapter = new RcvBukuAdapter(detailBukus);
         rvItem.setAdapter(itemAdapter);
         rvItem.setLayoutManager(layoutManager);
 
         return rootView;
     }
 
-    private List<Penyedia> buildItemList() {
-        List<Penyedia> itemList = new ArrayList<>();
-        for (int i=0; i<10; i++) {
-            Penyedia item = new Penyedia("Item "+i, buildSubItemList());
-            itemList.add(item);
-        }
-        return itemList;
+    private void reqDetailBuku(int method, String url, String penyewa_id) {
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
+        StringRequest stringRequest = new StringRequest(method, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try
+                        {
+                            JSONObject jsonObject = new JSONObject(response);
+                            JSONArray jsonArray = new JSONArray();
+                            jsonArray = jsonObject.getJSONArray("detail_buku");
+
+                            List<DetailBuku> detailBukus = new ArrayList<DetailBuku>();
+                            for (int i = 0; i < jsonArray.length(); i++){
+                                JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                                // Ambil data KERANJANG
+                                JSONObject jsonObjectKeranjang = jsonObject1.getJSONObject("keranjang");
+                                // Ambil data PENYEDIA
+                                JSONObject jsonObjectPenyedia = jsonObject1.getJSONObject("penyedia");
+                                // Ambil data BUKU
+                                JSONObject jsonObjectBuku = jsonObject1.getJSONObject("buku");
+                                // Ambil data RAKBUKU
+                                JSONObject jsonObjectRakBuku = jsonObject1.getJSONObject("rakbuku");
+
+                                String keranjang_id = String.valueOf(jsonObjectKeranjang.getString("id"));
+
+                                String nama_lengkap = String.valueOf(jsonObjectPenyedia.getString("nama_lengkap"));
+                                String foto_penyedia  = String.valueOf(jsonObjectPenyedia.getString("foto"));
+                                Penyedia penyedia = new Penyedia(nama_lengkap, foto_penyedia);
+
+                                String judul  = String.valueOf(jsonObjectBuku.getString("judul"));
+                                Buku buku = new Buku(judul);
+
+                                String harga  = String.valueOf(jsonObjectRakBuku.getString("harga"));;
+                                String foto_rakbuku  = String.valueOf(jsonObjectRakBuku.getString("foto"));
+                                RakBuku rakBuku = new RakBuku(harga, foto_rakbuku);
+                                detailBukus.add(new DetailBuku(keranjang_id, penyedia, rakBuku, buku));
+                            }
+                            setDetailBukus(detailBukus);
+                        }catch (Exception ex)
+                        {
+                            Log.e(TAG, ""+ex.getLocalizedMessage());
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println("ERROR");
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("penyewa_id", penyewa_id);
+                return params;
+            }
+        };
+        queue.add(stringRequest);
     }
 
-    private List<BukuInPenyedia> buildSubItemList() {
-        List<BukuInPenyedia> subItemList = new ArrayList<>();
-        for (int i=0; i<3; i++) {
-            BukuInPenyedia subItem = new BukuInPenyedia("Sub Item "+i, "Description "+i);
-            subItemList.add(subItem);
-        }
-        return subItemList;
+    private void setDetailBukus(List<DetailBuku> detailBukus){
+        this.detailBukus = detailBukus;
     }
 
     public void setWhatsApp(String number){
