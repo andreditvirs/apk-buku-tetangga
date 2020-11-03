@@ -26,12 +26,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.buku_tetangga.adapters.book.BukuRekomendasiAdapter;
-import com.example.buku_tetangga.adapters.keranjang.RcvBukuAdapter;
+import com.example.buku_tetangga.adapters.keranjang.RcvPenyediaAdapter;
 import com.example.buku_tetangga.model.Buku;
 import com.example.buku_tetangga.model.DetailBuku;
-import com.example.buku_tetangga.model.Penyedia;
+import com.example.buku_tetangga.model.keranjang.Penyedia;
 import com.example.buku_tetangga.model.RakBuku;
-import com.google.android.material.tabs.TabLayout;
+import com.example.buku_tetangga.model.keranjang.BukuInPenyedia;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -98,9 +98,9 @@ public class KeranjangFragment extends Fragment {
         bukuRekomendasiAdapter = new BukuRekomendasiAdapter(getActivity(), bukus, rakbukus);
         recyclerView.setAdapter(bukuRekomendasiAdapter);
 
-        RecyclerView rvItem = rootView.findViewById(R.id.rcv_keranjang_buku);
+        RecyclerView rvItem = rootView.findViewById(R.id.rcv_keranjang_penyedia);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        RcvBukuAdapter itemAdapter = new RcvBukuAdapter(detailBukus);
+        RcvPenyediaAdapter itemAdapter = new RcvPenyediaAdapter(buildItemList(this.detailBukus));
         rvItem.setAdapter(itemAdapter);
         rvItem.setLayoutManager(layoutManager);
 
@@ -134,8 +134,9 @@ public class KeranjangFragment extends Fragment {
                                 String keranjang_id = String.valueOf(jsonObjectKeranjang.getString("id"));
 
                                 String nama_lengkap = String.valueOf(jsonObjectPenyedia.getString("nama_lengkap"));
+                                String username = String.valueOf(jsonObjectPenyedia.getString("username"));
                                 String foto_penyedia  = String.valueOf(jsonObjectPenyedia.getString("foto"));
-                                Penyedia penyedia = new Penyedia(nama_lengkap, foto_penyedia);
+                                Penyedia penyedia = new Penyedia(nama_lengkap, username, foto_penyedia);
 
                                 String judul  = String.valueOf(jsonObjectBuku.getString("judul"));
                                 Buku buku = new Buku(judul);
@@ -178,4 +179,23 @@ public class KeranjangFragment extends Fragment {
         i.setData(Uri.parse(url));
         startActivity(i);
     }
-}
+
+    private List<BukuInPenyedia> buildSubItemList(DetailBuku detailBuku) {
+        List<BukuInPenyedia> subItemList = new ArrayList<>();
+        for (int i=0; i<3; i++) {
+            BukuInPenyedia subItem = new BukuInPenyedia(detailBuku.getKeranjang_id(), detailBuku.getBuku(), detailBuku.getRakBuku());
+            subItemList.add(subItem);
+        }
+        return subItemList;
+    }
+
+    private List<Penyedia> buildItemList(List<DetailBuku> detailBukus) {
+        List<Penyedia> itemList = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            Penyedia item = new Penyedia(detailBukus.get(i).getPenyedia().getNama_penyedia(), detailBukus.get(i).getPenyedia().getFoto(), buildSubItemList(detailBukus.get(i)));
+            itemList.add(item);
+        }
+        return itemList;
+    }
+
+    }

@@ -1,5 +1,6 @@
 package com.example.buku_tetangga.model;
 
+import com.example.buku_tetangga.model.keranjang.Penyedia;
 public class DetailBuku {
 
     private String keranjang_id;
